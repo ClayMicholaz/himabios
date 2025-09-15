@@ -1,26 +1,93 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+/* Import KaTeX CSS for math equations */
+@import url("https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css");
+
+/* Custom CSS Variables for Docusaurus-like theming */
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #1c1e21;
+  --ifm-color-primary: #2e8555;
+  --ifm-color-primary-dark: #29784c;
+  --ifm-color-primary-darker: #277148;
+  --ifm-color-primary-darkest: #205d3b;
+  --ifm-color-primary-light: #33925d;
+  --ifm-color-primary-lighter: #359962;
+  --ifm-color-primary-lightest: #3cad6e;
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --ifm-navbar-background-color: #ffffff;
+  --ifm-background-color: #ffffff;
+  --ifm-footer-background-color: #303846;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.dark {
+  --background: #1b1b1d;
+  --foreground: #ffffff;
+  --ifm-color-primary: #25c2a0;
+  --ifm-color-primary-dark: #21af90;
+  --ifm-color-primary-darker: #1fa588;
+  --ifm-color-primary-darkest: #1a8870;
+  --ifm-color-primary-light: #29d5b0;
+  --ifm-color-primary-lighter: #32d8b4;
+  --ifm-color-primary-lightest: #4fddbf;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  --ifm-navbar-background-color: #24292e;
+  --ifm-background-color: #1b1b1d;
+  --ifm-footer-background-color: #1c1e21;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Cantarell,
+    "Noto Sans", sans-serif;
+}
+
+/* Hero section styling to match Docusaurus */
+.hero-banner {
+  background: linear-gradient(
+    90deg,
+    var(--ifm-color-primary) 0%,
+    var(--ifm-color-primary-light) 100%
+  );
+  color: white;
+  padding: 4rem 0;
+}
+
+/* Button styling to match Docusaurus */
+.btn-secondary {
+  background-color: white;
+  color: var(--ifm-color-primary);
+  border: 2px solid white;
+  padding: 0.75rem 2rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background-color: transparent;
+  color: white;
+  border-color: white;
+}
+
+/* Feature section styling */
+.features-section {
+  padding: 4rem 0;
+  background-color: #f8f9fa;
+}
+
+.dark .features-section {
+  background-color: #1a1a1a;
+}
+
+/* Feature SVG styling */
+.feature-svg {
+  height: 200px;
+  width: 200px;
 }

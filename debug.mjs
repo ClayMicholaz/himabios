@@ -1,0 +1,1 @@
+import { getAllMarkdownFiles, getMarkdownBySlug } from './src/lib/markdown.ts'; console.log('All files:', getAllMarkdownFiles()); console.log('Intro file:', getMarkdownBySlug(['intro'])); console.log('Algorithm intro:', getMarkdownBySlug(['algorithm', 'intro']));
