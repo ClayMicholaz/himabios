@@ -91,3 +91,245 @@ body {
   height: 200px;
   width: 200px;
 }
+
+/* Custom Organization Chart Styling */
+.organization-chart-custom {
+  width: 100% !important;
+}
+
+.organization-chart-custom .p-organizationchart-table {
+  border-spacing: 1.5rem 2rem !important;
+  width: 100% !important;
+  table-layout: fixed !important;
+}
+
+/* Konsistensi ukuran node */
+.organization-chart-custom .p-organizationchart-node {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  min-width: 200px !important;
+  min-height: 280px !important;
+}
+
+/* Styling untuk semua garis koneksi dengan ketebalan konsisten */
+.organization-chart-custom .p-organizationchart-line-down,
+.organization-chart-custom .p-organizationchart-line-left,
+.organization-chart-custom .p-organizationchart-line-right,
+.organization-chart-custom .p-organizationchart-line-top {
+  background: #10b981 !important;
+  border: none !important;
+  opacity: 0.9;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 4px rgba(16, 185, 129, 0.3);
+}
+
+/* Garis vertikal dengan ukuran konsisten */
+.organization-chart-custom .p-organizationchart-line-down,
+.organization-chart-custom .p-organizationchart-line-top {
+  width: 4px !important;
+  min-height: 30px !important;
+  border-radius: 2px;
+}
+
+/* Garis horizontal dengan ukuran konsisten */
+.organization-chart-custom .p-organizationchart-line-left,
+.organization-chart-custom .p-organizationchart-line-right {
+  height: 4px !important;
+  min-width: 30px !important;
+  border-radius: 2px;
+}
+
+/* Khusus untuk level dengan banyak children */
+.organization-chart-custom
+  .p-organizationchart-table
+  tr:nth-child(3)
+  .p-organizationchart-line-left,
+.organization-chart-custom
+  .p-organizationchart-table
+  tr:nth-child(3)
+  .p-organizationchart-line-right {
+  height: 4px !important;
+  background: linear-gradient(90deg, #10b981, #34d399, #10b981) !important;
+}
+
+/* Dark mode styling untuk garis */
+.dark .organization-chart-custom .p-organizationchart-line-down,
+.dark .organization-chart-custom .p-organizationchart-line-left,
+.dark .organization-chart-custom .p-organizationchart-line-right,
+.dark .organization-chart-custom .p-organizationchart-line-top {
+  border-color: #34d399 !important; /* emerald-400 */
+}
+
+.dark .organization-chart-custom .p-organizationchart-line-down,
+.dark .organization-chart-custom .p-organizationchart-line-top {
+  background: linear-gradient(to bottom, #34d399, #10b981);
+}
+
+.dark .organization-chart-custom .p-organizationchart-line-left,
+.dark .organization-chart-custom .p-organizationchart-line-right {
+  background: linear-gradient(to right, #34d399, #10b981);
+}
+
+/* Node content styling */
+.organization-chart-custom .p-organizationchart-node-content {
+  padding: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Table cell padding untuk spacing yang lebih baik */
+.organization-chart-custom .p-organizationchart-table td {
+  padding: 0.75rem !important;
+}
+
+/* Hover effect untuk garis */
+.organization-chart-custom:hover .p-organizationchart-line-down,
+.organization-chart-custom:hover .p-organizationchart-line-left,
+.organization-chart-custom:hover .p-organizationchart-line-right,
+.organization-chart-custom:hover .p-organizationchart-line-top {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+/* Animation for status indicator */
+@keyframes pulse-green {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-pulse-green {
+  animation: pulse-green 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Animation untuk garis koneksi */
+@keyframes line-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Animated gradient untuk garis */
+.organization-chart-custom .p-organizationchart-line-down,
+.organization-chart-custom .p-organizationchart-line-top {
+  background: linear-gradient(45deg, #10b981, #34d399, #10b981, #34d399);
+  background-size: 400% 400%;
+  animation: line-flow 3s ease-in-out infinite;
+}
+
+.organization-chart-custom .p-organizationchart-line-left,
+.organization-chart-custom .p-organizationchart-line-right {
+  background: linear-gradient(90deg, #10b981, #34d399, #10b981, #34d399);
+  background-size: 400% 400%;
+  animation: line-flow 3s ease-in-out infinite;
+}
+
+/* Styling untuk intersection points (junction) */
+.organization-chart-custom
+  .p-organizationchart-table
+  td[data-pc-section="cell"] {
+  position: relative;
+}
+
+/* Custom connector dots */
+.organization-chart-custom
+  .p-organizationchart-table
+  td[data-pc-section="cell"]::before {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: #10b981;
+  border: 2px solid white;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.dark
+  .organization-chart-custom
+  .p-organizationchart-table
+  td[data-pc-section="cell"]::before {
+  background: #34d399;
+  border-color: #1f2937;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .organization-chart-custom .p-organizationchart-table {
+    border-spacing: 1rem 1rem;
+  }
+
+  .organization-chart-custom .p-organizationchart-line-down,
+  .organization-chart-custom .p-organizationchart-line-top {
+    width: 2px !important;
+  }
+
+  .organization-chart-custom .p-organizationchart-line-left,
+  .organization-chart-custom .p-organizationchart-line-right {
+    height: 2px !important;
+  }
+}
+
+/* Line clamp utilities */
+.line-clamp-1 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+}
+
+.line-clamp-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
+
+/* Ensure proper spacing and alignment */
+.organization-chart-custom .p-organizationchart-table td {
+  text-align: center !important;
+  vertical-align: middle !important;
+  padding: 1rem !important;
+}
+
+/* Khusus untuk junction points dengan banyak children */
+.organization-chart-custom
+  .p-organizationchart-table
+  tr:has(.p-organizationchart-line-left, .p-organizationchart-line-right) {
+  height: 60px !important;
+}
+
+/* Memperbaiki connector untuk distribusi yang lebih baik */
+.organization-chart-custom .p-organizationchart-connector {
+  position: relative;
+}
+
+.organization-chart-custom .p-organizationchart-connector::before {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: #10b981;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

@@ -112,7 +112,7 @@ export default function AboutPage() {
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
               <a
-                href="https://www.instagram.com/bios_ubm/"
+                href="https://www.instagram.com/ubm_bios_ancol/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center bg-gradient-to-r from-pink-500 to-orange-500 text-white px-6 py-3 rounded-lg font-medium hover:shadow-lg transition-all duration-200"
@@ -122,7 +122,7 @@ export default function AboutPage() {
               </a>
 
               <a
-                href="https://discord.gg/UZR5zkH4ZS"
+                href="https://discord.gg/tUPHdBKS"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center bg-indigo-600 text-white px-6 py-3 rounded-lg font-medium hover:shadow-lg transition-all duration-200"
