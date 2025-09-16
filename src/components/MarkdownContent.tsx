@@ -165,6 +165,7 @@ export default function MarkdownContent({
               ...props
             }: {
               children?: React.ReactNode;
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
               [key: string]: any;
             }) => <Tabs {...props}>{children}</Tabs>,
             tabitem: ({
@@ -176,12 +177,14 @@ export default function MarkdownContent({
               children?: React.ReactNode;
               value?: string;
               label?: string;
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
               [key: string]: any;
             }) => (
               <TabItem value={value} label={label} {...props}>
                 {children}
               </TabItem>
             ),
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           } as any
         }
       >

@@ -194,7 +194,7 @@ function getFlatFileList(): NavigationItem[] {
       if (aPos !== bPos) {
         return (aPos as number) - (bPos as number);
       }
-    } catch (error) {
+    } catch {
       // Continue with alphabetical sort if can't read files
     }
 

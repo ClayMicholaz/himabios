@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 interface FeatureItem {
   title: string;
@@ -31,7 +32,7 @@ function Feature({ title, iconPath, description }: FeatureItem) {
   return (
     <div className="flex flex-col items-center text-center px-4">
       <div className="mb-6">
-        <img src={iconPath} alt={title} className="w-48 h-48 mx-auto" />
+        <Image src={iconPath} alt={title} width={192} height={192} className="w-48 h-48 mx-auto" />
       </div>
       <div>
         <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">

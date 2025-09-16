@@ -10,8 +10,6 @@ interface LayoutProps {
 
 export default function Layout({
   children,
-  title = "BIOS",
-  description = "HIMA BIOS Bunda Mulia University",
 }: LayoutProps) {
   return (
     <div className="min-h-screen flex flex-col">

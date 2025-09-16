@@ -1,6 +1,7 @@
 import React from "react";
 import Layout from "@/components/Layout";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function AboutPage() {
   return (
@@ -16,9 +17,11 @@ export default function AboutPage() {
             </h1>
 
             <div className="flex justify-center mb-8">
-              <img
+              <Image
                 src="/BIOS.png"
                 alt="BIOS Logo"
+                width={192}
+                height={192}
                 className="w-48 h-48 object-contain"
               />
             </div>

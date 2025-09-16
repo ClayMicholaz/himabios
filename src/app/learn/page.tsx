@@ -1,5 +1,6 @@
 import Layout from "@/components/Layout";
 import LearnLayout from "@/components/LearnLayout";
+import Link from "next/link";
 
 export default function LearnPage() {
   return (
@@ -37,12 +38,12 @@ export default function LearnPage() {
                 Pelajari konsep dasar pemrograman mulai dari variabel, tipe
                 data, kontrol flow, hingga best practices dalam coding.
               </p>
-              <a
+              <Link
                 href="/learn/intro-to-programming/intro-to-programming"
                 className="inline-flex items-center text-primary-600 dark:text-primary-400 font-medium hover:text-primary-800 dark:hover:text-primary-200"
               >
                 Mulai Belajar →
-              </a>
+              </Link>
             </div>
 
             <div className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
@@ -63,12 +64,12 @@ export default function LearnPage() {
                 Eksplorasi berbagai algoritma sorting, searching, dan konsep
                 kompleksitas waktu untuk memahami efisiensi program.
               </p>
-              <a
+              <Link
                 href="/learn/algorithm/intro"
                 className="inline-flex items-center text-primary-600 dark:text-primary-400 font-medium hover:text-primary-800 dark:hover:text-primary-200"
               >
                 Mulai Belajar →
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -78,7 +79,7 @@ export default function LearnPage() {
               � Mulai Belajar Cepat
             </h3>
             <div className="grid md:grid-cols-3 gap-4">
-              <a
+              <Link
                 href="/learn/intro"
                 className="p-4 bg-gray-50 dark:bg-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors"
               >
@@ -88,8 +89,8 @@ export default function LearnPage() {
                 <p className="text-sm text-gray-600 dark:text-gray-400">
                   Mulai dari sini!
                 </p>
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/learn/intro-to-programming/variables"
                 className="p-4 bg-gray-50 dark:bg-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors"
               >
@@ -99,8 +100,8 @@ export default function LearnPage() {
                 <p className="text-sm text-gray-600 dark:text-gray-400">
                   Pelajari variabel
                 </p>
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/learn/algorithm/big-o-notation"
                 className="p-4 bg-gray-50 dark:bg-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors"
               >
@@ -110,7 +111,7 @@ export default function LearnPage() {
                 <p className="text-sm text-gray-600 dark:text-gray-400">
                   Kompleksitas algoritma
                 </p>
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -123,18 +124,18 @@ export default function LearnPage() {
               dasar-dasarnya.
             </p>
             <div className="space-x-4">
-              <a
+              <Link
                 href="/learn/intro"
                 className="bg-white text-primary-600 px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors inline-block"
               >
                 Mulai dari Awal
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/learn/algorithm/intro"
                 className="bg-primary-700 text-white px-6 py-3 rounded-lg font-medium hover:bg-primary-800 transition-colors inline-block border border-primary-400"
               >
                 Langsung ke Algoritma
-              </a>
+              </Link>
             </div>
           </div>
         </div>
