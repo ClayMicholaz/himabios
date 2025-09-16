@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { ChevronRightIcon, HomeIcon } from "@heroicons/react/24/outline";
+import { ChevronRightIcon } from "@heroicons/react/24/outline";
+import { HomeIcon } from "@heroicons/react/24/solid";
 import { BreadcrumbItem } from "@/lib/breadcrumbs";
 
 interface BreadcrumbProps {
@@ -30,7 +31,11 @@ export default function Breadcrumb({ items }: BreadcrumbProps) {
                       : "text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400"
                   }`}
                 >
-                  {isHome ? <HomeIcon className="w-4 h-4" /> : item.label}
+                  {isHome ? (
+                    <HomeIcon className="w-4 h-4 text-gray-500 dark:text-gray-400" />
+                  ) : (
+                    item.label
+                  )}
                 </Link>
               ) : (
                 <span
@@ -40,7 +45,11 @@ export default function Breadcrumb({ items }: BreadcrumbProps) {
                       : "text-gray-900 dark:text-white"
                   }`}
                 >
-                  {isHome ? <HomeIcon className="w-4 h-4" /> : item.label}
+                  {isHome ? (
+                    <HomeIcon className="w-4 h-4 text-gray-500 dark:text-gray-400" />
+                  ) : (
+                    item.label
+                  )}
                 </span>
               )}
             </li>

@@ -1,6 +1,11 @@
 import { notFound } from "next/navigation";
-import { getMarkdownBySlug, getAllMarkdownFiles } from "@/lib/markdown";
+import {
+  getMarkdownBySlug,
+  getAllMarkdownFiles,
+  getPrevNextNavigation,
+} from "@/lib/markdown";
 import MarkdownContent from "@/components/MarkdownContent";
+import NavigationButtons from "@/components/NavigationButtons";
 import LearnLayout from "@/components/LearnLayout";
 import Layout from "@/components/Layout";
 
@@ -32,6 +37,7 @@ export default async function MarkdownPage({ params }: PageProps) {
   }
 
   const currentPath = `/learn/${slug.join("/")}`;
+  const navigation = getPrevNextNavigation(currentPath);
 
   return (
     <Layout>
@@ -47,14 +53,8 @@ export default async function MarkdownPage({ params }: PageProps) {
 
           <MarkdownContent content={markdownData.content} />
 
-          {/* Add navigation buttons here later if needed */}
-          <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
-            <div className="flex justify-between">
-              <div className="text-sm text-gray-500 dark:text-gray-400">
-                Last updated: {new Date().toLocaleDateString("id-ID")}
-              </div>
-            </div>
-          </div>
+          {/* Navigation to previous/next articles */}
+          <NavigationButtons navigation={navigation} />
         </article>
       </LearnLayout>
     </Layout>

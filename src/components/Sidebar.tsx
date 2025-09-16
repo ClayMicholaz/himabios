@@ -7,6 +7,7 @@ import { ChevronDownIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 interface SidebarItem {
   type: "file" | "directory";
   path?: string;
+  sidebar_position?: number;
   children?: { [key: string]: SidebarItem };
 }
 
@@ -69,7 +70,25 @@ export default function Sidebar({
             <div className={level > 0 ? "ml-2" : ""}>
               {Object.entries(item.children)
                 .sort(([aKey, a], [bKey, b]) => {
-                  // Sort: intro first, then directories, then files
+                  // Sort by sidebar_position for any section that has markdown files
+                  if (a.type === "file" && b.type === "file") {
+                    const aPos = a.sidebar_position || 999;
+                    const bPos = b.sidebar_position || 999;
+
+                    if (aPos !== bPos) {
+                      return aPos - bPos;
+                    }
+
+                    // If same position or no position, fall back to alphabetical
+                    return aKey.localeCompare(bKey);
+                  }
+
+                  // Alphabetical order for Glosarium
+                  if (key === "Glosarium") {
+                    return aKey.localeCompare(bKey);
+                  }
+
+                  // Default sorting: intro first, then directories, then files
                   if (aKey === "intro") return -1;
                   if (bKey === "intro") return 1;
                   if (a.type !== b.type) {
@@ -105,7 +124,7 @@ export default function Sidebar({
   };
 
   return (
-    <aside className="w-80 bg-docusaurus-bg dark:bg-docusaurus-bg-dark border-r border-gray-200 dark:border-gray-700 overflow-y-auto">
+    <div className="h-full overflow-y-auto">
       <div className="p-6">
         <Link href="/learn" className="block mb-6">
           <h2 className="text-xl font-bold text-gray-900 dark:text-white">
@@ -115,13 +134,8 @@ export default function Sidebar({
         <nav className="space-y-1">
           {Object.entries(structure)
             .sort(([a], [b]) => {
-              // Define custom order: intro, intro-to-programming, algorithm, Glosarium
-              const order = [
-                "intro",
-                "intro-to-programming",
-                "algorithm",
-                "Glosarium",
-              ];
+              // Define custom order: intro-to-programming, algorithm, Glosarium
+              const order = ["intro-to-programming", "algorithm", "Glosarium"];
               const aIndex = order.indexOf(a);
               const bIndex = order.indexOf(b);
 
@@ -136,6 +150,6 @@ export default function Sidebar({
             .map(([key, item]) => renderItem(key, item))}
         </nav>
       </div>
-    </aside>
+    </div>
   );
 }

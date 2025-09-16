@@ -73,7 +73,7 @@ export default function Navbar() {
                 height={32}
                 className="h-8 w-8"
               />
-              <span className="text-xl font-bold text-gray-900 dark:text-white">
+              <span className="text-xl font-bold text-gray-900 dark:text-white hover:text-emerald-500">
                 BIOS
               </span>
             </Link>

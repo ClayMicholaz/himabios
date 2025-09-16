@@ -78,16 +78,30 @@ export default function StrukturPage() {
     },
   ];
 
-  const nodeTemplate = (node: any) => {
-    if (node.type === "person") {
+  interface NodeData {
+    name: string;
+    avatar: string;
+    department?: string;
+    email?: string;
+  }
+
+  interface TreeNode {
+    label: string;
+    type?: string;
+    data?: NodeData;
+    children?: TreeNode[];
+  }
+
+  const nodeTemplate = (node: TreeNode) => {
+    if (node.type === "person" && node.data) {
       return (
         <div className="flex flex-col items-center w-48 h-64 p-4 bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border border-gray-100 dark:border-gray-700">
           {/* Avatar dengan ukuran tetap */}
           <div className="relative mb-3 flex-shrink-0">
             <div className="w-16 h-16 rounded-full overflow-hidden border-3 border-emerald-500 shadow-md">
               <Image
-                src={node.data.avatar || "/default-avatar.png"}
-                alt={node.data.name}
+                src={node.data?.avatar || "/default-avatar.png"}
+                alt={node.data?.name || "Avatar"}
                 width={64}
                 height={64}
                 className="w-full h-full object-cover"
@@ -106,7 +120,7 @@ export default function StrukturPage() {
           {/* Name dengan tinggi tetap */}
           <div className="text-center mb-2 h-12 flex items-center justify-center">
             <h3 className="font-bold text-sm text-gray-900 dark:text-white leading-tight text-center line-clamp-2">
-              {node.data.name}
+              {node.data?.name}
             </h3>
           </div>
 
