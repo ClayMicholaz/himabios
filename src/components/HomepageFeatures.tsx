@@ -37,14 +37,14 @@ function Feature({ title, iconPath, description }: FeatureItem) {
           alt={title}
           width={192}
           height={192}
-          className="w-48 h-48 mx-auto"
+          className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 mx-auto"
         />
       </div>
       <div>
-        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
+        <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">
           {title}
         </h3>
-        <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+        <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed">
           {description}
         </p>
       </div>
@@ -54,9 +54,9 @@ function Feature({ title, iconPath, description }: FeatureItem) {
 
 export default function HomepageFeatures() {
   return (
-    <section className="py-16 bg-gray-50 dark:bg-gray-800">
+    <section className="py-8 sm:py-12 lg:py-16 bg-gray-50 dark:bg-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 lg:gap-12">
           {features.map((props, idx) => (
             <Feature key={idx} {...props} />
           ))}

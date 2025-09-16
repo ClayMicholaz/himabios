@@ -1,0 +1,36 @@
+{
+  "name": "BIOS UBM - Programming Learning Platform",
+  "short_name": "BIOS UBM",
+  "description": "Platform belajar programming gratis dari HIMA BIOS Universitas Bunda Mulia",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2e8555",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/BIOS.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/BIOS.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ],
+  "categories": ["education", "reference", "productivity"],
+  "lang": "id",
+  "scope": "/",
+  "screenshots": [
+    {
+      "src": "/BIOS.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "platform": "wide",
+      "label": "BIOS UBM Learning Platform"
+    }
+  ]
+}

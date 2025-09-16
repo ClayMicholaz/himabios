@@ -1,11 +1,14 @@
 import Layout from "@/components/Layout";
 import LearnLayout from "@/components/LearnLayout";
 import Link from "next/link";
+import { getNavigationStructure } from "@/lib/markdown";
 
 export default function LearnPage() {
+  const navigationStructure = getNavigationStructure();
+
   return (
     <Layout>
-      <LearnLayout>
+      <LearnLayout navigationStructure={navigationStructure}>
         <div className="max-w-4xl mx-auto">
           <header className="text-center mb-12">
             <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">

@@ -1,0 +1,136 @@
+/* Modern code editor styling untuk light mode */
+
+/* Code block container dengan tampilan modern seperti editor */
+.prose pre {
+  background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+  border: 2px solid #cbd5e1;
+  border-radius: 12px;
+  padding: 0;
+  margin: 1.5rem 0;
+  box-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.12),
+    0 4px 8px -2px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  position: relative;
+}
+
+/* Header bar seperti window code editor */
+.prose pre::before {
+  content: "";
+  display: block;
+  height: 40px;
+  background: linear-gradient(90deg, #e2e8f0 0%, #cbd5e1 100%);
+  border-bottom: 2px solid #94a3b8;
+  position: relative;
+}
+
+/* Dots seperti traffic lights di macOS */
+.prose pre::after {
+  content: "⚫ ⚫ ⚫";
+  position: absolute;
+  top: 12px;
+  left: 16px;
+  font-size: 8px;
+  color: #94a3b8;
+  letter-spacing: 4px;
+}
+
+/* Code content area */
+.prose pre code {
+  display: block;
+  background-color: #f8fafc;
+  color: #0f172a;
+  padding: 1.5rem;
+  font-family: "JetBrains Mono", "Fira Code", "Monaco", "Cascadia Code",
+    "Roboto Mono", monospace;
+  font-size: 14px;
+  line-height: 1.6;
+  font-weight: 500;
+  position: relative;
+  z-index: 1;
+}
+
+/* Scrollbar styling modern */
+.prose pre::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.prose pre::-webkit-scrollbar-track {
+  background: #cbd5e1;
+  border-radius: 5px;
+}
+
+.prose pre::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #64748b 0%, #475569 100%);
+  border-radius: 5px;
+  border: 1px solid #94a3b8;
+}
+
+.prose pre::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #475569 0%, #334155 100%);
+}
+
+/* Copy button area (visual only) */
+.prose pre:hover::before {
+  background: linear-gradient(90deg, #cbd5e1 0%, #94a3b8 100%);
+  transition: background 0.2s ease;
+}
+
+/* Inline code styling */
+.prose code:not(pre code) {
+  background-color: #e2e8f0;
+  color: #dc2626;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  font-family: "JetBrains Mono", "Fira Code", monospace;
+  font-size: 0.875em;
+  font-weight: 600;
+  border: 1px solid #cbd5e1;
+}
+
+/* Dark mode - modern styling dengan kontras yang baik */
+.dark .prose pre {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  border: 2px solid #475569;
+  box-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.4),
+    0 4px 8px -2px rgba(0, 0, 0, 0.3);
+}
+
+.dark .prose pre::before {
+  background: linear-gradient(90deg, #1e293b 0%, #334155 100%);
+  border-bottom: 2px solid #64748b;
+}
+
+.dark .prose pre::after {
+  color: #94a3b8;
+}
+
+.dark .prose pre code {
+  background-color: #0f172a;
+  color: #f1f5f9;
+  font-weight: 500;
+}
+
+.dark .prose pre::-webkit-scrollbar-track {
+  background: #334155;
+}
+
+.dark .prose pre::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #64748b 0%, #94a3b8 100%);
+  border: 1px solid #475569;
+}
+
+.dark .prose pre::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #94a3b8 0%, #cbd5e1 100%);
+}
+
+.dark .prose pre:hover::before {
+  background: linear-gradient(90deg, #334155 0%, #475569 100%);
+}
+
+.dark .prose code:not(pre code) {
+  background-color: #1e293b;
+  color: #fb7185;
+  border: 1px solid #64748b;
+  font-weight: 600;
+}

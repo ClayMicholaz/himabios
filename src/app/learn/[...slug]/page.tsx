@@ -1,8 +1,10 @@
 import { notFound } from "next/navigation";
+import { Metadata } from "next";
 import {
   getMarkdownBySlug,
   getAllMarkdownFiles,
   getPrevNextNavigation,
+  getNavigationStructure,
 } from "@/lib/markdown";
 import MarkdownContent from "@/components/MarkdownContent";
 import NavigationButtons from "@/components/NavigationButtons";
@@ -38,10 +40,15 @@ export default async function MarkdownPage({ params }: PageProps) {
 
   const currentPath = `/learn/${slug.join("/")}`;
   const navigation = getPrevNextNavigation(currentPath);
+  const navigationStructure = getNavigationStructure();
 
   return (
     <Layout>
-      <LearnLayout currentPath={currentPath} title={markdownData.title}>
+      <LearnLayout
+        currentPath={currentPath}
+        title={markdownData.title}
+        navigationStructure={navigationStructure}
+      >
         <article className="max-w-none">
           {markdownData.frontmatter.description && (
             <div className="mb-6">
@@ -61,21 +68,60 @@ export default async function MarkdownPage({ params }: PageProps) {
   );
 }
 
-// Generate metadata for each page
-export async function generateMetadata({ params }: PageProps) {
+// Generate dynamic metadata for SEO
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const markdownData = getMarkdownBySlug(slug);
 
   if (!markdownData) {
     return {
-      title: "Page Not Found",
+      title: "Page Not Found - BIOS UBM",
+      description: "Halaman yang Anda cari tidak ditemukan.",
     };
   }
 
+  const title = markdownData.title || slug[slug.length - 1];
+  const description =
+    markdownData.frontmatter?.description ||
+    `Pelajari ${title} - Materi programming gratis dari BIOS UBM. Tutorial lengkap dengan contoh kode dan penjelasan mudah dipahami.`;
+
+  const url = `https://next-himabios.vercel.app/learn/${slug.join("/")}`;
+
   return {
-    title: `${markdownData.title} | HIMABIOS Learning`,
-    description:
-      markdownData.frontmatter.description ||
-      `Learn about ${markdownData.title}`,
+    title: `${title} - Tutorial Programming`,
+    description,
+    keywords: [
+      title.toLowerCase(),
+      "programming tutorial",
+      "belajar coding",
+      "BIOS UBM",
+      "algoritma",
+      "struktur data",
+      "tutorial gratis",
+    ],
+    openGraph: {
+      title: `${title} - Tutorial Programming | BIOS UBM`,
+      description,
+      url,
+      type: "article",
+      publishedTime:
+        (markdownData.frontmatter?.date as string) || new Date().toISOString(),
+      authors: ["HIMA BIOS UBM"],
+      section: "Programming Tutorial",
+      tags: [title, "Programming", "Tutorial", "BIOS UBM"],
+      images: [
+        {
+          url: "/BIOS.png",
+          width: 1200,
+          height: 630,
+          alt: `${title} - BIOS UBM Tutorial`,
+        },
+      ],
+    },
+    alternates: {
+      canonical: url,
+    },
   };
 }

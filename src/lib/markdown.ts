@@ -1,4 +1,4 @@
-import fs from "fs";
+import { readFileSync, readdirSync, statSync, existsSync } from "fs";
 import path from "path";
 import matter from "gray-matter";
 
@@ -29,7 +29,7 @@ export function getMarkdownBySlug(slug: string[]): MarkdownData | null {
 
     let filePath = "";
     for (const p of possiblePaths) {
-      if (fs.existsSync(p)) {
+      if (existsSync(p)) {
         filePath = p;
         break;
       }
@@ -39,7 +39,7 @@ export function getMarkdownBySlug(slug: string[]): MarkdownData | null {
       return null;
     }
 
-    const fileContents = fs.readFileSync(filePath, "utf8");
+    const fileContents = readFileSync(filePath, "utf8");
     const { data, content } = matter(fileContents);
 
     // Extract title from frontmatter or first heading
@@ -64,16 +64,16 @@ export function getMarkdownBySlug(slug: string[]): MarkdownData | null {
 export function getAllMarkdownFiles(dirPath: string = ""): string[] {
   const fullPath = path.join(docsDirectory, dirPath);
 
-  if (!fs.existsSync(fullPath)) {
+  if (!existsSync(fullPath)) {
     return [];
   }
 
   const files: string[] = [];
-  const items = fs.readdirSync(fullPath);
+  const items = readdirSync(fullPath);
 
   for (const item of items) {
     const itemPath = path.join(fullPath, item);
-    const stat = fs.statSync(itemPath);
+    const stat = statSync(itemPath);
 
     if (stat.isDirectory()) {
       // Skip _category files and other non-content directories
