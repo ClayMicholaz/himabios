@@ -8,9 +8,7 @@ interface LayoutProps {
   description?: string;
 }
 
-export default function Layout({
-  children,
-}: LayoutProps) {
+export default function Layout({ children }: LayoutProps) {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
