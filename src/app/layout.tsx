@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     template: "%s | BIOS UBM",
   },
   description:
-    "Belajar programming dan algoritma secara gratis dengan HIMA BIOS Universitas Bunda Mulia. Materi lengkap dari dasar hingga mahir: Python, algoritma, struktur data, dan tips programming.",
+    "Belajar programming dan algoritma secara gratis dengan HIMA BIOS Universitas Bunda Mulia. Materi lengkap dari dasar: Python, algoritma, struktur data, dan tips programming.",
   keywords: [
     "BIOS UBM",
     "Bunda Mulia University",
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     title:
       "BIOS UBM - Belajar Programming Gratis | Himpunan Mahasiswa Bunda Mulia",
     description:
-      "Platform belajar programming gratis dari HIMA BIOS Universitas Bunda Mulia. Materi lengkap algoritma, struktur data, dan tutorial coding dari dasar hingga mahir.",
+      "Platform belajar programming gratis dari HIMA BIOS Universitas Bunda Mulia. Materi lengkap algoritma, struktur data, dan tutorial coding dari dasar.",
     images: [
       {
         url: "/BIOS.png",
