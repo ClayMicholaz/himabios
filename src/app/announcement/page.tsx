@@ -132,15 +132,15 @@ const studentAcceptanceData: StudentData[] = [
   },
 ];
 
-// const announcementConfig = {
-//   releaseDate: new Date("2025-09-21"),
-//   releaseTime: "12:00",
-// };
-
 const announcementConfig = {
-  releaseDate: new Date("2025-09-18"),
-  releaseTime: "09:45",
+  releaseDate: new Date("2025-09-21"),
+  releaseTime: "12:00",
 };
+
+// const announcementConfig = {
+//   releaseDate: new Date("2025-09-18"),
+//   releaseTime: "09:45",
+// };
 
 export default function AnnouncementPage() {
   const {
