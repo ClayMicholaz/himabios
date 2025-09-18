@@ -28,13 +28,13 @@ function getAllMarkdownFiles(
         const fileName = path.basename(item, path.extname(item));
         if (fileName !== "index") {
           files.push({
-            url: `https://next-himabios.vercel.app/learn${baseUrl}/${fileName}`,
+            url: `https://himabios.vercel.app/learn${baseUrl}/${fileName}`,
             lastModified: stat.mtime,
           });
         } else {
           // Index file
           files.push({
-            url: `https://next-himabios.vercel.app/learn${baseUrl}`,
+            url: `https://himabios.vercel.app/learn${baseUrl}`,
             lastModified: stat.mtime,
           });
         }
@@ -48,7 +48,7 @@ function getAllMarkdownFiles(
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://next-himabios.vercel.app";
+  const baseUrl = "https://himabios.vercel.app";
 
   // Static pages
   const staticPages = [

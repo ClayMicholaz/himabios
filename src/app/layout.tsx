@@ -22,7 +22,14 @@ export const metadata: Metadata = {
     "Belajar programming dan algoritma secara gratis dengan HIMA BIOS Universitas Bunda Mulia. Materi lengkap dari dasar: Python, algoritma, struktur data, dan tips programming.",
   keywords: [
     "BIOS UBM",
+    "HIMA BIOS",
+    "Universitas Bunda Mulia",
+    "UBM",
+    "Himpunan Mahasiswa Bunda Mulia",
+    "Bunda Mulia",
     "Bunda Mulia University",
+    "UBM Ancol",
+    "BIOS",
     "programming tutorial",
     "belajar coding gratis",
     "algoritma programming",
@@ -36,7 +43,7 @@ export const metadata: Metadata = {
     "learn to code",
     "programming fundamentals",
   ],
-  authors: [{ name: "HIMA BIOS UBM", url: "https://next-himabios.vercel.app" }],
+  authors: [{ name: "HIMA BIOS UBM", url: "https://himabios.vercel.app" }],
   creator: "HIMA BIOS - Universitas Bunda Mulia",
   publisher: "HIMA BIOS UBM",
   robots: {
@@ -53,7 +60,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "id_ID",
-    url: "https://next-himabios.vercel.app/",
+    url: "https://himabios.vercel.app/",
     siteName: "BIOS UBM - Programming Learning Platform",
     title:
       "BIOS UBM - Belajar Programming Gratis | Himpunan Mahasiswa Bunda Mulia",
@@ -69,7 +76,7 @@ export const metadata: Metadata = {
     ],
   },
   alternates: {
-    canonical: "https://next-himabios.vercel.app/",
+    canonical: "https://himabios.vercel.app/",
   },
   category: "Education",
   classification: "Programming Education Platform",
@@ -83,7 +90,7 @@ export default function RootLayout({
   return (
     <html lang="id" suppressHydrationWarning>
       <head>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/bios.ico" />
         <link rel="apple-touch-icon" href="/BIOS.png" />
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#2e8555" />
@@ -106,11 +113,11 @@ export default function RootLayout({
               name: "HIMA BIOS - Universitas Bunda Mulia",
               description:
                 "Himpunan Mahasiswa Sistem Informasi yang menyediakan platform belajar programming gratis dengan materi lengkap algoritma dan struktur data.",
-              url: "https://next-himabios.vercel.app/",
-              logo: "https://next-himabios.vercel.app/BIOS.png",
+              url: "https://himabios.vercel.app/",
+              logo: "https://himabios.vercel.app/BIOS.png",
               sameAs: [
                 "https://www.instagram.com/bios_ubm",
-                "https://github.com/bios-ubm",
+                "https://github.com/bios-bunda-mulia-university",
               ],
               address: {
                 "@type": "PostalAddress",
