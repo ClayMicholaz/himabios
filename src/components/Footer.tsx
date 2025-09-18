@@ -15,7 +15,7 @@ interface FooterSection {
 const footerSections: FooterSection[] = [
   {
     title: "Learn",
-    items: [{ label: "Intro to programming", href: "/docs/intro" }],
+    items: [{ label: "Intro to programming", href: "/learn/intro-to-programming/intro-to-programming" }],
   },
   {
     title: "Social",
