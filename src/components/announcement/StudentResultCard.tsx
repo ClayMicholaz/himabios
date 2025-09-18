@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { designTokens, componentStyles } from "@/styles/designTokens";
+import InstagramShareButton from "./InstagramShareButton";
 
 interface StudentData {
   name: string;
@@ -12,14 +13,12 @@ interface StudentData {
 interface StudentResultCardProps {
   searchResult: StudentData | null;
   onReset: () => void;
-  onInstagramShare: (studentData: StudentData) => void;
   onWhatsAppJoin: () => void;
 }
 
 export default function StudentResultCard({
   searchResult,
   onReset,
-  onInstagramShare,
   onWhatsAppJoin,
 }: StudentResultCardProps) {
   const [userPhoneNumber, setUserPhoneNumber] = useState("");
@@ -202,12 +201,10 @@ export default function StudentResultCard({
           <>
             {/* Instagram Share Button */}
             <div className="flex justify-center">
-              <button
-                onClick={() => onInstagramShare(searchResult)}
-                className={`${componentStyles.button.base} ${componentStyles.button.social.instagram} ${componentStyles.button.size.lg} flex items-center gap-3`}
-              >
-                📸 Share ke Instagram Story
-              </button>
+              <InstagramShareButton
+                studentData={searchResult}
+                className="w-full md:w-auto"
+              />
             </div>
 
             {/* WhatsApp Join Section */}

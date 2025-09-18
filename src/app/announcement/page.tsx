@@ -158,18 +158,7 @@ export default function AnnouncementPage() {
     handleReset,
   } = useAnnouncementLogic(studentAcceptanceData, announcementConfig);
 
-  const handleInstagramShare = (studentData: StudentData) => {
-    const shareText = `🎉 DITERIMA DI HIMA BIOS UBM! 🎉
-
-Nama: ${studentData.name}
-NIM: ${studentData.nim}
-Divisi: ${studentData.division}
-
-#HIMABIOS #UBMANCOL #BIOS2025`;
-
-    navigator.clipboard.writeText(shareText);
-    alert("Teks berhasil disalin untuk Instagram Story!");
-  };
+  // Instagram sharing now handled by InstagramShareButton component
 
   const handleWhatsAppJoin = () => {
     if (!searchResult) return;
@@ -244,7 +233,6 @@ Divisi: ${studentData.division}
                       <StudentResultCard
                         searchResult={searchResult}
                         onReset={handleReset}
-                        onInstagramShare={handleInstagramShare}
                         onWhatsAppJoin={handleWhatsAppJoin}
                       />
 

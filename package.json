@@ -16,6 +16,7 @@
     "clsx": "^2.0.0",
     "fs": "^0.0.1-security",
     "gray-matter": "^4.0.3",
+    "html2canvas": "^1.4.1",
     "next": "15.5.3",
     "primereact": "^10.9.7",
     "react": "19.1.0",
@@ -30,6 +31,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@types/canvas-confetti": "^1.9.0",
+    "@types/html2canvas": "^0.5.35",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
