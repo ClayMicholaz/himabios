@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import confetti from "canvas-confetti";
 
 interface StudentData {
@@ -29,7 +29,7 @@ export function useAnnouncementLogic(
   const [isNimValid, setIsNimValid] = useState(false);
 
   // Fungsi untuk mengecek apakah sudah waktunya pengumuman
-  const checkAnnouncementTime = () => {
+  const checkAnnouncementTime = useCallback(() => {
     const now = new Date();
     const releaseDateTime = new Date(announcementConfig.releaseDate);
     const [hours, minutes] = announcementConfig.releaseTime.split(":");
@@ -51,14 +51,14 @@ export function useAnnouncementLogic(
 
       setTimeRemaining(`${days}d ${hours}h ${minutes}m ${seconds}s`);
     }
-  };
+  }, [announcementConfig.releaseDate, announcementConfig.releaseTime]);
 
   // Update timer setiap detik
   useEffect(() => {
     checkAnnouncementTime();
     const timer = setInterval(checkAnnouncementTime, 1000);
     return () => clearInterval(timer);
-  }, []);
+  }, [checkAnnouncementTime]);
 
   // Fungsi untuk validasi NIM secara real-time
   const validateNim = (nim: string) => {
@@ -119,7 +119,7 @@ export function useAnnouncementLogic(
       return Math.random() * (max - min) + min;
     }
 
-    const interval: any = setInterval(function () {
+    const interval: NodeJS.Timeout = setInterval(function () {
       const timeLeft = animationEnd - Date.now();
 
       if (timeLeft <= 0) {
