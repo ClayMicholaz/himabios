@@ -126,6 +126,8 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="format-detection" content="telephone=no" />
 
+        <meta name="google-site-verification" content="wCJ4618uQYlQOFViXg5BBcMRC20LpuWdasmIM0iAk80" />
+
         {/* Additional SEO Meta Tags */}
         <meta name="geo.region" content="ID-JK" />
         <meta name="geo.placename" content="Jakarta, Indonesia" />
