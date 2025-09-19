@@ -1,17 +1,11 @@
 User-agent: *
 Allow: /
 
-# Sitemap
-Sitemap: https://next-himabios.vercel.app/sitemap.xml
+# Sitemap location
+Sitemap: https://himabios.vercel.app/sitemap.xml
 
-# Crawl-delay for politeness
-Crawl-delay: 1
-
-# Disallow admin and private areas (if any)
-Disallow: /admin/
-Disallow: /private/
-
-# Allow important educational content
+# Priority pages for crawling
+Allow: /announcement
 Allow: /learn/
 Allow: /algorithm/
 Allow: /glosarium/

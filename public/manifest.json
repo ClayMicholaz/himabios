@@ -1,7 +1,7 @@
 {
-  "name": "BIOS UBM - Programming Learning Platform",
-  "short_name": "BIOS UBM",
-  "description": "Platform belajar programming gratis dari HIMA BIOS Universitas Bunda Mulia",
+  "name": "HIMA BIOS UBM Ancol - Himpunan Mahasiswa Informatika Programming Platform",
+  "short_name": "HIMA BIOS",
+  "description": "Platform resmi HIMA BIOS UBM Ancol untuk belajar programming gratis. Himpunan Mahasiswa Informatika Universitas Bunda Mulia Jakarta.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
@@ -21,7 +21,14 @@
       "purpose": "maskable any"
     }
   ],
-  "categories": ["education", "reference", "productivity"],
+  "categories": [
+    "education",
+    "reference",
+    "productivity",
+    "learning",
+    "programming",
+    "organization"
+  ],
   "lang": "id",
   "scope": "/",
   "screenshots": [
@@ -30,7 +37,7 @@
       "sizes": "1280x720",
       "type": "image/png",
       "platform": "wide",
-      "label": "BIOS UBM Learning Platform"
+      "label": "HIMA BIOS UBM Learning Platform"
     }
   ]
 }
