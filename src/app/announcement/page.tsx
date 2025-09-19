@@ -132,8 +132,8 @@ const studentAcceptanceData: StudentData[] = [
 ];
 
 const announcementConfig = {
-  releaseDate: new Date("2025-09-19"),
-  releaseTime: "07:00",
+  releaseDate: new Date("2025-09-21"),
+  releaseTime: "12:00",
 };
 
 export default function AnnouncementPage() {
