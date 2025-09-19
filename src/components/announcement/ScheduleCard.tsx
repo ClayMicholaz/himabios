@@ -1,3 +1,5 @@
+import { designTokens } from "@/styles/designTokens";
+
 interface ScheduleCardProps {
   releaseDate: Date;
   releaseTime: string;
@@ -8,7 +10,9 @@ export default function ScheduleCard({
   releaseTime,
 }: ScheduleCardProps) {
   return (
-    <div className="bg-gradient-to-br from-slate-700 to-slate-800 dark:from-slate-800 dark:to-slate-900 rounded-2xl shadow-2xl p-8 text-white relative overflow-hidden border border-slate-600 dark:border-slate-700">
+    <div
+      className={`${designTokens.gradients.schedule} rounded-2xl shadow-2xl p-8 text-white relative overflow-hidden border border-slate-500 dark:border-slate-600`}
+    >
       <div className="absolute inset-0 bg-gradient-to-r from-slate-600/10 to-slate-500/10"></div>
       <div className="relative z-10">
         <div className="flex flex-col md:flex-row items-center justify-center gap-8">

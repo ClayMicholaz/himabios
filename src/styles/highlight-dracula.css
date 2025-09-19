@@ -1,0 +1,335 @@
+/* VS Code-style Code Blocks with Light/Dark Mode Support */
+
+/* VS Code-like container for code blocks */
+pre {
+  position: relative;
+  margin: 1.5rem 0;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+/* Light mode container */
+:root pre {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e1e4e8;
+}
+
+/* Dark mode container */
+.dark pre {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border: 1px solid #44475a;
+}
+
+/* VS Code header bar - Light mode */
+:root pre::before {
+  content: "💻 Code";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #f6f8fa;
+  color: #24292e;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-bottom: 1px solid #e1e4e8;
+  z-index: 10;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* VS Code header bar - Dark mode */
+.dark pre::before {
+  background: #21222c;
+  color: #f8f8f2;
+  border-bottom: 1px solid #44475a;
+}
+
+/* Traffic lights for VS Code look */
+pre::after {
+  content: "";
+  position: absolute;
+  top: 0.75rem;
+  right: 1rem;
+  width: 12px;
+  height: 12px;
+  background: #27ca3f;
+  border-radius: 50%;
+  box-shadow: 
+    -20px 0 0 #ff5f56,
+    -10px 0 0 #ffbd2e;
+  z-index: 20;
+}
+
+/* Base code block styling */
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1.5em;
+  padding-top: 3rem; /* Space for header */
+  border-radius: 0; /* Remove border radius since container has it */
+  border: none; /* Remove border since container has it */
+  font-family: 'JetBrains Mono', 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0; /* Remove margin since container handles it */
+  transition: all 0.2s ease;
+}
+
+/* Light mode code block styling */
+:root .hljs {
+  background: #fafbfc !important;
+  color: #24292e !important;
+}
+
+/* Dark mode code block styling - Dracula theme */
+.dark .hljs {
+  background: #282a36 !important; /* Dracula background */
+  color: #f8f8f2 !important; /* Dracula foreground */
+}
+
+/* =================================
+   LIGHT MODE SYNTAX HIGHLIGHTING
+   ================================= */
+
+/* Comments - Light mode */
+:root .hljs-comment,
+:root .hljs-quote {
+  color: #6a737d !important;
+  font-style: italic;
+}
+
+/* Keywords - Light mode */
+:root .hljs-keyword,
+:root .hljs-selector-tag,
+:root .hljs-subst {
+  color: #d73a49 !important;
+  font-weight: 500;
+}
+
+/* Strings - Light mode */
+:root .hljs-string,
+:root .hljs-doctag,
+:root .hljs-template-string {
+  color: #032f62 !important;
+}
+
+/* Numbers and literals - Light mode */
+:root .hljs-number,
+:root .hljs-literal {
+  color: #005cc5 !important;
+}
+
+/* Function names - Light mode */
+:root .hljs-title,
+:root .hljs-function .hljs-title,
+:root .hljs-section {
+  color: #6f42c1 !important;
+  font-weight: 600;
+}
+
+/* Built-in functions - Light mode */
+:root .hljs-built_in,
+:root .hljs-builtin-name {
+  color: #005cc5 !important;
+  font-weight: 500;
+}
+
+/* Class names and types - Light mode */
+:root .hljs-type,
+:root .hljs-class .hljs-title {
+  color: #6f42c1 !important;
+  font-weight: 600;
+}
+
+/* Variables and parameters - Light mode */
+:root .hljs-variable,
+:root .hljs-template-variable,
+:root .hljs-params {
+  color: #24292e !important;
+}
+
+/* Operators and symbols - Light mode */
+:root .hljs-symbol,
+:root .hljs-bullet {
+  color: #e36209 !important;
+}
+
+/* Meta tags and decorators - Light mode */
+:root .hljs-meta,
+:root .hljs-meta-keyword {
+  color: #22863a !important;
+}
+
+/* HTML/XML tags - Light mode */
+:root .hljs-tag,
+:root .hljs-name {
+  color: #22863a !important;
+}
+
+/* Attributes - Light mode */
+:root .hljs-attribute {
+  color: #6f42c1 !important;
+}
+
+/* Regular expressions - Light mode */
+:root .hljs-regexp,
+:root .hljs-link {
+  color: #032f62 !important;
+}
+
+/* Special elements - Light mode */
+:root .hljs-selector-id {
+  color: #22863a !important;
+}
+
+/* =================================
+   DARK MODE SYNTAX HIGHLIGHTING
+   ================================= */
+
+/* Comments - Dracula comment */
+.dark .hljs-comment,
+.dark .hljs-quote {
+  color: #6272a4 !important; /* Dracula comment */
+  font-style: italic;
+}
+
+/* Keywords (def, class, if, for, etc.) - Dracula pink */
+.dark .hljs-keyword,
+.dark .hljs-selector-tag,
+.dark .hljs-subst {
+  color: #ff79c6 !important; /* Dracula pink */
+  font-weight: 500;
+}
+
+/* Strings - Dracula yellow */
+.dark .hljs-string,
+.dark .hljs-doctag,
+.dark .hljs-template-string {
+  color: #f1fa8c !important; /* Dracula yellow */
+}
+
+/* Numbers and literals - Dracula purple */
+.dark .hljs-number,
+.dark .hljs-literal {
+  color: #bd93f9 !important; /* Dracula purple */
+}
+
+/* Function names - Dracula green */
+.dark .hljs-title,
+.dark .hljs-function .hljs-title,
+.dark .hljs-section {
+  color: #50fa7b !important; /* Dracula green */
+  font-weight: 600;
+}
+
+/* Built-in functions (print, len, range, etc.) - Dracula cyan */
+.dark .hljs-built_in,
+.dark .hljs-builtin-name {
+  color: #8be9fd !important; /* Dracula cyan */
+  font-weight: 500;
+}
+
+/* Class names and types - Dracula cyan */
+.dark .hljs-type,
+.dark .hljs-class .hljs-title {
+  color: #8be9fd !important; /* Dracula cyan */
+  font-weight: 600;
+}
+
+/* Variables and parameters - Dracula foreground */
+.dark .hljs-variable,
+.dark .hljs-template-variable,
+.dark .hljs-params {
+  color: #f8f8f2 !important; /* Dracula foreground */
+}
+
+/* Operators and symbols - Dracula orange */
+.dark .hljs-symbol,
+.dark .hljs-bullet {
+  color: #ffb86c !important; /* Dracula orange */
+}
+
+/* Meta tags and decorators - Dracula green */
+.dark .hljs-meta,
+.dark .hljs-meta-keyword {
+  color: #50fa7b !important; /* Dracula green */
+}
+
+/* HTML/XML tags - Dracula pink */
+.dark .hljs-tag,
+.dark .hljs-name {
+  color: #ff79c6 !important; /* Dracula pink */
+}
+
+/* Attributes - Dracula green */
+.dark .hljs-attribute {
+  color: #50fa7b !important; /* Dracula green */
+}
+
+/* Regular expressions - Dracula red */
+.dark .hljs-regexp,
+.dark .hljs-link {
+  color: #ff5555 !important; /* Dracula red */
+}
+
+/* Special Python elements */
+.dark .hljs-selector-id {
+  color: #50fa7b !important; /* Dracula green for special identifiers */
+}
+
+/* =================================
+   SHARED STYLING
+   ================================= */
+
+/* Additions and deletions for diff */
+.hljs-addition {
+  background: rgba(40, 167, 69, 0.2) !important;
+  color: #28a745 !important;
+}
+
+.dark .hljs-addition {
+  background: rgba(80, 250, 123, 0.2) !important;
+  color: #50fa7b !important;
+}
+
+.hljs-deletion {
+  background: rgba(220, 53, 69, 0.2) !important;
+  color: #dc3545 !important;
+}
+
+.dark .hljs-deletion {
+  background: rgba(255, 85, 85, 0.2) !important;
+  color: #ff5555 !important;
+}
+
+/* Emphasis */
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+/* Inline code styling - Light mode */
+:root code:not(.hljs) {
+  background: #f6f8fa !important;
+  color: #24292e !important;
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  font-family: 'JetBrains Mono', 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-size: 0.9em;
+  border: 1px solid #e1e4e8;
+}
+
+/* Inline code styling - Dark mode */
+.dark code:not(.hljs) {
+  background: #44475a !important;
+  color: #f8f8f2 !important;
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  font-family: 'JetBrains Mono', 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-size: 0.9em;
+  border: 1px solid #6272a4;
+}

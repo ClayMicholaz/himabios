@@ -36,7 +36,7 @@ export default function InputForm({
           <div>
             <label
               htmlFor="nim"
-              className="block text-xl font-bold text-gray-700 dark:text-gray-300 mb-4 text-center"
+              className={`block text-xl font-bold ${componentStyles.text.heading.secondary} mb-4 text-center`}
             >
               Nomor Induk Mahasiswa (NIM)
             </label>

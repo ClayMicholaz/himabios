@@ -1,0 +1,233 @@
+/* Modern Dark Theme for Highlight.js - Optimized untuk Python */
+
+/* Base dark theme styling */
+.hljs {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  color: #f1f5f9;
+  display: block;
+  overflow-x: auto;
+  padding: 1em;
+  border-radius: 12px;
+  border: 2px solid #475569;
+  font-family: "JetBrains Mono", "Fira Code", "Monaco", "Cascadia Code",
+    "Roboto Mono", monospace;
+  font-size: 14px;
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+/* Python Keywords - Vibrant Purple */
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-literal,
+.hljs-section,
+.hljs-link {
+  color: #c084fc; /* Purple-400 */
+  font-weight: 600;
+}
+
+/* Python Built-in Functions - Bright Blue */
+.hljs-function > .hljs-title,
+.hljs-name {
+  color: #60a5fa; /* Blue-400 */
+  font-weight: 600;
+}
+
+/* Python Strings - Bright Green */
+.hljs-string,
+.hljs-title,
+.hljs-section,
+.hljs-built_in,
+.hljs-doctag,
+.hljs-type,
+.hljs-builtin-name,
+.hljs-quote,
+.hljs-variable,
+.hljs-template-variable {
+  color: #4ade80; /* Green-400 */
+  font-weight: 500;
+}
+
+/* Python Numbers - Orange */
+.hljs-number,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+  color: #fb923c; /* Orange-400 */
+  font-weight: 600;
+}
+
+/* Python Comments - Muted Gray */
+.hljs-comment,
+.hljs-code,
+.hljs-formula {
+  color: #94a3b8; /* Slate-400 */
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* Python Class Names - Cyan */
+.hljs-class > .hljs-title,
+.hljs-title.class_,
+.hljs-title.class_.inherited__,
+.hljs-title.function_ {
+  color: #22d3ee; /* Cyan-400 */
+  font-weight: 700;
+}
+
+/* Python Decorators - Pink */
+.hljs-meta,
+.hljs-meta-keyword,
+.hljs-meta .hljs-keyword,
+.hljs-meta-string {
+  color: #f472b6; /* Pink-400 */
+  font-weight: 600;
+}
+
+/* Python Operators - Yellow */
+.hljs-subst {
+  color: #fbbf24; /* Amber-400 */
+  font-weight: 600;
+}
+
+/* Python Parameters - Light Blue */
+.hljs-params,
+.hljs-attribute {
+  color: #7dd3fc; /* Sky-300 */
+  font-weight: 500;
+}
+
+/* Deletion and Errors - Red */
+.hljs-deletion {
+  color: #f87171; /* Red-400 */
+}
+
+/* Emphasis */
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+/* Special Python syntax highlighting */
+
+/* Python f-strings - Special highlighting */
+.hljs-subst {
+  background: rgba(
+    251,
+    146,
+    60,
+    0.15
+  ); /* Orange background with transparency */
+  border-radius: 4px;
+  padding: 1px 3px;
+}
+
+/* Python docstrings - Different color than regular strings */
+.hljs-string.hljs-doctag,
+.hljs-doctag {
+  color: #86efac; /* Green-300 - lighter than regular strings */
+  font-style: italic;
+}
+
+/* Line numbers styling (if used) */
+.hljs-ln-numbers {
+  color: #64748b; /* Slate-500 */
+  border-right: 1px solid #475569;
+  padding-right: 10px;
+  margin-right: 10px;
+  text-align: right;
+  user-select: none;
+}
+
+/* Highlighted lines */
+.hljs-ln-line.highlighted {
+  background: rgba(59, 130, 246, 0.1); /* Blue highlight with transparency */
+}
+
+/* Code block improvements for dark mode */
+.dark .prose pre {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  border: 2px solid #475569;
+  box-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.4),
+    0 4px 8px -2px rgba(0, 0, 0, 0.3);
+}
+
+.dark .prose pre code.hljs {
+  background: transparent; /* Inherit from parent */
+  border: none;
+  padding: 0;
+}
+
+/* Better scrollbar for code blocks in dark mode */
+.dark .hljs::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.dark .hljs::-webkit-scrollbar-track {
+  background: #334155;
+  border-radius: 4px;
+}
+
+.dark .hljs::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #64748b 0%, #94a3b8 100%);
+  border-radius: 4px;
+  border: 1px solid #475569;
+}
+
+.dark .hljs::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #94a3b8 0%, #cbd5e1 100%);
+}
+
+/* Language badge untuk Python */
+.hljs::before {
+  content: attr(data-language);
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  background: rgba(168, 85, 247, 0.8); /* Purple badge */
+  color: white;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 10px;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.hljs[data-language="python"]::before {
+  content: "🐍 PYTHON";
+  background: linear-gradient(45deg, #3776ab 0%, #ffd343 100%);
+  color: #0f172a;
+}
+
+.hljs[data-language="javascript"]::before {
+  content: "⚡ JS";
+  background: linear-gradient(45deg, #f7df1e 0%, #000 100%);
+  color: #f7df1e;
+}
+
+.hljs[data-language="css"]::before {
+  content: "🎨 CSS";
+  background: linear-gradient(45deg, #1572b6 0%, #33a9dc 100%);
+  color: white;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  .hljs {
+    padding: 0.75rem;
+    font-size: 12px;
+    border-radius: 8px;
+  }
+
+  .hljs::before {
+    top: 4px;
+    right: 8px;
+    font-size: 8px;
+    padding: 1px 4px;
+  }
+}

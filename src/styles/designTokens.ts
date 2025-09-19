@@ -97,9 +97,9 @@ export const designTokens = {
     warning: "bg-gradient-to-r from-warning-500 to-warning-600",
     background:
       "bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900",
-    card: "bg-gradient-to-br from-white/95 to-gray-50/95 dark:from-gray-800/95 dark:to-gray-900/95",
+    card: "bg-gradient-to-br from-white to-gray-50/80 dark:from-gray-800 dark:to-gray-700/80",
     schedule:
-      "bg-gradient-to-br from-slate-700 to-slate-800 dark:from-slate-800 dark:to-slate-900",
+      "bg-gradient-to-br from-slate-700 to-slate-800 dark:from-slate-700 dark:to-slate-600",
   },
 
   // Typography Scale
@@ -179,26 +179,26 @@ export const designTokens = {
   status: {
     accepted: {
       background:
-        "bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20",
-      border: "border-green-200 dark:border-green-700",
-      text: "text-green-700 dark:text-green-400",
-      textSecondary: "text-green-600 dark:text-green-300",
+        "bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/40 dark:to-green-800/30",
+      border: "border-green-300 dark:border-green-500",
+      text: "text-green-800 dark:text-green-200",
+      textSecondary: "text-green-700 dark:text-green-300",
       icon: "🎉",
     },
     rejected: {
       background:
-        "bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/20 dark:to-orange-800/20",
-      border: "border-orange-200 dark:border-orange-700",
-      text: "text-orange-700 dark:text-orange-400",
-      textSecondary: "text-orange-600 dark:text-orange-300",
+        "bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/40 dark:to-orange-800/30",
+      border: "border-orange-300 dark:border-orange-500",
+      text: "text-orange-800 dark:text-orange-200",
+      textSecondary: "text-orange-700 dark:text-orange-300",
       icon: "🌟",
     },
     pending: {
       background:
-        "bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20",
-      border: "border-blue-200 dark:border-blue-700",
-      text: "text-blue-700 dark:text-blue-400",
-      textSecondary: "text-blue-600 dark:text-blue-300",
+        "bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/40 dark:to-blue-800/30",
+      border: "border-blue-300 dark:border-blue-500",
+      text: "text-blue-800 dark:text-blue-200",
+      textSecondary: "text-blue-700 dark:text-blue-300",
       icon: "⏳",
     },
   },
@@ -209,14 +209,14 @@ export const componentStyles = {
   card: {
     base: "rounded-2xl shadow-xl backdrop-blur-sm border transition-all duration-300 hover:shadow-2xl",
     padding: "p-8 md:p-10",
-    border: "border border-gray-200/50 dark:border-gray-700/50",
+    border: "border border-gray-200/60 dark:border-gray-600/60",
   },
   button: {
     base: "font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 active:scale-95 focus:outline-none focus:ring-4",
     primary:
       "bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-lg hover:shadow-xl focus:ring-blue-500/50",
     secondary:
-      "bg-gradient-to-r from-gray-100 to-gray-200 hover:from-gray-200 hover:to-gray-300 dark:from-gray-700 dark:to-gray-800 text-gray-900 dark:text-white shadow-md focus:ring-gray-500/50",
+      "bg-gradient-to-r from-gray-100 to-gray-200 hover:from-gray-200 hover:to-gray-300 dark:from-gray-600 dark:to-gray-700 dark:hover:from-gray-500 dark:hover:to-gray-600 text-gray-900 dark:text-white shadow-md focus:ring-gray-500/50",
     success:
       "bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white shadow-lg focus:ring-green-500/50",
     warning:
@@ -235,23 +235,23 @@ export const componentStyles = {
     },
   },
   input: {
-    base: "border-2 rounded-xl focus:ring-4 transition-all duration-300 transform focus:scale-105 dark:bg-gray-700 dark:text-white shadow-lg",
+    base: "border-2 rounded-xl focus:ring-4 transition-all duration-300 transform focus:scale-105 dark:bg-gray-800 dark:text-gray-100 shadow-lg",
     valid:
-      "border-green-500 dark:border-green-400 focus:border-green-500 focus:ring-green-500/30",
+      "border-green-500 dark:border-green-400 focus:border-green-500 focus:ring-green-500/30 bg-white dark:bg-gray-800",
     invalid:
-      "border-red-500 dark:border-red-400 focus:border-red-500 focus:ring-red-500/30",
+      "border-red-500 dark:border-red-400 focus:border-red-500 focus:ring-red-500/30 bg-white dark:bg-gray-800",
     default:
-      "border-gray-300 dark:border-gray-600 focus:border-blue-500 focus:ring-blue-500/30",
+      "border-gray-300 dark:border-gray-500 focus:border-blue-500 focus:ring-blue-500/30 bg-white dark:bg-gray-800",
   },
   text: {
     heading: {
-      primary: "text-gray-900 dark:text-white font-bold",
-      secondary: "text-gray-700 dark:text-gray-300 font-semibold",
+      primary: "text-gray-900 dark:text-gray-100 font-bold",
+      secondary: "text-gray-700 dark:text-gray-200 font-semibold",
     },
     body: {
-      primary: "text-gray-800 dark:text-gray-200",
-      secondary: "text-gray-600 dark:text-gray-400",
-      muted: "text-gray-500 dark:text-gray-500",
+      primary: "text-gray-800 dark:text-gray-100",
+      secondary: "text-gray-600 dark:text-gray-300",
+      muted: "text-gray-500 dark:text-gray-400",
     },
   },
 };

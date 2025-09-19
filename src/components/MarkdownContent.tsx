@@ -3,12 +3,11 @@
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
-import rehypeHighlight from "rehype-highlight";
 import rehypeRaw from "rehype-raw";
 import rehypeKatex from "rehype-katex";
-import "highlight.js/styles/github.css";
+import rehypeHighlight from "rehype-highlight";
 import "katex/dist/katex.min.css";
-import "@/styles/code-light.css";
+import "@/styles/highlight-dracula.css";
 import Image from "next/image";
 import { Tabs, TabItem } from "@/components/Tabs";
 import { Components } from "react-markdown";
@@ -28,7 +27,7 @@ export default function MarkdownContent({
     >
       <ReactMarkdown
         remarkPlugins={[remarkGfm, remarkMath]}
-        rehypePlugins={[rehypeHighlight, rehypeRaw, rehypeKatex]}
+        rehypePlugins={[rehypeRaw, rehypeKatex, rehypeHighlight]}
         components={
           {
             // Handle images with proper path conversion
@@ -61,6 +60,7 @@ export default function MarkdownContent({
                 />
               );
             },
+
             // Custom Docusaurus components
             tabs: ({ children }: { children: React.ReactNode }) => {
               return <Tabs>{children}</Tabs>;
