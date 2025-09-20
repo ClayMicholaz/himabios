@@ -75,6 +75,25 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+    ],
+    shortcut: "/favicon.ico",
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+      { url: "/BIOS.png", sizes: "512x512", type: "image/png" },
+    ],
+    other: [
+      {
+        rel: "apple-touch-icon-precomposed",
+        url: "/BIOS.png",
+      },
+    ],
+  },
   openGraph: {
     type: "website",
     locale: "id_ID",
@@ -92,6 +111,13 @@ export const metadata: Metadata = {
         alt: "HIMA BIOS UBM Ancol - Himpunan Mahasiswa Informatika",
         type: "image/png",
       },
+      {
+        url: "https://himabios.vercel.app/logo-og.png",
+        width: 800,
+        height: 600,
+        alt: "HIMA BIOS Logo",
+        type: "image/png",
+      },
     ],
   },
   twitter: {
@@ -99,7 +125,7 @@ export const metadata: Metadata = {
     title: "HIMA BIOS UBM Ancol - Programming Learning Platform",
     description:
       "Belajar programming gratis dengan HIMA BIOS UBM Ancol. Komunitas mahasiswa informatika terbaik di Jakarta!",
-    images: ["/BIOS.png"],
+    images: ["https://himabios.vercel.app/BIOS.png"],
     creator: "@ubm_bios_ancol",
     site: "@ubm_bios_ancol",
   },
@@ -118,16 +144,43 @@ export default function RootLayout({
   return (
     <html lang="id" suppressHydrationWarning>
       <head>
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" href="/BIOS.png" />
+        {/* Enhanced Favicon and Icon Configuration */}
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/apple-touch-icon.png"
+        />
+        <link rel="apple-touch-icon" sizes="512x512" href="/BIOS.png" />
         <link rel="manifest" href="/manifest.json" />
+
+        {/* Enhanced Meta Tags for Logo/Icon */}
+        <meta name="msapplication-TileImage" content="/BIOS.png" />
+        <meta name="msapplication-TileColor" content="#2e8555" />
         <meta name="theme-color" content="#2e8555" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="format-detection" content="telephone=no" />
 
-        <meta name="google-site-verification" content="wCJ4618uQYlQOFViXg5BBcMRC20LpuWdasmIM0iAk80" />
+        {/* Enhanced Open Graph for better logo display */}
+        <meta
+          property="og:logo"
+          content="https://himabios.vercel.app/BIOS.png"
+        />
+        <meta property="og:image:alt" content="HIMA BIOS UBM Ancol Logo" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+
+        {/* Twitter Card enhancements */}
+        <meta name="twitter:image:alt" content="HIMA BIOS UBM Ancol Logo" />
+
+        <meta
+          name="google-site-verification"
+          content="wCJ4618uQYlQOFViXg5BBcMRC20LpuWdasmIM0iAk80"
+        />
 
         {/* Additional SEO Meta Tags */}
         <meta name="geo.region" content="ID-JK" />
@@ -182,10 +235,19 @@ export default function RootLayout({
                 logo: {
                   "@type": "ImageObject",
                   url: "https://himabios.vercel.app/BIOS.png",
+                  contentUrl: "https://himabios.vercel.app/BIOS.png",
                   width: 512,
                   height: 512,
+                  caption: "HIMA BIOS UBM Ancol Logo",
                 },
-                image: "https://himabios.vercel.app/BIOS.png",
+                image: {
+                  "@type": "ImageObject",
+                  url: "https://himabios.vercel.app/BIOS.png",
+                  contentUrl: "https://himabios.vercel.app/BIOS.png",
+                  width: 1200,
+                  height: 630,
+                  caption: "HIMA BIOS UBM Ancol",
+                },
                 sameAs: [
                   "https://www.instagram.com/ubm_bios_ancol",
                   "https://www.instagram.com/bios_ubm",
@@ -244,6 +306,24 @@ export default function RootLayout({
                   "query-input": "required name=search_term_string",
                 },
                 inLanguage: "id-ID",
+                image: {
+                  "@type": "ImageObject",
+                  url: "https://himabios.vercel.app/BIOS.png",
+                  width: 512,
+                  height: 512,
+                },
+              },
+              {
+                "@context": "https://schema.org",
+                "@type": "BreadcrumbList",
+                itemListElement: [
+                  {
+                    "@type": "ListItem",
+                    position: 1,
+                    name: "Home",
+                    item: "https://himabios.vercel.app/",
+                  },
+                ],
               },
             ]),
           }}

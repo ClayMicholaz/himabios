@@ -1,8 +1,14 @@
 User-agent: *
 Allow: /
 
+# Disallow error pages from being indexed
+Disallow: /404
+
 # Sitemap location
 Sitemap: https://himabios.vercel.app/sitemap.xml
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
 
 # Priority pages for crawling
 Allow: /announcement
