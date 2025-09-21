@@ -23,7 +23,7 @@ export default function MarkdownContent({
 }: MarkdownContentProps) {
   return (
     <div
-      className={`prose prose-lg max-w-none dark:prose-invert markdown-content ${className}`}
+      className={`prose prose-lg max-w-8xl dark:prose-invert markdown-content ${className}`}
     >
       <ReactMarkdown
         remarkPlugins={[remarkGfm, remarkMath]}

@@ -12,7 +12,7 @@ Bayangin, kalian memiliki sebuah botol kosong. Botol tersebut nantinya akan diis
 
 Contoh:
 
-```
+```python
 botol = air
 ```
 

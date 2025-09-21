@@ -27,9 +27,9 @@ export function Tabs({ children, defaultValue, values }: TabsProps) {
     content: React.ReactNode;
   }> = [];
 
-  console.log("=== TABS COMPONENT DEBUG START ===");
-  console.log("Tabs component children:", children);
-  console.log("Children count:", Children.count(children));
+  // console.log("=== TABS COMPONENT DEBUG START ===");
+  // console.log("Tabs component children:", children);
+  // console.log("Children count:", Children.count(children));
 
   if (values) {
     // If values prop is provided, use it
@@ -49,7 +49,7 @@ export function Tabs({ children, defaultValue, values }: TabsProps) {
     // Extract from children props
     let defaultTabValue = "";
     Children.forEach(children, (child) => {
-      console.log("Processing child:", child);
+      // console.log("Processing child:", child);
       if (isValidElement<TabItemProps>(child)) {
         // Check if it's a direct TabItem component
         if (
@@ -85,8 +85,8 @@ export function Tabs({ children, defaultValue, values }: TabsProps) {
       }
     });
 
-    console.log("Extracted tabs:", tabItems);
-    console.log("Default tab value:", defaultTabValue);
+    // console.log("Extracted tabs:", tabItems);
+    // console.log("Default tab value:", defaultTabValue);
 
     // Use the default tab if found, otherwise use defaultValue prop or first tab
     defaultValue = defaultValue || defaultTabValue;
@@ -96,9 +96,9 @@ export function Tabs({ children, defaultValue, values }: TabsProps) {
     defaultValue || tabItems[0]?.value || ""
   );
 
-  console.log("Final tab items length:", tabItems.length);
-  console.log("Active tab:", activeTab);
-  console.log("=== TABS COMPONENT DEBUG END ===");
+  // console.log("Final tab items length:", tabItems.length);
+  // console.log("Active tab:", activeTab);
+  // console.log("=== TABS COMPONENT DEBUG END ===");
 
   if (tabItems.length === 0) {
     console.log("No tab items found, returning raw children");

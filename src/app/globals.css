@@ -358,6 +358,12 @@ body {
 /* Responsive Markdown Content Styles */
 .markdown-content {
   max-width: 100%;
+  overflow-x: visible; /* Changed from auto to visible to prevent unnecessary scrollbar */
+}
+
+/* Only add horizontal scroll for specific elements that need it */
+.markdown-content pre,
+.markdown-content table {
   overflow-x: auto;
 }
 
@@ -474,4 +480,58 @@ body {
     padding: 0.5rem 0.75rem;
     margin: 0.75rem 0;
   }
+}
+
+/* Table of Contents Styling */
+.toc-container {
+  background: rgba(46, 133, 85, 0.05);
+  border: 1px solid rgba(46, 133, 85, 0.2);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.dark .toc-container {
+  background: rgba(37, 194, 160, 0.05);
+  border: 1px solid rgba(37, 194, 160, 0.2);
+}
+
+.toc-container ol {
+  margin: 0;
+  padding-left: 1.2rem;
+  counter-reset: toc-counter;
+}
+
+.toc-container ol li {
+  margin: 0.5rem 0;
+  font-weight: 500;
+  color: var(--ifm-color-primary);
+}
+
+.toc-container ol li::marker {
+  font-weight: 600;
+}
+
+.toc-container ol li ul,
+.toc-container ol li ol {
+  margin-top: 0.25rem;
+  margin-left: 1rem;
+  font-weight: 400;
+}
+
+.toc-container ol li ul li,
+.toc-container ol li ol li {
+  color: var(--foreground);
+  opacity: 0.8;
+}
+
+.toc-container a {
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.2s ease;
+}
+
+.toc-container a:hover {
+  color: var(--ifm-color-primary-dark);
+  text-decoration: underline;
 }

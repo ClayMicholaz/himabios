@@ -45,7 +45,7 @@ export default function LearnLayout({
   }, []);
 
   return (
-    <div className="flex min-h-screen bg-docusaurus dark:bg-docusaurus-bg-dark">
+    <div className="h-screen flex bg-docusaurus dark:bg-docusaurus-bg-dark overflow-hidden">
       {/* Mobile overlay */}
       {sidebarOpen && (
         <div
@@ -61,6 +61,7 @@ export default function LearnLayout({
         w-80 bg-docusaurus-bg dark:bg-docusaurus-bg-dark 
         border-r border-gray-200 dark:border-gray-700
         transform transition-transform duration-200 ease-in-out
+        flex flex-col
         ${sidebarOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}
       `}
       >
@@ -89,29 +90,31 @@ export default function LearnLayout({
           </button>
         </div>
 
-        {hasStructure ? (
-          <Sidebar
-            structure={navigationStructure as { [key: string]: SidebarItem }}
-            currentPath={currentPath}
-          />
-        ) : (
-          <div className="p-6">
-            <div className="animate-pulse">
-              <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded mb-4"></div>
-              <div className="space-y-2">
-                <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded"></div>
-                <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded"></div>
-                <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded"></div>
+        <div className="flex-1 overflow-hidden">
+          {hasStructure ? (
+            <Sidebar
+              structure={navigationStructure as { [key: string]: SidebarItem }}
+              currentPath={currentPath}
+            />
+          ) : (
+            <div className="p-6">
+              <div className="animate-pulse">
+                <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded mb-4"></div>
+                <div className="space-y-2">
+                  <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded"></div>
+                  <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded"></div>
+                  <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded"></div>
+                </div>
               </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
 
       {/* Main content */}
-      <main className="flex-1 min-w-0 lg:ml-0">
+      <main className="flex-1 min-w-0 flex flex-col h-full overflow-hidden">
         {/* Mobile header with hamburger */}
-        <div className="lg:hidden flex items-center justify-between p-4 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+        <div className="lg:hidden flex items-center justify-between p-4 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 flex-shrink-0">
           <button
             onClick={() => setSidebarOpen(true)}
             className="p-2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
@@ -136,11 +139,14 @@ export default function LearnLayout({
           <div className="w-10"></div> {/* Spacer for centering */}
         </div>
 
-        <div className="p-4 sm:p-6 lg:p-8 max-w-none">
-          {currentPath && breadcrumbs.length > 1 && (
-            <Breadcrumb items={breadcrumbs} />
-          )}
-          {children}
+        {/* Scrollable content area */}
+        <div className="flex-1 overflow-y-auto">
+          <div className="p-4 sm:p-6 lg:p-8">
+            {currentPath && breadcrumbs.length > 1 && (
+              <Breadcrumb items={breadcrumbs} />
+            )}
+            <div className="max-w-7xl mx-auto">{children}</div>
+          </div>
         </div>
       </main>
     </div>

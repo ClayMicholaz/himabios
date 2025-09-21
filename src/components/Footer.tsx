@@ -15,7 +15,14 @@ interface FooterSection {
 const footerSections: FooterSection[] = [
   {
     title: "Learn",
-    items: [{ label: "Intro to programming", href: "/learn/intro-to-programming/intro-to-programming" }],
+    items: [
+      {
+        label: "Intro to programming",
+        href: "/learn/intro-to-programming/intro-to-programming",
+      },
+      { label: "Python", href: "/learn/python/intro-to-python" },
+      { label: "Flutter", href: "/learn/flutter/intro-to-flutter" },
+    ],
   },
   {
     title: "Social",

@@ -62,8 +62,6 @@ yarn dev
 pnpm dev
 ```
 
-Buka [http://localhost:3000](http://localhost:3000) untuk melihat aplikasi.
-
 ## Struktur Project
 
 ```

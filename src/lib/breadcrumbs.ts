@@ -11,7 +11,7 @@ export function generateBreadcrumbs(
 ): BreadcrumbItem[] {
   const breadcrumbs: BreadcrumbItem[] = [{ label: "Home", href: "/" }];
 
-  console.log("Breadcrumb pathname:", pathname, "title:", title);
+  // console.log("Breadcrumb pathname:", pathname, "title:", title);
 
   if (pathname.startsWith("/learn")) {
     breadcrumbs.push({ label: "Learn", href: "/learn" });
