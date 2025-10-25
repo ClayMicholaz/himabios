@@ -18,7 +18,7 @@ interface NavItem {
 const navItems: NavItem[] = [
   { label: "Belajar", href: "/learn" },
   { label: "Tentang kami", href: "/about" },
-  { label: "Pengumuman", href: "/announcement" },
+  // { label: "Pengumuman", href: "/announcement" },
 ];
 
 const externalNavItems: NavItem[] = [
@@ -27,6 +27,11 @@ const externalNavItems: NavItem[] = [
     href: "https://github.com/bios-bunda-mulia-university",
     external: true,
   },
+  {
+    label: "Daftar Kelas",
+    href: "https://daftarbios.vercel.app/",
+    external: true,
+  }
 ];
 
 export default function Navbar() {
