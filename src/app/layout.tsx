@@ -125,7 +125,7 @@ export const metadata: Metadata = {
     title: "HIMA BIOS UBM Ancol - Programming Learning Platform",
     description:
       "Belajar programming gratis dengan HIMA BIOS UBM Ancol. Komunitas mahasiswa informatika terbaik di Jakarta!",
-    images: ["https://himabios.vercel.app/BIOS.png"],
+    images: ["https://himabios.vercel.app/BIOS.webp"],
     creator: "@ubm_bios_ancol",
     site: "@ubm_bios_ancol",
   },
@@ -205,9 +205,6 @@ export default function RootLayout({
         />
         <meta name="content-language" content="id" />
 
-        {/* Social Media Verification (add when available) */}
-        {/* <meta name="facebook-domain-verification" content="your_verification_code" /> */}
-        {/* <meta name="google-site-verification" content="your_verification_code" /> */}
         <link
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css"
