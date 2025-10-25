@@ -73,7 +73,7 @@ export default function Navbar() {
           <div className="flex items-center">
             <Link href="/" className="flex items-center space-x-3">
               <Image
-                src="/BIOS.png"
+                src="/BIOS.webp"
                 alt="BIOS Logo"
                 width={32}
                 height={32}
