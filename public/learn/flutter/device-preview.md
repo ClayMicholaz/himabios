@@ -73,7 +73,7 @@ void main() => runApp(
 
 setelah menginisialisasi Device_Preview di void main, sekarang lakukan debugging ke website dengan mengganti devicenya menjadi Chrome atau Edge (atau browser lainnya di device anda).
 
-![Device Select](select_device.png)
+![Device Select](../../static/img/select_device.png)
 
 lalu tekan F5 di keyboard anda, dan berikut hasil akhirnya
-![Chrome Device Preview](chrome_device_preview.png)
+![Chrome Device Preview](../../static/img/chrome_device_preview.png)
