@@ -31,8 +31,6 @@ flutter pub add device_preview
 
 lalu akan muncul output berikut:
 
-![Flutter Pub Add Device Preview](/learn/flutter/flutter_pub_add_device_preview.png)
-
 ```bash
 Resolving dependencies...
 Downloading packages... (1.0s)
