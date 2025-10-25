@@ -6,7 +6,7 @@ description: "Shortcut jika tidak menggunakan Android Virtual Device"
 
 ### Shortcut selain menggunakan Virtual Device
 
-Jika anda
+Jika anda tidak terlalu memerlukan debugging yang membutuhkan fungsi native di Device Android, bisa menggunakan package Device_Preview untuk mempercepat debugging.
 
 ## 📚 Table of Contents
 
