@@ -28,11 +28,11 @@ export async function generateStaticParams() {
       return { slug };
     });
 
-  // Add directory-level routes for folders with index files
+  // Add directory-level routes for folders with intro files
   const directoryParams: { slug: string[] }[] = [];
 
-  // Check for all directories with index files
-  const directoriesWithIndex = [
+  // Check for all directories with intro files
+  const directoriesWithIntro = [
     "python",
     "flutter",
     "algorithm",
@@ -41,12 +41,15 @@ export async function generateStaticParams() {
     "intro-to-programming/best-practices",
   ];
 
-  directoriesWithIndex.forEach((dir) => {
-    if (
-      files.some(
-        (file) => file === `${dir}/index.md` || file === `${dir}/index.mdx`
-      )
-    ) {
+  directoriesWithIntro.forEach((dir) => {
+    const introPaths = [
+      `${dir}/intro.md`,
+      `${dir}/intro.mdx`,
+      `${dir}/intro-to-${dir.split("/").pop()}.md`,
+      `${dir}/intro-to-${dir.split("/").pop()}.mdx`,
+    ];
+
+    if (introPaths.some((introPath) => files.includes(introPath))) {
       directoryParams.push({ slug: dir.split("/") });
     }
   });

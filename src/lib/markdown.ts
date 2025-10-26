@@ -23,6 +23,12 @@ export function getMarkdownBySlug(slug: string[]): MarkdownData | null {
     const possiblePaths = [
       `${fullPath}.md`,
       `${fullPath}.mdx`,
+      // Try intro files for directory access
+      path.join(fullPath, "intro.md"),
+      path.join(fullPath, "intro.mdx"),
+      path.join(fullPath, `intro-to-${slug[slug.length - 1]}.md`),
+      path.join(fullPath, `intro-to-${slug[slug.length - 1]}.mdx`),
+      // Fallback to index files if they exist
       path.join(fullPath, "index.md"),
       path.join(fullPath, "index.mdx"),
     ];
@@ -49,14 +55,8 @@ export function getMarkdownBySlug(slug: string[]): MarkdownData | null {
       title = titleMatch ? titleMatch[1] : slug[slug.length - 1];
     }
 
-    // If we found an index file, adjust the slug to include "index" for consistency
+    // Don't modify the slug for intro/index files - keep it clean
     let finalSlug = slug.join("/");
-    if (filePath.endsWith("index.md") || filePath.endsWith("index.mdx")) {
-      // Only add "index" if it's not already the last part of the slug
-      if (slug[slug.length - 1] !== "index") {
-        finalSlug = slug.join("/") + "/index";
-      }
-    }
 
     return {
       slug: finalSlug,
