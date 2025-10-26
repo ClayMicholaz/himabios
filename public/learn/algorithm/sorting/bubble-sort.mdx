@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # Bubble Sort
 
-![Bubble](../../../static/img/bubble.png)
+![Bubble](/bubble.png)
 
 Dinamakan **Bubble Sort** dikarenakan cara pengurutannya yang seperti gelembung yang berada di suatu kolam. Gelembung yang ringan akan mengambang naik ke posisi teratas dan gelembung yang lebih berat akan berada di posisi lebih bawah.
 
@@ -24,11 +24,11 @@ Diberikan sebuah array yang berisikan sebuah angka seperti berikut,
 
 ### Input
 
-![Unsorted array](../../../static/img/unsorted-array.png)
+![Unsorted array](/unsorted-array.png)
 
 ### Output
 
-![Sorted array](../../../static/img/sorted-array.png)
+![Sorted array](/sorted-array.png)
 
 Kunci dari bubble sort adalah membandingkan nilai mula yang satu dengan nilai yang bersebelahan. Jika nilai mula _lebih kecil_ dari nilai sebelahnya, maka tidak terjadi proses pertukaran/swapping. Jika nilai mula lebih _lebih besar_ dari nilai sebelahnya, maka proses pertukaran/swapping terjadi. Ulangi proses tersebut sampai seluruh elemen di dalam array terurut.
 
@@ -43,7 +43,7 @@ Jika dibuat menjadi sebuah narasi, maka kurang lebih seperti berikut ini:
 
 ### Contoh
 
-```
+```python
 arr[] = {10, 80, 40, 30}
 Indexes: 0   1   2   3
 
@@ -93,111 +93,109 @@ Semenjak tidak ada lagi elemen yang dapat di swap, maka dari itu proses sorting 
 
 ## Source Code
 
-import Tabs from "@theme/Tabs"
-import TabItem from "@theme/TabItem"
+**C++**
 
-<Tabs>
-  <TabItem value="cpp" label="C++" default>
+```cpp
+#include <iostream>
+using namespace std;
 
-    #include <iostream>
-    using namespace std;
+void bubbleSort(int arr[], int n) {
+    int i, j;
+    for (i = 0; i < n-1; i++) {
+        for (j = 0; j < n-i-1; j++) {
+            if (arr[j] > arr[j+1]) {
+                // Tukar array-nya
+                int temp = arr[j];
+                arr[j] = arr[j+1];
+                arr[j+1] = temp;
+            }
+        }
+    }
+}
 
-    void bubbleSort(int arr[], int n) {
-        int i, j;
-        for (i = 0; i < n-1; i++) {
-            for (j = 0; j < n-i-1; j++) {
+int main() {
+    int arr[] = {2, 8, 5, 3, 9, 4, 1};
+    int n = sizeof(arr)/sizeof(arr[0]);
+    bubbleSort(arr, n);
+    cout << "Array setelah diurutkan: \n";
+    for (int i=0; i < n; i++)
+        cout << arr[i] << " ";
+    return 0;
+}
+```
+
+**Python**
+
+```python
+def bubbleSort(arr):
+    n = len(arr)
+    for i in range(n):
+        for j in range(0, n-i-1):
+            if arr[j] > arr[j+1]:
+                # Tukar array-nya
+                arr[j], arr[j+1] = arr[j+1], arr[j]
+    return arr
+
+arr = [2, 8, 5, 3, 9, 4, 1]
+sorted_arr = bubbleSort(arr)
+print("Array setelah diurutkan:", sorted_arr)
+```
+
+**Java**
+
+```java
+class BubbleSort {
+    void bubbleSort(int arr[]) {
+        int n = arr.length;
+        for (int i = 0; i < n-1; i++)
+            for (int j = 0; j < n-i-1; j++)
                 if (arr[j] > arr[j+1]) {
                     // Tukar array-nya
                     int temp = arr[j];
                     arr[j] = arr[j+1];
                     arr[j+1] = temp;
                 }
-            }
-        }
     }
 
-    int main() {
+    void printArray(int arr[]) {
+        int n = arr.length;
+        System.out.println("Array setelah diurutkan:");
+        for (int i=0; i < n; ++i)
+            System.out.print(arr[i] + " ");
+        System.out.println();
+    }
+
+    public static void main(String args[]) {
+        BubbleSort ob = new BubbleSort();
         int arr[] = {2, 8, 5, 3, 9, 4, 1};
-        int n = sizeof(arr)/sizeof(arr[0]);
-        bubbleSort(arr, n);
-        cout << "Array setelah diurutkan: \n";
-        for (int i=0; i < n; i++)
-            cout << arr[i] << " ";
-        return 0;
+        ob.bubbleSort(arr);
+        ob.printArray(arr);
     }
+}
+```
 
-  </TabItem>
-  <TabItem value="python" label="Python" default>
+**JavaScript**
 
-    def bubbleSort(arr):
-        n = len(arr)
-        for i in range(n):
-            for j in range(0, n-i-1):
-                if arr[j] > arr[j+1]:
-                    # Tukar array-nya
-                    arr[j], arr[j+1] = arr[j+1], arr[j]
-        return arr
-
-    arr = [2, 8, 5, 3, 9, 4, 1]
-    sorted_arr = bubbleSort(arr)
-    print("Array setelah diurutkan:", sorted_arr)
-
-  </TabItem>
-  <TabItem value="java" label="Java" default>
-
-    class BubbleSort {
-        void bubbleSort(int arr[]) {
-            int n = arr.length;
-            for (int i = 0; i < n-1; i++)
-                for (int j = 0; j < n-i-1; j++)
-                    if (arr[j] > arr[j+1]) {
-                        // Tukar array-nya
-                        int temp = arr[j];
-                        arr[j] = arr[j+1];
-                        arr[j+1] = temp;
-                    }
-        }
-
-        void printArray(int arr[]) {
-            int n = arr.length;
-            System.out.println("Array setelah diurutkan:");
-            for (int i=0; i < n; ++i)
-                System.out.print(arr[i] + " ");
-            System.out.println();
-        }
-
-        public static void main(String args[]) {
-            BubbleSort ob = new BubbleSort();
-            int arr[] = {2, 8, 5, 3, 9, 4, 1};
-            ob.bubbleSort(arr);
-            ob.printArray(arr);
-        }
+```javascript
+const bubbleSort = (arr) => {
+  let n = arr.length;
+  for (let i = 0; i < n - 1; i++) {
+    for (let j = 0; j < n - i - 1; j++) {
+      if (arr[j] > arr[j + 1]) {
+        // Tukar array-nya
+        let temp = arr[j];
+        arr[j] = arr[j + 1];
+        arr[j + 1] = temp;
+      }
     }
+  }
+  return arr;
+};
 
-  </TabItem>
-  <TabItem value="js" label="JavaScript" default>
-
-    const bubbleSort = (arr) => {
-        let n = arr.length;
-        for (let i = 0; i < n - 1; i++) {
-            for (let j = 0; j < n - i - 1; j++) {
-                if (arr[j] > arr[j + 1]) {
-                    // Tukar array-nya
-                    let temp = arr[j];
-                    arr[j] = arr[j + 1];
-                    arr[j + 1] = temp;
-                }
-            }
-        }
-        return arr;
-    }
-
-    let arr = [2, 8, 5, 3, 9, 4, 1];
-    let sortedArr = bubbleSort(arr);
-    console.log("Sorted array:", sortedArr);
-
-  </TabItem>
-</Tabs>
+let arr = [2, 8, 5, 3, 9, 4, 1];
+let sortedArr = bubbleSort(arr);
+console.log("Sorted array:", sortedArr);
+```
 
 ## Sumber lain
 

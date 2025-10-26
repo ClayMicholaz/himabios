@@ -71,7 +71,7 @@ void main() => runApp(
 
 ## 3. Debuging sebagai Website
 
-setelah menginisialisasi Device_Preview di void main, sekarang lakukan debugging ke website dengan mengganti devicenya menjadi Chrome atau Edge (atau browser lainnya di device anda).
+setelah menginisialisasi Device_Preview di void main, sekarang lakukan debugging ke website dengan mengganti devicenya menjadi Chrome atau Edge (atau browser lainnya di Desktop anda).
 
 ![Device Select](/learn/flutter/select_device.png)
 

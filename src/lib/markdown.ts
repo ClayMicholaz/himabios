@@ -153,70 +153,92 @@ export interface PrevNextNavigation {
   next?: NavigationItem;
 }
 
-// Get flat list of all markdown files in order
+// Get flat list of all markdown files in order, grouped by category
 function getFlatFileList(): NavigationItem[] {
   const files = getAllMarkdownFiles();
   const flatList: NavigationItem[] = [];
 
   // Define custom order for sections
-  const sectionOrder = ["intro-to-programming", "algorithm"];
+  const sectionOrder = [
+    "intro-to-programming",
+    "python",
+    "algorithm",
+    "flutter",
+    "Glosarium",
+  ];
 
-  // Sort files by section order and then by sidebar_position
-  const sortedFiles = files.sort((a, b) => {
-    const aPath = a.replace(/\.(md|mdx)$/, "");
-    const bPath = b.replace(/\.(md|mdx)$/, "");
+  // Group files by their main category (first part of path)
+  const filesByCategory: Record<string, string[]> = {};
 
-    const aParts = aPath.split("/");
-    const bParts = bPath.split("/");
-
-    // Get section (first part of path)
-    const aSection = aParts[0];
-    const bSection = bParts[0];
-
-    const aSectionIndex = sectionOrder.indexOf(aSection);
-    const bSectionIndex = sectionOrder.indexOf(bSection);
-
-    // Sort by section order first
-    if (aSectionIndex !== bSectionIndex) {
-      const aIndex = aSectionIndex === -1 ? 999 : aSectionIndex;
-      const bIndex = bSectionIndex === -1 ? 999 : bSectionIndex;
-      return aIndex - bIndex;
-    }
-
-    // Within same section, try to get sidebar_position
-    try {
-      const aMarkdown = getMarkdownBySlug(aParts);
-      const bMarkdown = getMarkdownBySlug(bParts);
-
-      const aPos = aMarkdown?.frontmatter?.sidebar_position || 999;
-      const bPos = bMarkdown?.frontmatter?.sidebar_position || 999;
-
-      if (aPos !== bPos) {
-        return (aPos as number) - (bPos as number);
-      }
-    } catch {
-      // Continue with alphabetical sort if can't read files
-    }
-
-    // Fallback to alphabetical
-    return aPath.localeCompare(bPath);
-  });
-
-  for (const file of sortedFiles) {
-    const slug = file.replace(/\.(md|mdx)$/, "").split("/");
+  for (const file of files) {
+    const normalizedFile = file.replace(/\\/g, "/");
+    const parts = normalizedFile.replace(/\.(md|mdx)$/, "").split("/");
 
     // Skip standalone intro files (but keep intro-to-programming)
-    if (slug.length === 1 && slug[0] === "intro") {
+    if (parts.length === 1 && parts[0] === "intro") {
       continue;
     }
 
-    const markdownData = getMarkdownBySlug(slug);
+    const category = parts[0];
+    if (!filesByCategory[category]) {
+      filesByCategory[category] = [];
+    }
+    filesByCategory[category].push(file);
+  }
 
-    if (markdownData) {
-      flatList.push({
-        title: markdownData.title,
-        path: `/learn/${slug.join("/")}`,
-      });
+  // Sort categories by section order
+  const sortedCategories = Object.keys(filesByCategory).sort((a, b) => {
+    const aIndex = sectionOrder.indexOf(a);
+    const bIndex = sectionOrder.indexOf(b);
+
+    const aPos = aIndex === -1 ? 999 : aIndex;
+    const bPos = bIndex === -1 ? 999 : bIndex;
+
+    if (aPos !== bPos) {
+      return aPos - bPos;
+    }
+
+    return a.localeCompare(b);
+  });
+
+  // Sort files within each category
+  for (const category of sortedCategories) {
+    const categoryFiles = filesByCategory[category].sort((a, b) => {
+      const aPath = a.replace(/\.(md|mdx)$/, "");
+      const bPath = b.replace(/\.(md|mdx)$/, "");
+      const aParts = aPath.split("/");
+      const bParts = bPath.split("/");
+
+      // Try to get sidebar_position for sorting within category
+      try {
+        const aMarkdown = getMarkdownBySlug(aParts);
+        const bMarkdown = getMarkdownBySlug(bParts);
+
+        const aPos = aMarkdown?.frontmatter?.sidebar_position || 999;
+        const bPos = bMarkdown?.frontmatter?.sidebar_position || 999;
+
+        if (aPos !== bPos) {
+          return (aPos as number) - (bPos as number);
+        }
+      } catch {
+        // Continue with alphabetical sort if can't read files
+      }
+
+      // Fallback to alphabetical within category
+      return aPath.localeCompare(bPath);
+    });
+
+    // Add files from this category to flat list
+    for (const file of categoryFiles) {
+      const slug = file.replace(/\.(md|mdx)$/, "").split("/");
+      const markdownData = getMarkdownBySlug(slug);
+
+      if (markdownData) {
+        flatList.push({
+          title: markdownData.title,
+          path: `/learn/${slug.join("/")}`,
+        });
+      }
     }
   }
 
@@ -231,14 +253,27 @@ export function getPrevNextNavigation(currentPath: string): PrevNextNavigation {
     return {};
   }
 
+  // Get current category from path
+  const currentCategory = currentPath.split("/")[2]; // /learn/[category]/...
+
   const result: PrevNextNavigation = {};
 
-  if (currentIndex > 0) {
-    result.prev = flatList[currentIndex - 1];
+  // Find previous item in same category
+  for (let i = currentIndex - 1; i >= 0; i--) {
+    const prevCategory = flatList[i].path.split("/")[2];
+    if (prevCategory === currentCategory) {
+      result.prev = flatList[i];
+      break;
+    }
   }
 
-  if (currentIndex < flatList.length - 1) {
-    result.next = flatList[currentIndex + 1];
+  // Find next item in same category
+  for (let i = currentIndex + 1; i < flatList.length; i++) {
+    const nextCategory = flatList[i].path.split("/")[2];
+    if (nextCategory === currentCategory) {
+      result.next = flatList[i];
+      break;
+    }
   }
 
   return result;

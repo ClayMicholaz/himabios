@@ -4,7 +4,7 @@ sidebar_position: 3
 
 # Insertion Sort
 
-![Insertion sort meme](../../../static/img/insertion-sort.png)
+![Insertion sort meme](/insertion-sort.png)
 
 Dinamakan **Insertion Sort** dikarenakan cara mengurutkan elemen dengan memasukkan setiap elemen ke posisi yang tepat dalam daftar yang terurut.
 
@@ -24,11 +24,11 @@ Diberikan sebuah array yang berisikan sebuah angka seperti berikut,
 
 ### Input
 
-![Unsorted array](../../../static/img/unsorted-array.png)
+![Unsorted array](/unsorted-array.png)
 
 ### Output
 
-![Sorted array](../../../static/img/sorted-array.png)
+![Sorted array](/sorted-array.png)
 
 Inti dari insertion sort adalah membandingkan element yang sedang ditunjuk dengan element sebelah kirinya.
 
@@ -67,20 +67,65 @@ i = 4.
 
 ## Source Code
 
-import Tabs from "@theme/Tabs"
-import TabItem from "@theme/TabItem"
+**C++**
 
-<Tabs>
-  <TabItem value="cpp" label="C++" default>
+```cpp
+#include <iostream>
+using namespace std;
 
-    #include <iostream>
-    using namespace std;
+void insertionSort(int arr[], int n) {
+    int i, key, j;
+    for (i = 1; i < n; i++) {
+        key = arr[i];
+        j = i - 1;
 
-    void insertionSort(int arr[], int n) {
-        int i, key, j;
-        for (i = 1; i < n; i++) {
-            key = arr[i];
-            j = i - 1;
+        while (j >= 0 && arr[j] > key) {
+            arr[j + 1] = arr[j];
+            j = j - 1;
+        }
+        arr[j + 1] = key;
+    }
+}
+
+int main() {
+    int arr[] = {12, 11, 13, 5, 6};
+    int n = sizeof(arr) / sizeof(arr[0]);
+
+    insertionSort(arr, n);
+
+    for (int i = 0; i < n; i++)
+        cout << arr[i] << " ";
+
+    return 0;
+}
+```
+
+**Python**
+
+```python
+def insertionSort(arr):
+    for i in range(1, len(arr)):
+        key = arr[i]
+        j = i - 1
+        while j >= 0 and key < arr[j]:
+            arr[j + 1] = arr[j]
+            j -= 1
+        arr[j + 1] = key
+
+arr = [12, 11, 13, 5, 6]
+insertionSort(arr)
+print("Array setelah diurutkan:", arr)
+```
+
+**Java**
+
+```java
+class InsertionSort {
+    void sort(int arr[]) {
+        int n = arr.length;
+        for (int i = 1; i < n; ++i) {
+            int key = arr[i];
+            int j = i - 1;
 
             while (j >= 0 && arr[j] > key) {
                 arr[j + 1] = arr[j];
@@ -90,87 +135,40 @@ import TabItem from "@theme/TabItem"
         }
     }
 
-    int main() {
-        int arr[] = {12, 11, 13, 5, 6};
-        int n = sizeof(arr) / sizeof(arr[0]);
+    static void printArray(int arr[]) {
+        int n = arr.length;
+        for (int i = 0; i < n; ++i)
+        System.out.print(arr[i] + " ");
 
-        insertionSort(arr, n);
-
-        for (int i = 0; i < n; i++)
-            cout << arr[i] << " ";
-
-        return 0;
+        System.out.println();
     }
 
-  </TabItem>
-  <TabItem value="python" label="Python" default>
+    public static void main(String args[]) {
+        int arr[] = { 12, 11, 13, 5, 6 };
 
-    def insertionSort(arr):
-        for i in range(1, len(arr)):
-            key = arr[i]
-            j = i - 1
-            while j >= 0 and key < arr[j]:
-                arr[j + 1] = arr[j]
-                j -= 1
-            arr[j + 1] = key
+        InsertionSort ob = new InsertionSort();
+        ob.sort(arr);
 
-    arr = [12, 11, 13, 5, 6]
-    insertionSort(arr)
-    print("Array setelah diurutkan:", arr)
-
-  </TabItem>
-  <TabItem value="java" label="Java" default>
-
-    class InsertionSort {
-        void sort(int arr[]) {
-            int n = arr.length;
-            for (int i = 1; i < n; ++i) {
-                int key = arr[i];
-                int j = i - 1;
-
-                while (j >= 0 && arr[j] > key) {
-                    arr[j + 1] = arr[j];
-                    j = j - 1;
-                }
-                arr[j + 1] = key;
-            }
-        }
-
-        static void printArray(int arr[]) {
-            int n = arr.length;
-            for (int i = 0; i < n; ++i)
-            System.out.print(arr[i] + " ");
-
-            System.out.println();
-        }
-
-        public static void main(String args[]) {
-            int arr[] = { 12, 11, 13, 5, 6 };
-
-            InsertionSort ob = new InsertionSort();
-            ob.sort(arr);
-
-            printArray(arr);
-        }
+        printArray(arr);
     }
+}
+```
 
-  </TabItem>
-  <TabItem value="js" label="JavaScript" default>
+**JavaScript**
 
-    const insertionSort = (arr) => {
-        for (let i = 1; i < arr.length; i++) {
-            let key = arr[i];
-            let j = i - 1;
-            while (j >= 0 && arr[j] > key) {
-                arr[j + 1] = arr[j];
-                j--;
-            }
-            arr[j + 1] = key;
-        }
-        return arr;
+```javascript
+const insertionSort = (arr) => {
+  for (let i = 1; i < arr.length; i++) {
+    let key = arr[i];
+    let j = i - 1;
+    while (j >= 0 && arr[j] > key) {
+      arr[j + 1] = arr[j];
+      j--;
     }
+    arr[j + 1] = key;
+  }
+  return arr;
+};
 
-    console.log(insertionSort([12, 11, 13, 5, 6]));
-
-  </TabItem>
-</Tabs>
+console.log(insertionSort([12, 11, 13, 5, 6]));
+```

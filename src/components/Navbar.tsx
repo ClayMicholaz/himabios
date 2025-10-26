@@ -27,11 +27,11 @@ const externalNavItems: NavItem[] = [
     href: "https://github.com/bios-bunda-mulia-university",
     external: true,
   },
-  {
-    label: "Daftar Kelas",
-    href: "https://daftarbios.vercel.app/",
-    external: true,
-  }
+  // {
+  //   label: "Daftar Kelas",
+  //   href: "https://daftarbios.vercel.app/",
+  //   external: true,
+  // }
 ];
 
 export default function Navbar() {

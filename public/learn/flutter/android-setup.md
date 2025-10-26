@@ -158,18 +158,37 @@ flutter doctor -v
     • Android SDK at C:\Users\[NamaUser]\AppData\Local\Android\Sdk
     • Emulator version 36.2.12.0 (build_id 14214601) (CL:N/A)
     • Platform android-36, build-tools 36.0.0
-    • ANDROID_HOME = C:\Users\ASUS\AppData\Local\Android\Sdk
-    • Java binary at: D:\App2\ADS\jbr\bin\java
+    • ANDROID_HOME = C:\Users\[NamaUser]\AppData\Local\Android\Sdk
+    • Java binary at: D:\Path
       This is the JDK bundled with the latest Android Studio installation on this machine.
       To manually set the JDK path, use: `flutter config --jdk-dir="path/to/jdk"`.
     • Java version OpenJDK Runtime Environment (build 21.0.8+-14018985-b1038.68)
-    • All Android licenses accepted.
+    • All Android licenses accepted. <- jika belum accepted cek nomor 3.
 
 [✓] Android Studio (version 2025.1.4) [21ms]
-    • Android Studio at D:\App2\ADS
+    • Android Studio at D:\Path
     • Flutter plugin can be installed from:
       🔨 https://plugins.jetbrains.com/plugin/9212-flutter
     • Dart plugin can be installed from:
       🔨 https://plugins.jetbrains.com/plugin/6351-dart
     • Java version OpenJDK Runtime Environment (build 21.0.8+-14018985-b1038.68)
+```
+
+### 3. Lisensi Android melalui Terminal
+Cek dulu apakah sudah memiliki Android Licsense
+```bash
+flutter doctor --android-licenses
+```
+
+akan muncul perjanjian lisensi satu persatu yang harus disetujui, untuk setiap perjanjian lisensi yang muncul ketik y dan enter.
+
+lalu cek kembali apakah Lisensi sudah terima atau belum dengan perintah
+
+```bash
+flutter doctor -v
+```
+
+maka akan memberikan output sebagai berikut:
+```bash
+• All Android licenses accepted
 ```
