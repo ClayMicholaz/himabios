@@ -21,12 +21,37 @@ interface PageProps {
 export async function generateStaticParams() {
   const files = getAllMarkdownFiles();
 
-  return files
+  const params = files
     .filter((file) => file.endsWith(".md") || file.endsWith(".mdx"))
     .map((file) => {
       const slug = file.replace(/\.(md|mdx)$/, "").split("/");
       return { slug };
     });
+
+  // Add directory-level routes for folders with index files
+  const directoryParams: { slug: string[] }[] = [];
+
+  // Check for all directories with index files
+  const directoriesWithIndex = [
+    "python",
+    "flutter",
+    "algorithm",
+    "intro-to-programming",
+    "algorithm/sorting",
+    "intro-to-programming/best-practices",
+  ];
+
+  directoriesWithIndex.forEach((dir) => {
+    if (
+      files.some(
+        (file) => file === `${dir}/index.md` || file === `${dir}/index.mdx`
+      )
+    ) {
+      directoryParams.push({ slug: dir.split("/") });
+    }
+  });
+
+  return [...params, ...directoryParams];
 }
 
 export default async function MarkdownPage({ params }: PageProps) {

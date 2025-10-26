@@ -49,8 +49,17 @@ export function getMarkdownBySlug(slug: string[]): MarkdownData | null {
       title = titleMatch ? titleMatch[1] : slug[slug.length - 1];
     }
 
+    // If we found an index file, adjust the slug to include "index" for consistency
+    let finalSlug = slug.join("/");
+    if (filePath.endsWith("index.md") || filePath.endsWith("index.mdx")) {
+      // Only add "index" if it's not already the last part of the slug
+      if (slug[slug.length - 1] !== "index") {
+        finalSlug = slug.join("/") + "/index";
+      }
+    }
+
     return {
-      slug: slug.join("/"),
+      slug: finalSlug,
       title,
       content,
       frontmatter: data,
