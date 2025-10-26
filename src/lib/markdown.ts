@@ -56,7 +56,7 @@ export function getMarkdownBySlug(slug: string[]): MarkdownData | null {
     }
 
     // Don't modify the slug for intro/index files - keep it clean
-    let finalSlug = slug.join("/");
+    const finalSlug = slug.join("/");
 
     return {
       slug: finalSlug,
