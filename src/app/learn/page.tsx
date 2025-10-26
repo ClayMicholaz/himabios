@@ -136,7 +136,7 @@ export default function LearnPage() {
                 Mulai dari Awal
               </Link>
               <Link
-                href="/learn/python/install"
+                href="/learn/python/intro-to-python"
                 className="w-full sm:w-auto bg-primary-700 text-white px-4 sm:px-6 lg:px-8 py-2 sm:py-3 lg:py-4 rounded-lg font-medium hover:bg-primary-800 transition-colors border border-primary-400 text-center text-sm sm:text-base"
               >
                 Langsung ke Python
