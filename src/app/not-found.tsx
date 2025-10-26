@@ -41,7 +41,7 @@ export default function NotFound() {
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 flex items-center justify-center px-4">
         <div className="max-w-2xl w-full text-center">
           {/* Animated 404 */}
-          <div className="mb-12">
+          <div className="mb-8 mt-16">
             <div
               className={`text-9xl font-black bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-6 transition-all duration-1000 ${
                 mounted ? "scale-100 opacity-100" : "scale-150 opacity-0"
@@ -50,41 +50,13 @@ export default function NotFound() {
               404
             </div>
             <div className="relative">
-              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">
+              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mt-6 mb-6 leading-tight">
                 🚀 Oops! Halaman Tidak Ditemukan
               </h1>
-              <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-lg mx-auto">
+              <p className="text-xl text-gray-600 dark:text-gray-300 mb-4 max-w-lg mx-auto">
                 Sepertinya Anda tersesat di antariksa HIMABIOS. Mari kita bantu
                 Anda menemukan jalan kembali!
               </p>
-            </div>
-          </div>
-
-          {/* Search Bar */}
-          <div className="mb-12">
-            <div className="relative max-w-md mx-auto">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <svg
-                  className="h-5 w-5 text-gray-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                  />
-                </svg>
-              </div>
-              <input
-                type="text"
-                placeholder="Cari materi pembelajaran..."
-                className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-xl leading-5 bg-white dark:bg-gray-800 dark:border-gray-600 placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-              />
             </div>
           </div>
 
@@ -212,79 +184,7 @@ export default function NotFound() {
               </Link>
             </div>
           </div>
-
-          {/* Help Section */}
-          <div className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-gray-800 dark:to-gray-700 p-8 rounded-2xl border border-gray-200 dark:border-gray-600">
-            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6 flex items-center justify-center">
-              <span className="text-3xl mr-3">🤖</span>
-              Tips dari AI Assistant
-            </h3>
-            <div className="grid md:grid-cols-2 gap-4 text-left">
-              <div className="space-y-3">
-                <div className="flex items-start">
-                  <span className="text-blue-500 text-xl mr-3">🔍</span>
-                  <div>
-                    <p className="font-medium text-gray-900 dark:text-white">
-                      Periksa URL
-                    </p>
-                    <p className="text-sm text-gray-600 dark:text-gray-300">
-                      Pastikan penulisan URL sudah benar
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start">
-                  <span className="text-green-500 text-xl mr-3">🧭</span>
-                  <div>
-                    <p className="font-medium text-gray-900 dark:text-white">
-                      Gunakan Navigasi
-                    </p>
-                    <p className="text-sm text-gray-600 dark:text-gray-300">
-                      Menu navigasi akan membantu Anda
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="space-y-3">
-                <div className="flex items-start">
-                  <span className="text-purple-500 text-xl mr-3">⏪</span>
-                  <div>
-                    <p className="font-medium text-gray-900 dark:text-white">
-                      Tombol Back
-                    </p>
-                    <p className="text-sm text-gray-600 dark:text-gray-300">
-                      Kembali ke halaman sebelumnya
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start">
-                  <span className="text-red-500 text-xl mr-3">📞</span>
-                  <div>
-                    <p className="font-medium text-gray-900 dark:text-white">
-                      Hubungi Tim
-                    </p>
-                    <p className="text-sm text-gray-600 dark:text-gray-300">
-                      Jika yakin ini kesalahan sistem
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Footer */}
-          <div className="mt-8 text-center">
-            <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">
-              Error Code:{" "}
-              <span className="font-mono bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">
-                404
-              </span>
-            </p>
-            <p className="text-xs text-gray-400 dark:text-gray-500">
-              💡 Tip: Gunakan search bar di atas untuk menemukan materi yang
-              Anda butuhkan
-            </p>
-          </div>
-        </div>
+      </div>
       </div>
     </Layout>
   );
