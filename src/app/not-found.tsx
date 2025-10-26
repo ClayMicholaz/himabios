@@ -43,7 +43,7 @@ export default function NotFound() {
           {/* Animated 404 */}
           <div className="mb-8 mt-16">
             <div
-              className={`text-9xl font-black bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-6 transition-all duration-1000 ${
+              className={`text-9xl font-black bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-10 transition-all duration-1000 ${
                 mounted ? "scale-100 opacity-100" : "scale-150 opacity-0"
               }`}
             >
