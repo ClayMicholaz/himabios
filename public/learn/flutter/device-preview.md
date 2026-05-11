@@ -63,7 +63,7 @@ void main() => runApp(MyApp());
 ```bash
 void main() => runApp(
   DevicePreview(
-    enabled: true,
+    enabled: true,  <= pastikan enabled true untuk melihat tampilan previewnya
     builder: (context) => MyApp(),
   ),
 );

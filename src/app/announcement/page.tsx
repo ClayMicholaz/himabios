@@ -8,7 +8,6 @@ import StudentResultCard from "@/components/announcement/StudentResultCard";
 import AnnouncementClosed from "@/components/announcement/AnnouncementClosed";
 import Footer from "@/components/announcement/Footer";
 import { useAnnouncementLogic } from "@/hooks/useAnnouncementLogic";
-import { designTokens, componentStyles } from "@/styles/designTokens";
 
 interface StudentData {
   name: string;
@@ -163,100 +162,78 @@ export default function AnnouncementPage() {
 
   return (
     <Layout>
-      <div
-        className={`min-h-screen ${designTokens.gradients.background} animate-fade-in`}
-      >
-        <div className="container mx-auto px-4 py-8 relative">
-          {/* Two Column Layout */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 min-h-[calc(100vh-8rem)]">
-            {/* Left Column - Schedule */}
-            <div className="flex flex-col justify-center space-y-8 animate-slide-up">
-              <div className="text-center">
-                <h1
-                  className={`text-4xl md:text-5xl ${componentStyles.text.heading.primary} mb-8 animate-fade-in`}
-                >
-                  🎓 PENGUMUMAN HIMA BIOS
-                </h1>
-                <p
-                  className={`text-xl md:text-2xl ${componentStyles.text.body.secondary} mb-12`}
-                >
-                  Universitas Bunda Mulia
-                </p>
+      {/* Hero Banner Header */}
+      <div className="hero-banner">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-8 sm:py-12 lg:py-16">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 text-white dark:text-black leading-tight">
+            Pengumuman HIMA BIOS
+          </h1>
+          <p className="text-lg sm:text-xl md:text-2xl opacity-90 text-white dark:text-black max-w-3xl mx-auto px-4">
+            Universitas Bunda Mulia
+          </p>
+        </div>
+      </div>
+
+      {/* Main Content */}
+      <div className="bg-white dark:bg-gray-900 py-12 sm:py-16 lg:py-20">
+        <div className="max-w-7xl mx-auto">
+          {isAnnouncementTime ? (
+            <div className="space-y-16 sm:space-y-20 lg:space-y-24">
+              {/* Schedule Card */}
+              <div className="px-4 sm:px-6 lg:px-8">
+                <ScheduleCard
+                  releaseDate={announcementConfig.releaseDate}
+                  releaseTime={announcementConfig.releaseTime}
+                />
               </div>
 
-              <ScheduleCard
-                releaseDate={announcementConfig.releaseDate}
-                releaseTime={announcementConfig.releaseTime}
-              />
-
-              {!isAnnouncementTime && (
-                <CountdownTimer timeRemaining={timeRemaining} />
-              )}
-
-              {/* Footer positioned at bottom of left column on desktop, hidden on mobile */}
-              <div className="mt-auto hidden lg:block">
-                <Footer />
-              </div>
-            </div>
-
-            {/* Right Column - Input and Results */}
-            <div className="flex flex-col justify-center">
-              {isAnnouncementTime ? (
-                <div className="space-y-8">
-                  {!isSearching && !showResult && (
-                    <InputForm
-                      nimInput={nimInput}
-                      nimError={nimError}
-                      isNimValid={isNimValid}
-                      onNimInput={handleNimInput}
-                      onSearch={handleSearch}
-                    />
-                  )}
-
-                  {isSearching && <LoadingScreen countdown={countdown} />}
-
-                  {showResult && (
-                    <div
-                      className={`${designTokens.gradients.card} ${componentStyles.card.base} ${componentStyles.card.padding} backdrop-blur-sm border-gray-200/50 dark:border-gray-700/50 animate-scale-up`}
-                    >
-                      <h3
-                        className={`text-3xl md:text-4xl ${componentStyles.text.heading.primary} text-center mb-8`}
-                      >
-                        🎯 Hasil Seleksi Anda
-                      </h3>
-                      <StudentResultCard
-                        searchResult={searchResult}
-                        onReset={handleReset}
-                        onWhatsAppJoin={handleWhatsAppJoin}
-                      />
-
-                      {/* Footer on mobile - appears below results */}
-                      <div className="mt-8 lg:hidden">
-                        <Footer />
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Footer on mobile when no result is shown */}
-                  {!showResult && (
-                    <div className="lg:hidden">
-                      <Footer />
-                    </div>
-                  )}
+              {/* Input and Results */}
+              {!isSearching && !showResult && (
+                <div className="px-4 sm:px-6 lg:px-8">
+                  <InputForm
+                    nimInput={nimInput}
+                    nimError={nimError}
+                    isNimValid={isNimValid}
+                    onNimInput={handleNimInput}
+                    onSearch={handleSearch}
+                  />
                 </div>
-              ) : (
-                <>
-                  <div className="flex items-center justify-center h-full">
-                    <AnnouncementClosed />
-                  </div>
+              )}
 
-                  {/* Footer on mobile when announcement is closed */}
-                  <div className="mt-8 lg:hidden">
-                    <Footer />
+              {isSearching && (
+                <div className="px-4 sm:px-6 lg:px-8">
+                  <LoadingScreen countdown={countdown} />
+                </div>
+              )}
+
+              {showResult && (
+                <div className="px-4 sm:px-6 lg:px-8">
+                  <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 p-6 sm:p-8 lg:p-10">
+                    <StudentResultCard
+                      searchResult={searchResult}
+                      onReset={handleReset}
+                      onWhatsAppJoin={handleWhatsAppJoin}
+                    />
                   </div>
-                </>
+                </div>
               )}
             </div>
+          ) : (
+            <div className="px-4 sm:px-6 lg:px-8 flex items-center justify-center">
+              <AnnouncementClosed />
+            </div>
+          )}
+
+          {/* Countdown Timer */}
+          {!isAnnouncementTime && (
+            <div className="mt-12 sm:mt-16 lg:mt-20 px-4 sm:px-6 lg:px-8">
+              <CountdownTimer timeRemaining={timeRemaining} />
+            </div>
+          )}
+
+          {/* Footer */}
+          <div className="mt-16 sm:mt-20 lg:mt-24 px-4 sm:px-6 lg:px-8 pt-8 sm:pt-12 lg:pt-16 border-t border-gray-200 dark:border-gray-700">
+            <Footer />
           </div>
         </div>
       </div>

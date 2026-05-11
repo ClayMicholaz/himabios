@@ -18,7 +18,8 @@ interface NavItem {
 const navItems: NavItem[] = [
   { label: "Belajar", href: "/learn" },
   { label: "Tentang kami", href: "/about" },
-  // { label: "Pengumuman", href: "/announcement" },
+  { label: "Pengumuman", href: "/announcement" },
+  { label: "Acara", href: "/event" },
 ];
 
 const externalNavItems: NavItem[] = [

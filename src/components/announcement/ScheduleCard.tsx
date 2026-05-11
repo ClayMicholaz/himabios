@@ -1,5 +1,3 @@
-import { designTokens } from "@/styles/designTokens";
-
 interface ScheduleCardProps {
   releaseDate: Date;
   releaseTime: string;
@@ -9,46 +7,47 @@ export default function ScheduleCard({
   releaseDate,
   releaseTime,
 }: ScheduleCardProps) {
+  const dayName = releaseDate.toLocaleDateString("id-ID", {
+    weekday: "long",
+  });
+  const dateStr = releaseDate.toLocaleDateString("id-ID", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+
   return (
-    <div
-      className={`${designTokens.gradients.schedule} rounded-2xl shadow-2xl p-8 text-white relative overflow-hidden border border-slate-500 dark:border-slate-600`}
-    >
-      <div className="absolute inset-0 bg-gradient-to-r from-slate-600/10 to-slate-500/10"></div>
-      <div className="relative z-10">
-        <div className="flex flex-col md:flex-row items-center justify-center gap-8">
-          <div className="text-center">
-            <p className="text-xl md:text-2xl font-medium mb-6 text-slate-200">
-              Jadwal Pengumuman
-            </p>
-            <div className="bg-white/15 border border-white/20 rounded-xl p-6 backdrop-blur-sm h-32 flex flex-col justify-center">
-              <div className="text-3xl md:text-4xl font-bold mb-2 text-white">
-                {releaseDate.toLocaleDateString("id-ID", {
-                  weekday: "long",
-                  day: "numeric",
-                  month: "long",
-                })}
-              </div>
-              <div className="text-2xl md:text-3xl font-semibold text-slate-200">
-                {releaseDate.getFullYear()}
-              </div>
-            </div>
+    <div className="text-center">
+      <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-8 sm:mb-12">
+        Jadwal Pengumuman
+      </h2>
+
+      <div className="space-y-8 sm:space-y-10 lg:space-y-12 max-w-2xl mx-auto">
+        {/* Date Section */}
+        <div className="border-b border-gray-200 dark:border-gray-700 pb-8 sm:pb-10 lg:pb-12">
+          <p className="text-xs sm:text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-widest mb-3 sm:mb-4">
+            Tanggal Pengumuman
+          </p>
+          <div className="text-2xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-1 sm:mb-2">
+            {dayName}
           </div>
+          <div className="text-lg sm:text-2xl text-gray-600 dark:text-gray-300 font-medium">
+            {dateStr}
+          </div>
+        </div>
 
-          <div className="hidden md:block w-px h-24 bg-slate-400/40"></div>
-          <div className="md:hidden w-24 h-px bg-slate-400/40"></div>
-
-          <div className="text-center">
-            <p className="text-xl md:text-2xl font-medium mb-6 text-slate-200">
-              Waktu Pengumuman
-            </p>
-            <div className="bg-white/15 border border-white/20 rounded-xl p-6 backdrop-blur-sm h-32 flex flex-col justify-center">
-              <div className="text-4xl md:text-5xl font-bold text-white">
-                {releaseTime}
-              </div>
-              <div className="text-lg md:text-xl font-medium text-slate-200">
-                WIB
-              </div>
-            </div>
+        {/* Time Section */}
+        <div className="pt-6 sm:pt-8 lg:pt-10">
+          <p className="text-xs sm:text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-widest mb-3 sm:mb-4">
+            Waktu Pengumuman
+          </p>
+          <div className="inline-flex items-baseline gap-2 sm:gap-3">
+            <span className="text-4xl sm:text-6xl md:text-7xl font-bold text-gray-900 dark:text-white">
+              {releaseTime}
+            </span>
+            <span className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-400 font-semibold">
+              WIB
+            </span>
           </div>
         </div>
       </div>

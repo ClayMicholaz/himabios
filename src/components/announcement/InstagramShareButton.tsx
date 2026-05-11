@@ -3,7 +3,6 @@ import {
   InstagramShareHandler,
   InstagramImageGenerator,
 } from "@/utils/imageGenerator";
-import { designTokens, componentStyles } from "@/styles/designTokens";
 
 interface StudentData {
   name: string;
@@ -51,7 +50,7 @@ ${studentData.division ? `Divisi: ${studentData.division}` : ""}
 
       await navigator.clipboard.writeText(fallbackText);
       alert(
-        "❌ Terjadi kesalahan saat membuat gambar.\n✅ Teks berhasil disalin untuk Instagram Story!"
+        "❌ Terjadi kesalahan saat membuat gambar.\n✅ Teks berhasil disalin untuk Instagram Story!",
       );
     } finally {
       setIsGenerating(false);
@@ -152,18 +151,14 @@ ${studentData.division ? `Divisi: ${studentData.division}` : ""}
       <button
         onClick={handleInstagramShare}
         disabled={isGenerating}
-        className={`
-          ${componentStyles.button.base}
-          ${componentStyles.button.social.instagram}
-          ${componentStyles.button.size.md}
-          ${className}
-          ${isGenerating ? "opacity-50 cursor-not-allowed" : ""}
-        `}
+        className={`w-full px-4 py-3 sm:py-4 bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 disabled:from-gray-300 disabled:to-gray-300 dark:disabled:from-gray-600 dark:disabled:to-gray-600 text-white rounded-lg font-bold text-lg transition-all flex items-center justify-center gap-2 ${className} ${
+          isGenerating ? "opacity-70 cursor-not-allowed" : ""
+        }`}
       >
         {isGenerating ? (
           <>
             <svg
-              className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+              className="animate-spin h-6 w-6 text-white"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
@@ -185,7 +180,7 @@ ${studentData.division ? `Divisi: ${studentData.division}` : ""}
             Membuat Gambar...
           </>
         ) : (
-          <>📸 Share ke Instagram Story</>
+          <>Share ke Instagram Story</>
         )}
       </button>
     </>

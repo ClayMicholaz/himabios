@@ -4,15 +4,12 @@ interface CountdownTimerProps {
 
 export default function CountdownTimer({ timeRemaining }: CountdownTimerProps) {
   return (
-    <div className="text-center mb-8">
-      <div className="bg-gradient-to-r from-orange-400 to-red-500 text-white rounded-xl shadow-xl p-8 max-w-md mx-auto border border-orange-300">
-        <h2 className="text-xl md:text-2xl font-bold mb-4">Countdown</h2>
-        <div className="text-3xl md:text-4xl font-mono font-bold mb-2">
-          {timeRemaining}
-        </div>
-        <p className="text-sm md:text-base mt-2 opacity-90">
-          Pengumuman akan segera dibuka!
-        </p>
+    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 p-6 sm:p-8 lg:p-10 text-center max-w-2xl mx-auto">
+      <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-6">
+        Pengumuman akan dibuka dalam
+      </p>
+      <div className="text-4xl sm:text-5xl lg:text-6xl font-mono font-bold text-gray-900 dark:text-white">
+        {timeRemaining}
       </div>
     </div>
   );

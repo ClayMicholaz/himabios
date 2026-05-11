@@ -19,16 +19,14 @@ export function getMarkdownBySlug(slug: string[]): MarkdownData | null {
   try {
     const fullPath = path.join(docsDirectory, ...slug);
 
-    // Try different possible file paths
     const possiblePaths = [
       `${fullPath}.md`,
       `${fullPath}.mdx`,
-      // Try intro files for directory access
       path.join(fullPath, "intro.md"),
       path.join(fullPath, "intro.mdx"),
       path.join(fullPath, `intro-to-${slug[slug.length - 1]}.md`),
       path.join(fullPath, `intro-to-${slug[slug.length - 1]}.mdx`),
-      // Fallback to index files if they exist
+      
       path.join(fullPath, "index.md"),
       path.join(fullPath, "index.mdx"),
     ];

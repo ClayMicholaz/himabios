@@ -143,7 +143,7 @@ export default function RootLayout({
       <head>
         {/* Enhanced Favicon and Icon Configuration */}
         <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+        <link rel="icon" href="/bios.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link
           rel="apple-touch-icon"
