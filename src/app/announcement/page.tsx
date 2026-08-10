@@ -151,8 +151,6 @@ export default function AnnouncementPage() {
     handleReset,
   } = useAnnouncementLogic(studentAcceptanceData, announcementConfig);
 
-  // Instagram sharing now handled by InstagramShareButton component
-
   const handleWhatsAppJoin = () => {
     if (!searchResult) return;
     const groupLink = "https://chat.whatsapp.com/G0a2OMp5wWx69yIOpwkckA";
