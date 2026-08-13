@@ -33,7 +33,7 @@ export function getMarkdownBySlug(slug: string[]): MarkdownData | null {
 
     let filePath = "";
     for (const p of possiblePaths) {
-      if (existsSync(p)) {
+      if (existsSync(/*turbopackIgnore: true*/ p)) {
         filePath = p;
         break;
       }
@@ -43,7 +43,7 @@ export function getMarkdownBySlug(slug: string[]): MarkdownData | null {
       return null;
     }
 
-    const fileContents = readFileSync(filePath, "utf8");
+    const fileContents = readFileSync(/*turbopackIgnore: true*/ filePath, "utf8");
     const { data, content } = matter(fileContents);
 
     // Extract title from frontmatter or first heading

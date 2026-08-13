@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
-import { PrevNextNavigation } from "@/lib/markdown";
+import type { PrevNextNavigation } from "@/lib/markdown";
 
 interface NavigationButtonsProps {
   navigation: PrevNextNavigation;
