@@ -25,5 +25,47 @@
   </url>
   
   <!-- Learning Content Pages -->
+  <url>
+    <loc>https://himabios.vercel.app/learn/intro</loc>
+    <lastmod>2025-09-20T12:00:00+07:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://himabios.vercel.app/learn/intro-to-programming/intro-to-programming</loc>
+    <lastmod>2025-09-20T12:00:00+07:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://himabios.vercel.app/learn/algorithm/intro</loc>
+    <lastmod>2025-09-20T12:00:00+07:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://himabios.vercel.app/learn/algorithm/big-o-notation</loc>
+    <lastmod>2025-09-20T12:00:00+07:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://himabios.vercel.app/learn/algorithm/sorting/intro</loc>
+    <lastmod>2025-09-20T12:00:00+07:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Glosarium -->
+  <url>
+    <loc>https://himabios.vercel.app/learn/Glosarium/intro</loc>
+    <lastmod>2025-09-20T12:00:00+07:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 
 </urlset>
