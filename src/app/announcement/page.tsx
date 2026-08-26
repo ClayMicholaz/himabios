@@ -5,7 +5,6 @@ import CountdownTimer from "@/components/announcement/CountdownTimer";
 import InputForm from "@/components/announcement/InputForm";
 import LoadingScreen from "@/components/announcement/LoadingScreen";
 import StudentResultCard from "@/components/announcement/StudentResultCard";
-import AnnouncementClosed from "@/components/announcement/AnnouncementClosed";
 import Footer from "@/components/announcement/Footer";
 import { useAnnouncementLogic } from "@/hooks/useAnnouncementLogic";
 
@@ -131,7 +130,7 @@ const studentAcceptanceData: StudentData[] = [
 ];
 
 const announcementConfig = {
-  releaseDate: new Date("2025-09-21"),
+  releaseDate: new Date("2026-09-21"),
   releaseTime: "12:00",
 };
 
@@ -176,16 +175,8 @@ export default function AnnouncementPage() {
       <div className="bg-white dark:bg-gray-900 py-12 sm:py-16 lg:py-20">
         <div className="max-w-7xl mx-auto">
           {isAnnouncementTime ? (
+            // AFTER release date/time: show inputs / loading / results
             <div className="space-y-16 sm:space-y-20 lg:space-y-24">
-              {/* Schedule Card */}
-              <div className="px-4 sm:px-6 lg:px-8">
-                <ScheduleCard
-                  releaseDate={announcementConfig.releaseDate}
-                  releaseTime={announcementConfig.releaseTime}
-                />
-              </div>
-
-              {/* Input and Results */}
               {!isSearching && !showResult && (
                 <div className="px-4 sm:px-6 lg:px-8">
                   <InputForm
@@ -217,15 +208,18 @@ export default function AnnouncementPage() {
               )}
             </div>
           ) : (
-            <div className="px-4 sm:px-6 lg:px-8 flex items-center justify-center">
-              <AnnouncementClosed />
-            </div>
-          )}
+            // BEFORE release date/time: show schedule + countdown
+            <div className="space-y-12 sm:space-y-16 lg:space-y-20">
+              <div className="px-4 sm:px-6 lg:px-8">
+                <ScheduleCard
+                  releaseDate={announcementConfig.releaseDate}
+                  releaseTime={announcementConfig.releaseTime}
+                />
+              </div>
 
-          {/* Countdown Timer */}
-          {!isAnnouncementTime && (
-            <div className="mt-12 sm:mt-16 lg:mt-20 px-4 sm:px-6 lg:px-8">
-              <CountdownTimer timeRemaining={timeRemaining} />
+              <div className="px-4 sm:px-6 lg:px-8">
+                <CountdownTimer timeRemaining={timeRemaining} />
+              </div>
             </div>
           )}
 
