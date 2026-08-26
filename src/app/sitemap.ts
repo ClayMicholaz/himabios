@@ -67,7 +67,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   // Dynamic pages dari markdown files
-  const learningPages = getAllMarkdownFiles("Learn");
+  const learningPages = getAllMarkdownFiles("learn");
 
   const dynamicPages = learningPages.map((page) => ({
     url: page.url,

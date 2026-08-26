@@ -176,7 +176,7 @@ export default function RootLayout({
 
         <meta
           name="google-site-verification"
-          content="wCJ4618uQYlQOFViXg5BBcMRC20LpuWdasmIM0iAk80"
+          content="QGfmdekWO6BYUxM8LybONcHhBiZaCdUhNVK0BvFu5EY"
         />
 
         {/* Additional SEO Meta Tags */}
