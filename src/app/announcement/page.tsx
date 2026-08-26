@@ -5,7 +5,6 @@ import CountdownTimer from "@/components/announcement/CountdownTimer";
 import InputForm from "@/components/announcement/InputForm";
 import LoadingScreen from "@/components/announcement/LoadingScreen";
 import StudentResultCard from "@/components/announcement/StudentResultCard";
-import Footer from "@/components/announcement/Footer";
 import { useAnnouncementLogic } from "@/hooks/useAnnouncementLogic";
 
 interface StudentData {
@@ -160,7 +159,7 @@ export default function AnnouncementPage() {
   return (
     <Layout>
       {/* Hero Banner Header */}
-      <div className="hero-banner">
+      {/* <div className="hero-banner">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-8 sm:py-12 lg:py-16">
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 text-white dark:text-black leading-tight">
             Pengumuman HIMA BIOS
@@ -169,7 +168,7 @@ export default function AnnouncementPage() {
             Universitas Bunda Mulia
           </p>
         </div>
-      </div>
+      </div> */}
 
       {/* Main Content */}
       <div className="bg-white dark:bg-gray-900 py-12 sm:py-16 lg:py-20">
@@ -222,11 +221,6 @@ export default function AnnouncementPage() {
               </div>
             </div>
           )}
-
-          {/* Footer */}
-          <div className="mt-16 sm:mt-20 lg:mt-24 px-4 sm:px-6 lg:px-8 pt-8 sm:pt-12 lg:pt-16 border-t border-gray-200 dark:border-gray-700">
-            <Footer />
-          </div>
         </div>
       </div>
     </Layout>
