@@ -76,9 +76,9 @@ export default function Navbar() {
               <Image
                 src="/BIOS.webp"
                 alt="BIOS Logo"
-                width={32}
-                height={32}
-                className="h-8 w-8"
+                width={40}
+                height={40}
+                className="h-10 w-10"
               />
               <span className="text-xl font-bold text-gray-900 dark:text-white hover:text-emerald-500">
                 BIOS
@@ -98,7 +98,7 @@ export default function Navbar() {
                     "transition-colors duration-200 font-semibold text-lg",
                     isActive
                       ? "text-green-600 dark:text-emerald-500 border-b-2 border-emerald-600 dark:border-green-400"
-                      : "text-gray-700 dark:text-gray-300 hover:text-emerald-500 dark:hover:text-emerald-500"
+                      : "text-gray-700 dark:text-gray-300 hover:text-emerald-500 dark:hover:text-emerald-500",
                   )}
                 >
                   {item.label}
@@ -199,7 +199,7 @@ export default function Navbar() {
             "md:hidden transition-all duration-200 ease-in-out",
             isMenuOpen
               ? "max-h-96 opacity-100"
-              : "max-h-0 opacity-0 overflow-hidden"
+              : "max-h-0 opacity-0 overflow-hidden",
           )}
         >
           <div className="py-2 space-y-1">
@@ -213,7 +213,7 @@ export default function Navbar() {
                     "block px-3 py-2 transition-colors duration-200 font-semibold text-lg",
                     isActive
                       ? "text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-900/30"
-                      : "text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400"
+                      : "text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400",
                   )}
                   onClick={() => setIsMenuOpen(false)}
                 >
