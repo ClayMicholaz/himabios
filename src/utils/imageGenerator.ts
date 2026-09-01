@@ -19,158 +19,104 @@ export class InstagramImageGenerator {
   }
 
   async generateResultImage(studentData: StudentData): Promise<string> {
-    // Clear canvas with gradient background
-    const gradient = this.ctx.createLinearGradient(0, 0, 0, 1920);
+    this.ctx.clearRect(0, 0, 1080, 1920);
 
-    if (studentData.status === "accepted") {
-      gradient.addColorStop(0, "#f0fdf4"); // green-50
-      gradient.addColorStop(1, "#dcfce7"); // green-100
-    } else {
-      gradient.addColorStop(0, "#fff7ed"); // orange-50
-      gradient.addColorStop(1, "#ffedd5"); // orange-100
-    }
-
-    this.ctx.fillStyle = gradient;
+    const bg = this.ctx.createLinearGradient(0, 0, 0, 1920);
+    bg.addColorStop(0, "#020817");
+    bg.addColorStop(0.5, "#0f172a");
+    bg.addColorStop(1, "#111827");
+    this.ctx.fillStyle = bg;
     this.ctx.fillRect(0, 0, 1080, 1920);
 
-    // Add HIMA BIOS logo/header
-    await this.drawHeader();
-
-    // Add status emoji and text
-    await this.drawStatusSection(studentData);
-
-    // Add student information
-    await this.drawStudentInfo(studentData);
-
-    // Add footer with Instagram tag
+    await this.drawBackgroundDecor();
+    await this.drawAcceptanceMessage(studentData);
+    await this.drawLogo();
     await this.drawFooter();
 
-    // Add decorative elements
-    await this.drawDecorations(studentData.status);
-
-    return this.canvas.toDataURL("image/jpeg", 0.9);
+    return this.canvas.toDataURL("image/jpeg", 0.94);
   }
 
-  private async drawHeader() {
-    // HIMA BIOS Title
-    this.ctx.fillStyle = "#1e40af"; // blue-800
-    this.ctx.font = "bold 72px Arial, sans-serif";
-    this.ctx.textAlign = "center";
-    this.ctx.fillText("HIMA BIOS", 540, 200);
+  private async drawLogo() {
+    const logo = new Image();
+    logo.src = "/BIOS.webp";
 
-    // UBM Subtitle
-    this.ctx.fillStyle = "#374151"; // gray-700
-    this.ctx.font = "48px Arial, sans-serif";
-    this.ctx.fillText("Universitas Bunda Mulia", 540, 280);
+    await new Promise<void>((resolve) => {
+      logo.onload = () => resolve();
+      logo.onerror = () => resolve();
+    });
 
-    // Pengumuman text
-    this.ctx.fillStyle = "#6b7280"; // gray-500
-    this.ctx.font = "36px Arial, sans-serif";
-    this.ctx.fillText("PENGUMUMAN SELEKSI", 540, 340);
-  }
-
-  private async drawStatusSection(studentData: StudentData) {
-    const isAccepted = studentData.status === "accepted";
-
-    // Status emoji
-    this.ctx.font = "160px Arial";
-    this.ctx.textAlign = "center";
-    this.ctx.fillText(isAccepted ? "🎉" : "🌟", 540, 520);
-
-    // Status title
-    this.ctx.fillStyle = isAccepted ? "#15803d" : "#ea580c"; // green-700 : orange-600
-    this.ctx.font = "bold 64px Arial, sans-serif";
-    this.ctx.fillText(isAccepted ? "SELAMAT!" : "TETAP SEMANGAT!", 540, 620);
-
-    // Status subtitle
-    this.ctx.fillStyle = isAccepted ? "#16a34a" : "#fb923c"; // green-600 : orange-400
-    this.ctx.font = "42px Arial, sans-serif";
-    this.ctx.fillText(
-      isAccepted ? "Anda telah diterima!" : "Terus berkarya dan berkembang!",
-      540,
-      680
-    );
-  }
-
-  private async drawStudentInfo(studentData: StudentData) {
-    const startY = 800;
-    const lineHeight = 80;
-    let currentY = startY;
-
-    // Draw info box background
-    this.ctx.fillStyle = "rgba(255, 255, 255, 0.9)";
-    this.roundRect(140, startY - 40, 800, 300, 20);
-    this.ctx.fill();
-
-    // Student info
-    const info = [
-      { label: "Nama:", value: studentData.name },
-      { label: "NIM:", value: studentData.nim },
-    ];
-
-    if (studentData.division) {
-      info.push({ label: "Divisi:", value: studentData.division });
+    if (logo.width > 0 && logo.height > 0) {
+      const logoSize = 560;
+      const x = 540 - logoSize / 2;
+      const y = 760;
+      this.ctx.drawImage(logo, x, y, logoSize, logoSize);
     }
+  }
 
-    info.forEach((item) => {
-      // Label
-      this.ctx.fillStyle = "#374151"; // gray-700
-      this.ctx.font = "bold 36px Arial, sans-serif";
-      this.ctx.textAlign = "left";
-      this.ctx.fillText(item.label, 180, currentY);
+  private async drawAcceptanceMessage(studentData: StudentData) {
+    const acceptedText = `${studentData.name} anda diterima di BIOS divisi ${studentData.division || "HIMA BIOS"}`;
 
-      // Value
-      this.ctx.fillStyle = "#111827"; // gray-900
-      this.ctx.font = "36px Arial, sans-serif";
-      this.ctx.fillText(item.value, 180, currentY + 40);
+    this.ctx.textAlign = "center";
 
-      currentY += lineHeight;
+    this.ctx.fillStyle = "#34d399";
+    this.ctx.font = "700 118px 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif";
+    this.ctx.fillText("SELAMAT!", 540, 330);
+
+    this.ctx.fillStyle = "#f8fafc";
+    this.ctx.font = "600 46px 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif";
+
+    const lines = this.wrapText(acceptedText, 760);
+    const lineHeight = 58;
+    const startY = 410;
+
+    lines.forEach((line, index) => {
+      this.ctx.fillText(line, 540, startY + index * lineHeight);
     });
   }
 
   private async drawFooter() {
-    // Instagram tag
-    this.ctx.fillStyle = "#6366f1"; // indigo-500
-    this.ctx.font = "bold 42px Arial, sans-serif";
     this.ctx.textAlign = "center";
-    this.ctx.fillText("Follow us @ubm_bios_ancol", 540, 1400);
 
-    // Hashtags
-    this.ctx.fillStyle = "#8b5cf6"; // violet-500
-    this.ctx.font = "32px Arial, sans-serif";
-    this.ctx.fillText("#HIMABIOS #UBMANCOL #BIOS2025", 540, 1460);
+    this.ctx.fillStyle = "#f8fafc";
+    this.ctx.font = "700 38px 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif";
+    this.ctx.fillText("Follow us @ubm_bios_ancol", 540, 1500);
 
-    // Website
-    this.ctx.fillStyle = "#64748b"; // slate-500
-    this.ctx.font = "28px Arial, sans-serif";
-    this.ctx.fillText("himabios.ubm.ac.id", 540, 1500);
+    this.ctx.fillStyle = "#a7f3d0";
+    this.ctx.font = "700 32px 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif";
+    this.ctx.fillText("#HIMABIOS #UBMANCOL #BIOS2026", 540, 1575);
+
+    this.ctx.fillStyle = "#cbd5e1";
+    this.ctx.font = "500 28px 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif";
+    this.ctx.fillText("himabios.ubm.vercel.app", 540, 1635);
   }
 
-  private async drawDecorations(status: string) {
-    const isAccepted = status === "accepted";
+  private async drawBackgroundDecor() {
+    this.ctx.fillStyle = "#0b1120";
+    this.ctx.fillRect(0, 0, 1080, 1920);
+  }
 
-    // Add decorative shapes
-    this.ctx.fillStyle = isAccepted
-      ? "rgba(34, 197, 94, 0.1)" // green with opacity
-      : "rgba(249, 115, 22, 0.1)"; // orange with opacity
+  private wrapText(text: string, maxWidth: number): string[] {
+    const words = text.split(" ");
+    const lines: string[] = [];
+    let currentLine = "";
 
-    // Top decoration
-    this.ctx.beginPath();
-    this.ctx.arc(100, 100, 80, 0, Math.PI * 2);
-    this.ctx.fill();
+    for (const word of words) {
+      const testLine = currentLine ? `${currentLine} ${word}` : word;
+      const testWidth = this.ctx.measureText(testLine).width;
 
-    this.ctx.beginPath();
-    this.ctx.arc(980, 150, 60, 0, Math.PI * 2);
-    this.ctx.fill();
+      if (testWidth > maxWidth && currentLine) {
+        lines.push(currentLine);
+        currentLine = word;
+      } else {
+        currentLine = testLine;
+      }
+    }
 
-    // Bottom decoration
-    this.ctx.beginPath();
-    this.ctx.arc(150, 1700, 100, 0, Math.PI * 2);
-    this.ctx.fill();
+    if (currentLine) {
+      lines.push(currentLine);
+    }
 
-    this.ctx.beginPath();
-    this.ctx.arc(930, 1750, 70, 0, Math.PI * 2);
-    this.ctx.fill();
+    return lines;
   }
 
   // Helper method to draw rounded rectangles
@@ -179,7 +125,7 @@ export class InstagramImageGenerator {
     y: number,
     width: number,
     height: number,
-    radius: number
+    radius: number,
   ) {
     this.ctx.beginPath();
     this.ctx.moveTo(x + radius, y);
@@ -190,7 +136,7 @@ export class InstagramImageGenerator {
       x + width,
       y + height,
       x + width - radius,
-      y + height
+      y + height,
     );
     this.ctx.lineTo(x + radius, y + height);
     this.ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
@@ -202,7 +148,7 @@ export class InstagramImageGenerator {
 
 // Alternative: Generate image from HTML element
 export async function generateImageFromElement(
-  element: HTMLElement
+  element: HTMLElement,
 ): Promise<string> {
   const canvas = await html2canvas(element, {
     width: 1080,
@@ -230,7 +176,7 @@ export class InstagramShareHandler {
 
   static async shareToInstagram(
     imageDataUrl: string,
-    studentData: StudentData
+    studentData: StudentData,
   ): Promise<void> {
     const device = this.detectDevice();
 
@@ -279,7 +225,7 @@ export class InstagramShareHandler {
           // Show instructions
           setTimeout(() => {
             alert(
-              `📱 Langkah untuk share ke Instagram:\n\n1. Teks sudah disalin ke clipboard\n2. Simpan gambar yang akan diunduh\n3. Buka Instagram Stories\n4. Upload gambar\n5. Paste teks dari clipboard\n\nJika Instagram belum terinstall, download dari App Store.`
+              `📱 Langkah untuk share ke Instagram:\n\n1. Teks sudah disalin ke clipboard\n2. Simpan gambar yang akan diunduh\n3. Buka Instagram Stories\n4. Upload gambar\n5. Paste teks dari clipboard\n\nJika Instagram belum terinstall, download dari App Store.`,
             );
 
             // Trigger image download
@@ -301,7 +247,7 @@ export class InstagramShareHandler {
 
           setTimeout(() => {
             alert(
-              `📱 Langkah untuk share ke Instagram:\n\n1. Teks sudah disalin ke clipboard\n2. Simpan gambar yang akan diunduh\n3. Buka Instagram Stories\n4. Upload gambar\n5. Paste teks dari clipboard\n\nJika Instagram belum terinstall, download dari Play Store.`
+              `📱 Langkah untuk share ke Instagram:\n\n1. Teks sudah disalin ke clipboard\n2. Simpan gambar yang akan diunduh\n3. Buka Instagram Stories\n4. Upload gambar\n5. Paste teks dari clipboard\n\nJika Instagram belum terinstall, download dari Play Store.`,
             );
 
             // Trigger image download
@@ -317,7 +263,7 @@ export class InstagramShareHandler {
           }
 
           alert(
-            `💻 Langkah untuk share ke Instagram:\n\n1. Teks sudah disalin ke clipboard\n2. Gambar akan diunduh otomatis\n3. Buka Instagram di mobile/web\n4. Upload gambar ke Stories\n5. Paste teks dari clipboard atau ketik manual\n\nUntuk pengalaman terbaik, gunakan Instagram mobile app.`
+            `💻 Langkah untuk share ke Instagram:\n\n1. Teks sudah disalin ke clipboard\n2. Gambar akan diunduh otomatis\n3. Buka Instagram di mobile/web\n4. Upload gambar ke Stories\n5. Paste teks dari clipboard atau ketik manual\n\nUntuk pengalaman terbaik, gunakan Instagram mobile app.`,
           );
 
           // Download image
@@ -333,7 +279,7 @@ export class InstagramShareHandler {
       }
 
       alert(
-        `📱 Terjadi kendala dengan sharing otomatis.\n\n✅ Teks sudah disalin ke clipboard\n⬇️ Gambar akan diunduh\n\nSilakan upload manual ke Instagram Stories dan paste teks yang sudah disalin.`
+        `📱 Terjadi kendala dengan sharing otomatis.\n\n✅ Teks sudah disalin ke clipboard\n⬇️ Gambar akan diunduh\n\nSilakan upload manual ke Instagram Stories dan paste teks yang sudah disalin.`,
       );
 
       this.downloadImage(imageDataUrl, "hima-bios-result.jpg");

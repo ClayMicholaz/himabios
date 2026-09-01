@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { FaArrowRotateLeft, FaWhatsapp } from "react-icons/fa6";
 import InstagramShareButton from "./InstagramShareButton";
 
 interface StudentData {
@@ -81,59 +82,58 @@ export default function StudentResultCard({
   }
 
   const isAccepted = searchResult.status === "accepted";
-  const statusColor = isAccepted
-    ? "bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800"
-    : "bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800";
-
-  const statusText = isAccepted ? "Diterima" : "Tidak Diterima";
-  const statusMessage = isAccepted
-    ? `Selamat! Anda diterima di divisi ${searchResult.division}`
-    : "Terima kasih telah mengikuti seleksi HIMA BIOS. Tetap semangat!";
 
   return (
-    <div className="space-y-6">
-      {/* Status Card */}
-      <div className={`rounded-lg border p-6 ${statusColor}`}>
-        <p
-          className={`text-center text-sm font-semibold mb-2 ${
-            isAccepted
-              ? "text-green-700 dark:text-green-300"
-              : "text-red-700 dark:text-red-300"
-          }`}
-        >
-          {statusText}
-        </p>
-        <p className="text-center text-lg font-bold text-gray-900 dark:text-white">
-          {statusMessage}
-        </p>
+    <div className="w-full">
+      <div className="w-full pt-0 pb-2 text-center sm:pb-3 lg:pb-4">
+        <div className="space-y-2">
+          <h1
+            className={`text-4xl font-black tracking-tight sm:text-5xl lg:text-7xl ${
+              isAccepted
+                ? "text-emerald-600 dark:text-emerald-400"
+                : "text-slate-900 dark:text-white"
+            }`}
+          >
+            {isAccepted ? "SELAMAT!" : "MOHON MAAF"}
+          </h1>
+          <p className="mx-auto max-w-4xl text-lg font-semibold text-slate-700 dark:text-slate-200 sm:text-xl lg:text-3xl">
+            {isAccepted
+              ? `${searchResult.name} anda diterima di BIOS divisi ${searchResult.division}`
+              : `${searchResult.name} anda belum diterima di HIMA BIOS`}
+          </p>
+        </div>
       </div>
 
-      {/* Student Info */}
-      <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-6 space-y-4">
-        <div className="flex justify-between items-center">
-          <span className="text-gray-600 dark:text-gray-400">Nama</span>
-          <span className="font-semibold text-gray-900 dark:text-white">
+      <div className="mt-8 grid gap-4 md:grid-cols-3">
+        <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5 shadow-sm dark:border-slate-700 dark:bg-slate-800/80">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">
+            Nama
+          </p>
+          <p className="mt-3 text-xl font-bold text-slate-900 dark:text-white">
             {searchResult.name}
-          </span>
+          </p>
         </div>
-        <div className="flex justify-between items-center">
-          <span className="text-gray-600 dark:text-gray-400">NIM</span>
-          <span className="font-mono font-semibold text-gray-900 dark:text-white">
+
+        <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5 shadow-sm dark:border-slate-700 dark:bg-slate-800/80">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">
+            NIM
+          </p>
+          <p className="mt-3 text-xl font-bold text-slate-900 dark:text-white">
             {searchResult.nim}
-          </span>
+          </p>
         </div>
-        {searchResult.division && (
-          <div className="flex justify-between items-center">
-            <span className="text-gray-600 dark:text-gray-400">Divisi</span>
-            <span className="font-semibold text-gray-900 dark:text-white">
-              {searchResult.division}
-            </span>
-          </div>
-        )}
+
+        <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5 shadow-sm dark:border-slate-700 dark:bg-slate-800/80">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">
+            Divisi
+          </p>
+          <p className="mt-3 text-xl font-bold text-slate-900 dark:text-white">
+            {searchResult.division || "-"}
+          </p>
+        </div>
       </div>
 
-      {/* Action Buttons */}
-      <div className="space-y-3">
+      <div className="mt-8 space-y-3">
         {isAccepted && (
           <>
             <InstagramShareButton
@@ -144,16 +144,17 @@ export default function StudentResultCard({
             {!showPhoneInput ? (
               <button
                 onClick={() => setShowPhoneInput(true)}
-                className="w-full px-4 py-3 sm:py-4 bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700 text-white rounded-lg font-bold text-lg transition-all"
+                className="flex w-full items-center justify-center gap-3 rounded-xl border border-slate-300 bg-slate-50 px-4 py-3 text-base font-semibold text-slate-800 transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-500 hover:text-emerald-600 hover:shadow-sm dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:hover:border-emerald-400 dark:hover:text-emerald-400"
               >
+                <FaWhatsapp className="text-lg" />
                 Gabung WhatsApp Group
               </button>
             ) : (
-              <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-6 space-y-3">
-                <h4 className="text-sm font-semibold text-gray-900 dark:text-white">
+              <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5 dark:border-slate-700 dark:bg-slate-800/80">
+                <h4 className="text-base font-bold text-slate-900 dark:text-white">
                   Verifikasi Nomor WhatsApp
                 </h4>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
+                <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">
                   Masukkan nomor WhatsApp yang sama dengan saat pendaftaran
                 </p>
                 <input
@@ -161,18 +162,18 @@ export default function StudentResultCard({
                   value={userPhoneNumber}
                   onChange={(e) => setUserPhoneNumber(e.target.value)}
                   placeholder="Contoh: 628123456789"
-                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white font-mono text-sm"
+                  className="mt-4 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-200 dark:border-slate-600 dark:bg-slate-900 dark:text-white dark:placeholder:text-slate-500"
                 />
                 {phoneError && (
-                  <p className="text-sm text-red-600 dark:text-red-400">
+                  <p className="mt-3 text-sm text-red-600 dark:text-red-400">
                     {phoneError}
                   </p>
                 )}
-                <div className="flex gap-3 pt-2">
+                <div className="mt-4 flex gap-3">
                   <button
                     onClick={handleWhatsAppJoin}
                     disabled={!userPhoneNumber.trim()}
-                    className="flex-1 px-4 py-2 sm:py-3 bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700 disabled:from-gray-300 disabled:to-gray-300 dark:disabled:from-gray-600 dark:disabled:to-gray-600 text-white rounded-lg font-semibold transition-all"
+                    className="flex-1 rounded-xl bg-gradient-to-r from-green-600 to-teal-600 px-4 py-3 font-semibold text-white transition-all hover:from-green-700 hover:to-teal-700 disabled:cursor-not-allowed disabled:from-slate-300 disabled:to-slate-300 dark:disabled:from-slate-600 dark:disabled:to-slate-600"
                   >
                     Verifikasi
                   </button>
@@ -182,7 +183,7 @@ export default function StudentResultCard({
                       setUserPhoneNumber("");
                       setPhoneError("");
                     }}
-                    className="flex-1 px-4 py-2 sm:py-3 bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500 text-gray-900 dark:text-white rounded-lg font-semibold transition-colors"
+                    className="flex-1 rounded-xl bg-slate-200 px-4 py-3 font-semibold text-slate-800 transition-colors hover:bg-slate-300 dark:bg-slate-700 dark:text-white dark:hover:bg-slate-600"
                   >
                     Batal
                   </button>
@@ -194,8 +195,9 @@ export default function StudentResultCard({
 
         <button
           onClick={onReset}
-          className="w-full px-4 py-3 sm:py-4 bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700 text-white rounded-lg font-bold text-lg transition-all"
+          className="flex w-full items-center justify-center gap-3 rounded-xl border border-slate-300 bg-slate-50 px-4 py-3 text-base font-semibold text-slate-800 transition-all duration-200 hover:-translate-y-0.5 hover:border-slate-900 hover:text-slate-900 hover:shadow-sm dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:hover:border-white dark:hover:text-white"
         >
+          <FaArrowRotateLeft className="text-lg" />
           Cek NIM Lain
         </button>
       </div>

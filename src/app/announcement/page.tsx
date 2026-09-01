@@ -171,7 +171,7 @@ export default function AnnouncementPage() {
       </div> */}
 
       {/* Main Content */}
-      <div className="bg-white dark:bg-gray-900 py-12 sm:py-16 lg:py-20">
+      <div className="bg-white dark:bg-gray-900 py-16 sm:py-20 lg:py-24">
         <div className="max-w-7xl mx-auto">
           {isAnnouncementTime ? (
             // AFTER release date/time: show inputs / loading / results
@@ -196,13 +196,11 @@ export default function AnnouncementPage() {
 
               {showResult && (
                 <div className="px-4 sm:px-6 lg:px-8">
-                  <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 p-6 sm:p-8 lg:p-10">
-                    <StudentResultCard
-                      searchResult={searchResult}
-                      onReset={handleReset}
-                      onWhatsAppJoin={handleWhatsAppJoin}
-                    />
-                  </div>
+                  <StudentResultCard
+                    searchResult={searchResult}
+                    onReset={handleReset}
+                    onWhatsAppJoin={handleWhatsAppJoin}
+                  />
                 </div>
               )}
             </div>

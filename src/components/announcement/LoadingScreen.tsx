@@ -4,7 +4,7 @@ interface LoadingScreenProps {
 
 export default function LoadingScreen({ countdown }: LoadingScreenProps) {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 p-6 sm:p-8 lg:p-10 text-center max-w-2xl mx-auto">
+    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 p-8 sm:p-10 lg:p-12 text-center max-w-2xl mx-auto">
       <div className="text-7xl sm:text-8xl font-bold text-gray-900 dark:text-white mb-8 animate-pulse">
         {countdown}
       </div>

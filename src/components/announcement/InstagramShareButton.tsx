@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import { FaInstagram } from "react-icons/fa6";
 import {
   InstagramShareHandler,
   InstagramImageGenerator,
@@ -151,14 +152,14 @@ ${studentData.division ? `Divisi: ${studentData.division}` : ""}
       <button
         onClick={handleInstagramShare}
         disabled={isGenerating}
-        className={`w-full px-4 py-3 sm:py-4 bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 disabled:from-gray-300 disabled:to-gray-300 dark:disabled:from-gray-600 dark:disabled:to-gray-600 text-white rounded-lg font-bold text-lg transition-all flex items-center justify-center gap-2 ${className} ${
-          isGenerating ? "opacity-70 cursor-not-allowed" : ""
+        className={`flex w-full items-center justify-center gap-3 rounded-xl border border-slate-300 bg-slate-50 px-4 py-3 text-base font-semibold text-slate-800 transition-all duration-200 hover:-translate-y-0.5 hover:border-pink-500 hover:text-pink-600 hover:shadow-sm dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:hover:border-pink-400 dark:hover:text-pink-400 disabled:cursor-not-allowed disabled:opacity-60 ${className} ${
+          isGenerating ? "cursor-not-allowed opacity-70" : ""
         }`}
       >
         {isGenerating ? (
           <>
             <svg
-              className="animate-spin h-6 w-6 text-white"
+              className="h-5 w-5 animate-spin text-current"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
@@ -180,7 +181,10 @@ ${studentData.division ? `Divisi: ${studentData.division}` : ""}
             Membuat Gambar...
           </>
         ) : (
-          <>Share ke Instagram Story</>
+          <>
+            <FaInstagram className="text-lg" />
+            Share ke Instagram Story
+          </>
         )}
       </button>
     </>
