@@ -91,7 +91,7 @@ export default function StudentResultCard({
             className={`text-4xl font-black tracking-tight sm:text-5xl lg:text-7xl ${
               isAccepted
                 ? "text-emerald-600 dark:text-emerald-400"
-                : "text-slate-900 dark:text-white"
+                : "text-red-700 dark:text-red-600"
             }`}
           >
             {isAccepted ? "SELAMAT!" : "MOHON MAAF"}
