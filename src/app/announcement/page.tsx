@@ -151,7 +151,7 @@ export default function AnnouncementPage() {
 
   const handleWhatsAppJoin = () => {
     if (!searchResult) return;
-    const groupLink = "https://chat.whatsapp.com/G0a2OMp5wWx69yIOpwkckA";
+    const groupLink = "https://chat.whatsapp.com/GkNlatokviu4FlBnbPtOkB";
     window.open(groupLink, "_blank");
     alert("Selamat datang di group WhatsApp HIMA BIOS!");
   };
