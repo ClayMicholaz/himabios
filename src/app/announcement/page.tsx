@@ -139,7 +139,7 @@ const studentAcceptanceData: StudentData[] = [
 ];
 
 const announcementConfig = {
-  releaseDate: new Date("2026-09-19"),
+  releaseDate: new Date("2027-09-19"),
   releaseTime: "00:00",
 };
 
