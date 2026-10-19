@@ -106,18 +106,18 @@ export function Tabs({ children, defaultValue, values }: TabsProps) {
   }
 
   return (
-    <div className="my-6 border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
+    <div className="my-6 overflow-hidden rounded border border-line">
       {/* Tab Headers */}
-      <div className="bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
-        <div className="flex overflow-x-auto scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600">
+      <div className="border-b border-line bg-surface">
+        <div className="flex overflow-x-auto">
           {tabItems.map((tab) => (
             <button
               key={tab.value}
               onClick={() => setActiveTab(tab.value)}
-              className={`flex-shrink-0 px-3 sm:px-4 py-3 text-xs sm:text-sm font-medium border-b-2 transition-colors whitespace-nowrap ${
+              className={`shrink-0 border-b-2 px-3 py-3 font-display text-xs font-semibold whitespace-nowrap transition-colors sm:px-4 sm:text-sm ${
                 activeTab === tab.value
-                  ? "border-emerald-500 text-emerald-600 dark:text-emerald-400 bg-white dark:bg-gray-900"
-                  : "border-transparent text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
+                  ? "border-accent bg-bg text-accent"
+                  : "border-transparent text-muted hover:bg-raised hover:text-heading"
               }`}
             >
               {tab.label}
@@ -127,7 +127,7 @@ export function Tabs({ children, defaultValue, values }: TabsProps) {
       </div>
 
       {/* Tab Content */}
-      <div className="p-3 sm:p-4 bg-white dark:bg-gray-900 overflow-x-auto">
+      <div className="overflow-x-auto bg-bg p-3 sm:p-4">
         {tabItems.map((tab) => (
           <div
             key={tab.value}

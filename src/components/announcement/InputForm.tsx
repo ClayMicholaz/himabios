@@ -1,3 +1,5 @@
+import clsx from "clsx";
+
 interface InputFormProps {
   nimInput: string;
   nimError: string;
@@ -14,62 +16,71 @@ export default function InputForm({
   onSearch,
 }: InputFormProps) {
   return (
-    <div className="max-w-md mx-auto">
-      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white text-center mb-3 sm:mb-4">
-        Cek Status Penerimaan
-      </h2>
-      <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 text-center mb-8 sm:mb-12">
-        Masukkan NIM Anda untuk melihat hasil seleksi
-      </p>
+    <div className="mx-auto flex max-w-xl flex-col gap-8">
+      <header className="flex flex-col gap-3">
+        <span className="font-mono text-sm tracking-widest text-accent">
+          &gt; HASIL SELEKSI PENGURUS
+        </span>
+        <h1 className="font-display text-3xl leading-tight font-extrabold tracking-tight text-heading sm:text-4xl">
+          Cek hasilmu dengan NIM.
+        </h1>
+      </header>
 
-      <div className="space-y-5 sm:space-y-6">
-        {/* Input Group */}
-        <div>
+      <form
+        className="flex flex-col gap-4"
+        onSubmit={(e) => {
+          e.preventDefault();
+          if (isNimValid) onSearch();
+        }}
+      >
+        <div className="flex flex-col gap-2">
+          <label htmlFor="nim" className="font-mono text-sm text-fg">
+            NIM (8 digit)
+          </label>
           <input
             type="text"
             id="nim"
+            inputMode="numeric"
+            autoComplete="off"
             value={nimInput}
             onChange={(e) => onNimInput(e.target.value)}
-            placeholder="Contoh: 32250005"
+            placeholder="32250005"
             maxLength={8}
-            className={`w-full px-5 sm:px-6 py-4 sm:py-5 rounded-lg border-2 font-mono text-base sm:text-lg transition-all focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-green-500 dark:focus:ring-teal-500 ${
+            aria-invalid={Boolean(nimError)}
+            aria-describedby="nim-status"
+            className={clsx(
+              "w-full rounded border-2 bg-surface px-4 py-3.5 font-mono text-lg tracking-[0.14em] text-heading transition-colors placeholder:text-muted/60 focus:outline-hidden sm:text-xl",
               nimError
-                ? "border-red-300 dark:border-red-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                ? "border-danger"
                 : isNimValid
-                  ? "border-green-300 dark:border-teal-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
-                  : "border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
-            }`}
-            onKeyPress={(e) => e.key === "Enter" && isNimValid && onSearch()}
+                  ? "border-accent"
+                  : "border-line focus:border-silver-300",
+            )}
           />
-
-          {nimError && (
-            <p className="mt-2 sm:mt-3 text-xs sm:text-sm text-red-600 dark:text-red-400 font-medium">
-              {nimError}
-            </p>
-          )}
-
-          {isNimValid && !nimError && (
-            <p className="mt-2 sm:mt-3 text-xs sm:text-sm text-green-600 dark:text-teal-400 font-medium">
-              ✓ NIM ditemukan dalam sistem
-            </p>
-          )}
+          <p id="nim-status" aria-live="polite" className="min-h-5 text-sm">
+            {nimError ? (
+              <span className="font-medium text-danger">{nimError}</span>
+            ) : isNimValid ? (
+              <span className="font-medium text-accent">
+                ✓ NIM ditemukan dalam sistem
+              </span>
+            ) : null}
+          </p>
         </div>
 
-        {/* Submit Button */}
-        <div className="pt-2 sm:pt-4">
-          <button
-            onClick={onSearch}
-            disabled={!isNimValid}
-            className={`w-full px-6 sm:px-8 py-4 sm:py-5 rounded-lg font-bold text-base sm:text-lg transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 dark:focus:ring-offset-gray-900 ${
-              isNimValid
-                ? "bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700 text-white focus:ring-green-400"
-                : "bg-gray-200 dark:bg-gray-700 text-gray-500 dark:text-gray-400 cursor-not-allowed"
-            }`}
-          >
-            Cek Status
-          </button>
-        </div>
-      </div>
+        <button
+          type="submit"
+          disabled={!isNimValid}
+          className={clsx(
+            "w-full rounded px-6 py-4 font-display text-lg font-bold transition-opacity",
+            isNimValid
+              ? "cursor-pointer bg-cta text-on-cta hover:opacity-90"
+              : "cursor-not-allowed bg-raised text-muted",
+          )}
+        >
+          Cek hasil ↵
+        </button>
+      </form>
     </div>
   );
 }

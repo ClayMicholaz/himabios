@@ -1,17 +1,34 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import {
+  Atkinson_Hyperlegible_Next,
+  Martian_Mono,
+  Schibsted_Grotesk,
+} from "next/font/google";
 import "./globals.css";
-import "../styles/highlight-dracula.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const displayFont = Schibsted_Grotesk({
+  variable: "--font-schibsted",
   subsets: ["latin"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const bodyFont = Atkinson_Hyperlegible_Next({
+  variable: "--font-atkinson",
   subsets: ["latin"],
+  display: "swap",
+  // next/font has no metrics for this family yet
+  adjustFontFallback: false,
 });
+
+const monoFont = Martian_Mono({
+  variable: "--font-martian",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+// Dark is the default theme; only an explicit "light" choice opts out.
+// Runs before paint so the page never flashes the wrong theme.
+const themeScript = `try{if(localStorage.getItem("theme")!=="light")document.documentElement.classList.add("dark")}catch(e){document.documentElement.classList.add("dark")}`;
 
 export const metadata: Metadata = {
   title: {
@@ -139,8 +156,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="id" suppressHydrationWarning>
+    <html
+      lang="id"
+      suppressHydrationWarning
+      className={`${displayFont.variable} ${bodyFont.variable} ${monoFont.variable}`}
+    >
       <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         {/* Enhanced Favicon and Icon Configuration */}
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" href="/bios.svg" type="image/svg+xml" />
@@ -155,8 +177,8 @@ export default function RootLayout({
 
         {/* Enhanced Meta Tags for Logo/Icon */}
         <meta name="msapplication-TileImage" content="/BIOS.png" />
-        <meta name="msapplication-TileColor" content="#2e8555" />
-        <meta name="theme-color" content="#2e8555" />
+        <meta name="msapplication-TileColor" content="#13285a" />
+        <meta name="theme-color" content="#13285a" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
@@ -202,12 +224,6 @@ export default function RootLayout({
         />
         <meta name="content-language" content="id" />
 
-        <link
-          rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css"
-          integrity="sha384-GvrOXuhMATgEsSwCs4smul74iXGOixntILdUW9XmUC6+HX0sLNAK3q71HotJqlAn"
-          crossOrigin="anonymous"
-        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -323,11 +339,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

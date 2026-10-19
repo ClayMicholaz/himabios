@@ -134,17 +134,17 @@ export default function Sidebar({
         <div key={key} className="mb-1">
           <button
             onClick={() => toggleExpanded(key, level)}
-            className={`flex items-center justify-between w-full px-3 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors ${
+            className={`flex w-full items-center justify-between rounded px-3 py-2.5 text-left transition-colors hover:bg-surface ${
               level > 0 ? "ml-2" : ""
             }`}
           >
-            <span className="font-medium text-gray-900 dark:text-white">
+            <span className="font-display font-semibold text-heading">
               {displayName}
             </span>
             {isExpanded ? (
-              <ChevronDownIcon className="w-5 h-5 text-gray-500" />
+              <ChevronDownIcon className="size-5 text-muted" />
             ) : (
-              <ChevronRightIcon className="w-5 h-5 text-gray-500" />
+              <ChevronRightIcon className="size-5 text-muted" />
             )}
           </button>
           {isExpanded && item.children && (
@@ -190,12 +190,12 @@ export default function Sidebar({
         <Link
           key={key}
           href={fullPath}
-          className={`block px-3 py-2 rounded-md transition-colors ${
+          className={`block rounded px-3 py-2.5 transition-colors ${
             level > 0 ? "ml-2" : ""
           } ${
             isActive
-              ? "bg-gray-100 dark:bg-gray-800 text-emerald-500 dark:text-emerald-500 font-medium"
-              : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-green-600 dark:hover:text-green-400"
+              ? "bg-cta font-bold text-on-cta"
+              : "text-fg hover:bg-surface hover:text-accent"
           }`}
         >
           {displayName}
@@ -207,9 +207,12 @@ export default function Sidebar({
   return (
     <div className="h-full overflow-y-auto">
       <div className="p-6">
-        <Link href="/learn" className="block mb-6">
-          <h2 className="text-xl font-bold text-gray-900 dark:text-white">
-            📚 Materi Pembelajaran
+        <Link href="/learn" className="mb-6 flex flex-col gap-1">
+          <span className="font-mono text-xs tracking-widest text-accent">
+            &gt; BIOS LEARN
+          </span>
+          <h2 className="font-display text-xl font-extrabold text-heading">
+            Materi Pembelajaran
           </h2>
         </Link>
         <nav className="space-y-1">

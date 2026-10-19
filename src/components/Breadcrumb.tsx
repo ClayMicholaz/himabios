@@ -39,21 +39,17 @@ export default function Breadcrumb({ items }: BreadcrumbProps) {
           const isEllipsis = item.label === "...";
 
           return (
-            <li key={index} className="flex items-center min-w-0 flex-shrink">
+            <li key={index} className="flex min-w-0 shrink items-center">
               {index > 0 && (
-                <ChevronRightIcon className="w-3 h-3 sm:w-4 sm:h-4 text-gray-400 mx-1 sm:mx-2 flex-shrink-0" />
+                <ChevronRightIcon className="mx-1 size-3 shrink-0 text-muted sm:mx-2 sm:size-4" />
               )}
               {item.href && !isEllipsis ? (
                 <Link
                   href={item.href}
-                  className={`flex items-center text-xs sm:text-sm transition-colors px-1 sm:px-2 py-1 rounded-md min-w-0 ${
-                    isHome
-                      ? "text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400"
-                      : "text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400"
-                  }`}
+                  className="flex min-w-0 items-center rounded px-1 py-1 font-mono text-xs text-muted transition-colors hover:text-accent sm:px-2 sm:text-sm"
                 >
                   {isHome ? (
-                    <HomeIcon className="w-3 h-3 sm:w-4 sm:h-4 text-gray-500 dark:text-gray-400 flex-shrink-0" />
+                    <HomeIcon className="size-3 shrink-0 sm:size-4" />
                   ) : (
                     <span className="truncate max-w-[100px] sm:max-w-[200px]">
                       {item.label}
@@ -62,16 +58,16 @@ export default function Breadcrumb({ items }: BreadcrumbProps) {
                 </Link>
               ) : (
                 <span
-                  className={`flex items-center text-xs sm:text-sm font-medium px-1 sm:px-2 py-1 rounded-md min-w-0 ${
+                  className={`flex min-w-0 items-center rounded px-1 py-1 font-mono text-xs sm:px-2 sm:text-sm ${
                     isEllipsis
-                      ? "text-gray-500 dark:text-gray-400"
+                      ? "text-muted"
                       : isLast
-                      ? "text-emerald-600 dark:text-emerald-400 bg-gray-100 dark:bg-gray-800"
-                      : "text-gray-900 dark:text-white"
+                        ? "text-heading"
+                        : "text-fg"
                   }`}
                 >
                   {isHome ? (
-                    <HomeIcon className="w-3 h-3 sm:w-4 sm:h-4 text-gray-500 dark:text-gray-400 flex-shrink-0" />
+                    <HomeIcon className="size-3 shrink-0 sm:size-4" />
                   ) : isEllipsis ? (
                     "..."
                   ) : (

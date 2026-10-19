@@ -1,4 +1,5 @@
 import { useState } from "react";
+import clsx from "clsx";
 import { FaArrowRotateLeft, FaWhatsapp } from "react-icons/fa6";
 import InstagramShareButton from "./InstagramShareButton";
 
@@ -15,6 +16,9 @@ interface StudentResultCardProps {
   onReset: () => void;
   onWhatsAppJoin: () => void;
 }
+
+const secondaryButton =
+  "flex w-full cursor-pointer items-center justify-center gap-3 rounded border-2 border-silver-300 px-4 py-3 font-display font-bold text-heading transition-colors hover:border-accent hover:text-accent";
 
 export default function StudentResultCard({
   searchResult,
@@ -67,15 +71,13 @@ export default function StudentResultCard({
 
   if (!searchResult) {
     return (
-      <div className="text-center py-12">
-        <p className="text-lg text-gray-600 dark:text-gray-400 mb-8">
-          NIM tidak ditemukan dalam sistem
-        </p>
+      <div className="mx-auto flex max-w-xl flex-col items-center gap-6 py-12 text-center">
+        <p className="text-lg text-muted">NIM tidak ditemukan dalam sistem</p>
         <button
           onClick={onReset}
-          className="px-8 sm:px-12 py-3 sm:py-4 bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700 text-white rounded-lg font-bold text-lg transition-all"
+          className="cursor-pointer rounded bg-cta px-10 py-4 font-display text-lg font-bold text-on-cta transition-opacity hover:opacity-90"
         >
-          Coba Lagi
+          Coba lagi
         </button>
       </div>
     );
@@ -84,96 +86,87 @@ export default function StudentResultCard({
   const isAccepted = searchResult.status === "accepted";
 
   return (
-    <div className="w-full">
-      <div className="w-full pt-0 pb-2 text-center sm:pb-3 lg:pb-4">
-        <div className="space-y-2">
-          <h1
-            className={`text-4xl font-black tracking-tight sm:text-5xl lg:text-7xl ${
-              isAccepted
-                ? "text-emerald-600 dark:text-emerald-400"
-                : "text-red-700 dark:text-red-600"
-            }`}
-          >
-            {isAccepted ? "SELAMAT!" : "MOHON MAAF"}
-          </h1>
-          <p className="mx-auto max-w-4xl text-lg font-semibold text-slate-700 dark:text-slate-200 sm:text-xl lg:text-3xl">
+    <div className="mx-auto flex max-w-3xl flex-col gap-6">
+      <article
+        aria-label="Hasil seleksi"
+        className={clsx(
+          "overflow-hidden rounded-md border-2",
+          isAccepted
+            ? "border-accent shadow-[0_0_40px_rgb(0_255_210/0.15)]"
+            : "border-silver-300",
+        )}
+      >
+        <div
+          className={clsx(
+            "px-5 py-3 font-mono text-sm font-bold tracking-widest",
+            isAccepted ? "bg-cta text-on-cta" : "bg-raised text-danger",
+          )}
+        >
+          {isAccepted ? "● SELAMAT, KAMU DITERIMA" : "✕ BELUM LOLOS SELEKSI"}
+        </div>
+
+        <div className="flex flex-col gap-6 bg-surface p-6 sm:p-8">
+          <p className="font-display text-2xl leading-snug font-bold text-heading sm:text-3xl">
             {isAccepted
-              ? `${searchResult.name} anda diterima di BIOS divisi ${searchResult.division}`
-              : `${searchResult.name} anda belum diterima di HIMA BIOS`}
+              ? `${searchResult.name}, kamu diterima di BIOS divisi ${searchResult.division}.`
+              : `${searchResult.name}, terima kasih sudah mendaftar. Tetap ikut belajar di BIOS, ya.`}
           </p>
-        </div>
-      </div>
 
-      <div className="mt-8 grid gap-4 md:grid-cols-3">
-        <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5 shadow-sm dark:border-slate-700 dark:bg-slate-800/80">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">
-            Nama
-          </p>
-          <p className="mt-3 text-xl font-bold text-slate-900 dark:text-white">
-            {searchResult.name}
-          </p>
+          <dl className="grid gap-x-6 gap-y-2 sm:grid-cols-[auto_1fr]">
+            <dt className="font-mono text-sm text-muted">Nama</dt>
+            <dd className="font-semibold text-heading">{searchResult.name}</dd>
+            <dt className="font-mono text-sm text-muted">NIM</dt>
+            <dd className="font-mono text-heading">{searchResult.nim}</dd>
+            <dt className="font-mono text-sm text-muted">Divisi</dt>
+            <dd className="font-semibold text-accent">
+              {searchResult.division || "-"}
+            </dd>
+          </dl>
         </div>
+      </article>
 
-        <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5 shadow-sm dark:border-slate-700 dark:bg-slate-800/80">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">
-            NIM
-          </p>
-          <p className="mt-3 text-xl font-bold text-slate-900 dark:text-white">
-            {searchResult.nim}
-          </p>
-        </div>
-
-        <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5 shadow-sm dark:border-slate-700 dark:bg-slate-800/80">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">
-            Divisi
-          </p>
-          <p className="mt-3 text-xl font-bold text-slate-900 dark:text-white">
-            {searchResult.division || "-"}
-          </p>
-        </div>
-      </div>
-
-      <div className="mt-8 space-y-3">
+      <div className="flex flex-col gap-3">
         {isAccepted && (
           <>
-            <InstagramShareButton
-              studentData={searchResult}
-              className="w-full"
-            />
-
             {!showPhoneInput ? (
               <button
                 onClick={() => setShowPhoneInput(true)}
-                className="flex w-full items-center justify-center gap-3 rounded-xl border border-slate-300 bg-slate-50 px-4 py-3 text-base font-semibold text-slate-800 transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-500 hover:text-emerald-600 hover:shadow-sm dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:hover:border-emerald-400 dark:hover:text-emerald-400"
+                className="flex w-full cursor-pointer items-center justify-center gap-3 rounded bg-cta px-4 py-3.5 font-display font-bold text-on-cta transition-opacity hover:opacity-90"
               >
-                <FaWhatsapp className="text-lg" />
-                Gabung WhatsApp Group
+                <FaWhatsapp aria-hidden="true" className="text-lg" />
+                Gabung grup WhatsApp
               </button>
             ) : (
-              <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5 dark:border-slate-700 dark:bg-slate-800/80">
-                <h4 className="text-base font-bold text-slate-900 dark:text-white">
-                  Verifikasi Nomor WhatsApp
-                </h4>
-                <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">
-                  Masukkan nomor WhatsApp yang sama dengan saat pendaftaran
+              <div className="flex flex-col gap-3 rounded-md border border-line bg-surface p-5">
+                <label
+                  htmlFor="wa-number"
+                  className="font-display font-bold text-heading"
+                >
+                  Verifikasi nomor WhatsApp
+                </label>
+                <p className="text-sm text-muted">
+                  Masukkan nomor WhatsApp yang sama dengan saat pendaftaran.
                 </p>
                 <input
-                  type="text"
+                  id="wa-number"
+                  type="tel"
+                  inputMode="numeric"
                   value={userPhoneNumber}
                   onChange={(e) => setUserPhoneNumber(e.target.value)}
-                  placeholder="Contoh: 628123456789"
-                  className="mt-4 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-200 dark:border-slate-600 dark:bg-slate-900 dark:text-white dark:placeholder:text-slate-500"
+                  placeholder="628123456789"
+                  aria-invalid={Boolean(phoneError)}
+                  className="w-full rounded border-2 border-line bg-bg px-4 py-3 font-mono text-heading placeholder:text-muted/60 focus:border-accent focus:outline-hidden"
                 />
                 {phoneError && (
-                  <p className="mt-3 text-sm text-red-600 dark:text-red-400">
+                  <p role="alert" className="text-sm text-danger">
                     {phoneError}
                   </p>
                 )}
-                <div className="mt-4 flex gap-3">
+                <div className="flex gap-3">
                   <button
                     onClick={handleWhatsAppJoin}
                     disabled={!userPhoneNumber.trim()}
-                    className="flex-1 rounded-xl bg-gradient-to-r from-green-600 to-teal-600 px-4 py-3 font-semibold text-white transition-all hover:from-green-700 hover:to-teal-700 disabled:cursor-not-allowed disabled:from-slate-300 disabled:to-slate-300 dark:disabled:from-slate-600 dark:disabled:to-slate-600"
+                    className="flex-1 cursor-pointer rounded bg-cta px-4 py-3 font-display font-bold text-on-cta transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:bg-raised disabled:text-muted"
                   >
                     Verifikasi
                   </button>
@@ -183,22 +176,24 @@ export default function StudentResultCard({
                       setUserPhoneNumber("");
                       setPhoneError("");
                     }}
-                    className="flex-1 rounded-xl bg-slate-200 px-4 py-3 font-semibold text-slate-800 transition-colors hover:bg-slate-300 dark:bg-slate-700 dark:text-white dark:hover:bg-slate-600"
+                    className="flex-1 cursor-pointer rounded border-2 border-line px-4 py-3 font-display font-bold text-heading transition-colors hover:border-silver-300"
                   >
                     Batal
                   </button>
                 </div>
               </div>
             )}
+
+            <InstagramShareButton
+              studentData={searchResult}
+              className={secondaryButton}
+            />
           </>
         )}
 
-        <button
-          onClick={onReset}
-          className="flex w-full items-center justify-center gap-3 rounded-xl border border-slate-300 bg-slate-50 px-4 py-3 text-base font-semibold text-slate-800 transition-all duration-200 hover:-translate-y-0.5 hover:border-slate-900 hover:text-slate-900 hover:shadow-sm dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:hover:border-white dark:hover:text-white"
-        >
-          <FaArrowRotateLeft className="text-lg" />
-          Cek NIM Lain
+        <button onClick={onReset} className={secondaryButton}>
+          <FaArrowRotateLeft aria-hidden="true" className="text-lg" />
+          Cek NIM lain
         </button>
       </div>
     </div>

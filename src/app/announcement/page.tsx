@@ -168,20 +168,9 @@ export default function AnnouncementPage() {
 
   return (
     <Layout>
-      {/* Hero Banner Header */}
-      {/* <div className="hero-banner">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-8 sm:py-12 lg:py-16">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 text-white dark:text-black leading-tight">
-            Pengumuman HIMA BIOS
-          </h1>
-          <p className="text-lg sm:text-xl md:text-2xl opacity-90 text-white dark:text-black max-w-3xl mx-auto px-4">
-            Universitas Bunda Mulia
-          </p>
-        </div>
-      </div> */}
 
       {/* Main Content */}
-      <div className="bg-white dark:bg-gray-900 py-16 sm:py-20 lg:py-24">
+      <div className="py-16 sm:py-20 lg:py-24">
         <div className="max-w-7xl mx-auto">
           {isAnnouncementTime ? (
             // AFTER release date/time: show inputs / loading / results

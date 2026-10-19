@@ -22,9 +22,9 @@ export class InstagramImageGenerator {
     this.ctx.clearRect(0, 0, 1080, 1920);
 
     const bg = this.ctx.createLinearGradient(0, 0, 0, 1920);
-    bg.addColorStop(0, "#020817");
-    bg.addColorStop(0.5, "#0f172a");
-    bg.addColorStop(1, "#111827");
+    bg.addColorStop(0, "#000c2c");
+    bg.addColorStop(0.5, "#0d2149");
+    bg.addColorStop(1, "#13285a");
     this.ctx.fillStyle = bg;
     this.ctx.fillRect(0, 0, 1080, 1920);
 
@@ -58,11 +58,11 @@ export class InstagramImageGenerator {
 
     this.ctx.textAlign = "center";
 
-    this.ctx.fillStyle = "#34d399";
+    this.ctx.fillStyle = "#00ffd2";
     this.ctx.font = "700 118px 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif";
     this.ctx.fillText("SELAMAT!", 540, 330);
 
-    this.ctx.fillStyle = "#f8fafc";
+    this.ctx.fillStyle = "#e6e8ec";
     this.ctx.font = "600 46px 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif";
 
     const lines = this.wrapText(acceptedText, 760);
@@ -77,21 +77,21 @@ export class InstagramImageGenerator {
   private async drawFooter() {
     this.ctx.textAlign = "center";
 
-    this.ctx.fillStyle = "#f8fafc";
+    this.ctx.fillStyle = "#e6e8ec";
     this.ctx.font = "700 38px 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif";
     this.ctx.fillText("Follow us @ubm_bios_ancol", 540, 1500);
 
-    this.ctx.fillStyle = "#a7f3d0";
+    this.ctx.fillStyle = "#bbe8db";
     this.ctx.font = "700 32px 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif";
     this.ctx.fillText("#HIMABIOS #UBMANCOL #BIOS2026", 540, 1575);
 
-    this.ctx.fillStyle = "#cbd5e1";
+    this.ctx.fillStyle = "#a6bbee";
     this.ctx.font = "500 28px 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif";
     this.ctx.fillText("himabios.ubm.vercel.app", 540, 1635);
   }
 
   private async drawBackgroundDecor() {
-    this.ctx.fillStyle = "#0b1120";
+    this.ctx.fillStyle = "#000c2c";
     this.ctx.fillRect(0, 0, 1080, 1920);
   }
 

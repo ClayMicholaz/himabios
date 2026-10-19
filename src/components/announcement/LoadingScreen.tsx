@@ -2,21 +2,25 @@ interface LoadingScreenProps {
   countdown: number;
 }
 
+const dotDelays = ["[animation-delay:0s]", "[animation-delay:0.2s]", "[animation-delay:0.4s]"];
+
 export default function LoadingScreen({ countdown }: LoadingScreenProps) {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 p-8 sm:p-10 lg:p-12 text-center max-w-2xl mx-auto">
-      <div className="text-7xl sm:text-8xl font-bold text-gray-900 dark:text-white mb-8 animate-pulse">
+    <div
+      role="status"
+      className="mx-auto max-w-2xl rounded-md border-2 border-silver-300 bg-surface p-8 text-center sm:p-12"
+    >
+      <div className="mb-8 animate-pulse font-mono text-7xl font-bold text-accent sm:text-8xl">
         {countdown}
       </div>
-      <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-6">
-        Sedang memproses hasil Anda...
-      </h3>
-      <div className="flex justify-center space-x-3 mt-8">
-        {[...Array(3)].map((_, i) => (
+      <h2 className="font-display text-xl font-bold text-heading sm:text-2xl">
+        Sedang memproses hasil kamu...
+      </h2>
+      <div className="mt-8 flex justify-center gap-3" aria-hidden="true">
+        {dotDelays.map((delay) => (
           <div
-            key={i}
-            className="w-3 h-3 bg-gray-400 rounded-full animate-bounce"
-            style={{ animationDelay: `${i * 0.2}s` }}
+            key={delay}
+            className={`size-3 animate-bounce rounded-full bg-accent ${delay}`}
           ></div>
         ))}
       </div>

@@ -1,7 +1,54 @@
 import React from "react";
 import Layout from "@/components/Layout";
-import Link from "next/link";
-import Image from "next/image";
+import { FiBookOpen, FiMonitor, FiUsers } from "react-icons/fi";
+
+const timeline = [
+  {
+    year: "±2006",
+    title: "Berdiri sebagai BRAINITY",
+    description:
+      "Organisasi himpunan mahasiswa Informatika di Universitas Bunda Mulia.",
+  },
+  {
+    year: "2012",
+    title: "Berganti nama menjadi BIOS",
+    description: "Nama dan logo tombol daya yang kita kenal sekarang.",
+  },
+  {
+    year: "Sekarang",
+    title: "Belajar bareng, gratis",
+    description:
+      "Platform belajar daring, workshop, dan mentoring untuk mahasiswa Informatika.",
+  },
+];
+
+const missions = [
+  "Menyelenggarakan kegiatan akademik dan non-akademik",
+  "Memfasilitasi pengembangan soft skills mahasiswa",
+  "Menjalin kerja sama dengan berbagai pihak",
+  "Memberikan edukasi gratis kepada mahasiswa",
+];
+
+const programs = [
+  {
+    icon: FiBookOpen,
+    title: "BIOS Learning Platform",
+    description:
+      "Materi fundamental pemrograman, algoritma, dan teknologi informasi dalam bahasa Indonesia yang mudah dipahami.",
+  },
+  {
+    icon: FiMonitor,
+    title: "Workshop & Seminar",
+    description:
+      "Workshop teknis, seminar teknologi terkini, dan sharing session dengan praktisi industri.",
+  },
+  {
+    icon: FiUsers,
+    title: "Mentoring Program",
+    description:
+      "Pendampingan mahasiswa junior oleh senior yang berpengalaman di bidang akademik dan pengembangan karier.",
+  },
+];
 
 export default function AboutPage() {
   return (
@@ -9,150 +56,133 @@ export default function AboutPage() {
       title="Tentang Kami - BIOS"
       description="Mengenal lebih dekat HIMA BIOS Universitas Bunda Mulia"
     >
-      <div className="bg-docusaurus-bg dark:bg-docusaurus-bg-dark min-h-screen">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="prose prose-lg max-w-none">
-            <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-8">
-              Tentang BIOS 🎓
-            </h1>
+      <header className="mx-auto flex max-w-7xl flex-col gap-5 px-4 pt-16 pb-12 sm:px-6 sm:pt-20 lg:px-8">
+        <span className="font-mono text-sm tracking-widest text-accent">
+          &gt; TENTANG KAMI
+        </span>
+        <h1 className="max-w-4xl font-display text-4xl leading-[1.08] font-extrabold tracking-tight text-heading sm:text-5xl lg:text-6xl">
+          Himpunan mahasiswa Informatika Universitas Bunda Mulia.
+        </h1>
+      </header>
 
-            <div className="flex justify-center mb-8">
-              <Image
-                src="/BIOS.png"
-                alt="BIOS Logo"
-                width={192}
-                height={192}
-                className="w-48 h-48 object-contain"
-              />
-            </div>
+      <section className="mx-auto flex max-w-7xl flex-wrap gap-12 px-4 pb-16 sm:px-6 lg:px-8">
+        <ol className="flex min-w-0 flex-[999_1_30rem] flex-col gap-9 border-l-2 border-line">
+          {timeline.map((item, index) => {
+            const isCurrent = index === timeline.length - 1;
+            return (
+              <li
+                key={item.year}
+                className={`-ml-0.5 flex flex-col gap-2 border-l-2 pl-7 ${
+                  isCurrent ? "border-accent" : "border-transparent"
+                }`}
+              >
+                <span
+                  className={`font-display text-3xl font-extrabold ${
+                    isCurrent ? "text-accent" : "text-muted"
+                  }`}
+                >
+                  {item.year}
+                </span>
+                <h2 className="font-display text-xl font-bold text-heading">
+                  {item.title}
+                </h2>
+                <p className="leading-relaxed">{item.description}</p>
+              </li>
+            );
+          })}
+        </ol>
 
-            <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
-              Siapa Kami?
+        <div className="flex flex-[1_1_20rem] flex-col gap-4 self-start rounded-md border-2 border-silver-300 bg-surface p-7">
+          <span className="font-mono text-xs tracking-widest text-muted">
+            VISI
+          </span>
+          <p className="text-xl leading-relaxed text-heading">
+            Menjadi organisasi mahasiswa yang unggul dalam mengembangkan
+            potensi mahasiswa untuk mencetak lulusan yang berkompeten dan
+            berkarakter.
+          </p>
+        </div>
+      </section>
+
+      <section className="bg-band text-on-band">
+        <div className="mx-auto flex max-w-7xl flex-col gap-7 px-4 py-16 sm:px-6 lg:px-8">
+          <h2 className="font-display text-3xl font-extrabold tracking-tight">
+            Misi
+          </h2>
+          <ol className="grid overflow-hidden rounded border-2 border-on-band sm:grid-cols-2 lg:grid-cols-4">
+            {missions.map((mission, index) => (
+              <li
+                key={mission}
+                className="flex flex-col gap-2.5 border-band-line p-6 not-last:border-b sm:not-last:border-r lg:border-b-0"
+              >
+                <span className="font-mono font-bold">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <span className="text-lg leading-snug">{mission}</span>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <section className="mx-auto flex max-w-7xl flex-col gap-7 px-4 py-16 sm:px-6 lg:px-8">
+        <h2 className="font-display text-3xl font-extrabold tracking-tight text-heading">
+          Program unggulan
+        </h2>
+        <div className="grid gap-5 md:grid-cols-3">
+          {programs.map((program, index) => {
+            const Icon = program.icon;
+            return (
+              <div
+                key={program.title}
+                className="flex flex-col gap-3 rounded-md border border-line bg-surface p-7"
+              >
+                <Icon
+                  aria-hidden="true"
+                  size={28}
+                  className={index === 0 ? "text-accent" : "text-muted"}
+                />
+                <h3 className="font-display text-xl font-bold text-heading">
+                  {program.title}
+                </h3>
+                <p className="leading-relaxed">{program.description}</p>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-8">
+        <div className="flex flex-wrap items-center justify-between gap-6 rounded-md border-2 border-accent p-8 sm:p-10">
+          <div className="flex flex-[1_1_24rem] flex-col gap-2">
+            <h2 className="font-display text-2xl font-extrabold text-heading sm:text-3xl">
+              Mau ikut menyalakan BIOS?
             </h2>
-
-            <p className="text-gray-700 dark:text-gray-300 mb-6 text-lg leading-relaxed">
-              Kami adalah organisasi himpunan mahasiswa Informatika Universitas
-              Bunda Mulia yang bernama BIOS. Organisasi ini sudah didirikan
-              sejak tahun ~2006 dengan nama BRAINITY. Kemudian pada tahun 2012,
-              berganti nama menjadi BIOS.
+            <p className="text-lg leading-relaxed">
+              Ikuti Instagram kami untuk info pendaftaran pengurus dan kegiatan
+              terbaru, atau ngobrol langsung di Discord.
             </p>
-
-            <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
-              Visi & Misi
-            </h2>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-              <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-6">
-                <h3 className="text-xl font-semibold text-blue-800 dark:text-blue-200 mb-4">
-                  🎯 Visi
-                </h3>
-                <p className="text-gray-700 dark:text-gray-300">
-                  Menjadi organisasi mahasiswa yang unggul dalam mengembangkan
-                  potensi mahasiswa Sistem Informasi untuk mencetak lulusan yang
-                  berkompeten dan berkarakter.
-                </p>
-              </div>
-
-              <div className="bg-green-50 dark:bg-green-900/20 rounded-lg p-6">
-                <h3 className="text-xl font-semibold text-green-800 dark:text-green-200 mb-4">
-                  🎯 Misi
-                </h3>
-                <ul className="text-gray-700 dark:text-gray-300 space-y-2 text-sm">
-                  <li>• Menyelenggarakan kegiatan akademik dan non-akademik</li>
-                  <li>• Memfasilitasi pengembangan soft skills mahasiswa</li>
-                  <li>• Menjalin kerjasama dengan berbagai pihak</li>
-                  <li>• Memberikan edukasi gratis kepada mahasiswa</li>
-                </ul>
-              </div>
-            </div>
-
-            <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
-              Program Unggulan
-            </h2>
-
-            <div className="space-y-6 mb-8">
-              <div className="border-l-4 border-primary pl-6">
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                  📚 BIOS Learning Platform
-                </h3>
-                <p className="text-gray-700 dark:text-gray-300">
-                  Platform pembelajaran online yang menyediakan materi-materi
-                  fundamental pemrograman, algoritma, dan teknologi informasi
-                  dalam bahasa Indonesia yang mudah dipahami.
-                </p>
-              </div>
-
-              <div className="border-l-4 border-primary pl-6">
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                  🏆 Workshop & Seminar
-                </h3>
-                <p className="text-gray-700 dark:text-gray-300">
-                  Menyelenggarakan berbagai workshop teknis, seminar teknologi
-                  terkini, dan sharing session dengan praktisi industri.
-                </p>
-              </div>
-
-              <div className="border-l-4 border-primary pl-6">
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                  🤝 Mentoring Program
-                </h3>
-                <p className="text-gray-700 dark:text-gray-300">
-                  Program pendampingan mahasiswa junior oleh senior yang
-                  berpengalaman dalam bidang akademik dan pengembangan karir.
-                </p>
-              </div>
-            </div>
-
-            <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
-              Bergabung dengan Kami
-            </h2>
-
-            <p className="text-gray-700 dark:text-gray-300 mb-6">
-              Tertarik untuk bergabung dengan komunitas BIOS? Ikuti media sosial
-              kami dan jangan lewatkan informasi terbaru tentang kegiatan dan
-              program yang kami selenggarakan!
-            </p>
-
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
-              <a
-                href="https://www.instagram.com/ubm_bios_ancol/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center bg-gradient-to-r from-pink-500 to-orange-500 text-white px-6 py-3 rounded-lg font-medium hover:shadow-lg transition-all duration-200"
-              >
-                <span className="mr-2">📱</span>
-                Instagram
-              </a>
-
-              <a
-                href="https://discord.gg/tUPHdBKS"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center bg-indigo-600 text-white px-6 py-3 rounded-lg font-medium hover:shadow-lg transition-all duration-200"
-              >
-                <span className="mr-2">💬</span>
-                Discord
-              </a>
-            </div>
-
-            <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-8 text-center">
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
-                Ada pertanyaan atau ingin berkolaborasi?
-              </h3>
-              <p className="text-gray-600 dark:text-gray-400 mb-6">
-                Jangan ragu untuk menghubungi kami melalui media sosial atau
-                bergabung di server Discord kami untuk diskusi langsung!
-              </p>
-              <Link
-                href="/learn"
-                className="bg-primary hover:bg-primary-dark text-white px-6 py-3 rounded-lg font-medium transition-colors duration-200 inline-block"
-              >
-                Kembali ke Pembelajaran
-              </Link>
-            </div>
+          </div>
+          <div className="flex flex-wrap gap-3">
+            <a
+              href="https://www.instagram.com/ubm_bios_ancol/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded bg-cta px-6 py-4 font-display font-bold text-on-cta transition-opacity hover:opacity-90"
+            >
+              @ubm_bios_ancol →
+            </a>
+            <a
+              href="https://discord.gg/tUPHdBKS"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded border-2 border-silver-300 px-6 py-3.5 font-display font-bold text-heading transition-colors hover:border-accent hover:text-accent"
+            >
+              Discord
+            </a>
           </div>
         </div>
-      </div>
+      </section>
     </Layout>
   );
 }

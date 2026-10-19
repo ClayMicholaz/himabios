@@ -4,11 +4,14 @@ interface CountdownTimerProps {
 
 export default function CountdownTimer({ timeRemaining }: CountdownTimerProps) {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 p-6 sm:p-8 lg:p-10 text-center max-w-2xl mx-auto">
-      <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-6">
-        Pengumuman akan dibuka dalam
+    <div className="mx-auto max-w-2xl rounded-md border-2 border-silver-300 bg-surface p-6 text-center sm:p-10">
+      <p className="mb-6 font-mono text-sm tracking-widest text-muted">
+        PENGUMUMAN DIBUKA DALAM
       </p>
-      <div className="text-4xl sm:text-5xl lg:text-6xl font-mono font-bold text-gray-900 dark:text-white">
+      <div
+        role="timer"
+        className="font-mono text-3xl font-bold text-heading sm:text-5xl lg:text-6xl"
+      >
         {timeRemaining}
       </div>
     </div>

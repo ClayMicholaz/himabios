@@ -1,4 +1,4 @@
-# 1. Main Objective
+# 1. Main Objective [PRIORITY]
 
 ## 1.1. Pages yang AI-Slop
 
@@ -27,13 +27,13 @@ Desktop:
 
 # 2. Idea for Features
 
-## 2.1. halaman `/learning`
+## 2.1. halaman `/learning` [PRIORITY]
 
 menambahkan LMS, dimana ada field/form dimana user dapat latihan secara langsung diweb.
 
-## 2.2. halaman `/announcement`
+## 2.2. halaman `/announcement` [PRIORITY]
 
-Form untuk Daftar dan Pengumuman. jadi saat masa/periode pendaftaran di navbar yang muncul adalah Daftar, setelah selesai periode daftar yang muncul adalah pengumuman. Data Mahasiswa masih hardcode. saat hari-H pengumuman dan setelah reveal akan ada fitur untuk share ig, setiap member yang diterima (WAJIB?) share ke Story IG dan tag `@ubm_bios_ancol`, dan @ubm_bios_ancol akan repost.
+Form untuk Daftar dan Pengumuman. jadi saat masa/periode pendaftaran di navbar yang muncul ada Daftar, setelah selesai periode daftar yang muncul adalah pengumuman. Data Mahasiswa masih hardcode. saat hari-H pengumuman dan setelah reveal akan ada fitur untuk share ig, setiap member yang diterima (WAJIB?) share ke Story IG dan tag `@ubm_bios_ancol`, dan @ubm_bios_ancol akan repost.
 
 Hardcoded pendaftar: [Script Announcement page](/src/app/announcement/page.tsx) L20-L131
 
@@ -49,7 +49,7 @@ example:
   },
 ```
 
-## 2.3. halaman `/divisi`
+## 2.3. halaman `/divisi` [PRIORITY]
 
 menampilkan foto & jabatan struktural BIOS dari ketua-waketu bph, sekre, ketua divisi, dan anggota divisi.
 Notes: saat ini masih kosong
@@ -59,9 +59,11 @@ Notes: saat ini masih kosong
 form registrasi menjadi anggota BIOS, wajib login dengan menggunakan akun 2FA UBM, menggunakan Supabase harus menggunakan method cron-job biar project supa tidak paused.
 
 ### Param /register
+
 ada di .env (tapi ini tidak optimal, harus cari method lain)
 
 better diubah jadi fetching ke db untuk system settings (terdiri dari: REG DATE (START/END), ANNOUNCEMENT DATE, ADMIN_NIM)
+
 ```sql
 CREATE TABLE system_settings (
     id SERIAL PRIMARY KEY,
@@ -71,7 +73,7 @@ CREATE TABLE system_settings (
 );
 
 -- Contoh Data Parameter:
--- INSERT INTO system_settings (setting_key, setting_value, description) VALUES 
+-- INSERT INTO system_settings (setting_key, setting_value, description) VALUES
 -- ('REGISTRATION_START_DATE', '2026-08-01', 'Hidden /announcement, showing /register'),
 -- ('REGISTRATION_END_DATE', '2026-08-31', 'Hidden /register'),
 -- ('ANNOUNCEMENT_DATE', '2026-09-05', 'showing /announcement'),
@@ -82,7 +84,7 @@ CREATE TABLE system_settings (
 
 ```sql
 CREATE TYPE division_enum AS ENUM (
-    'Tata Usaha', 'Public Relation', 'Creative & Design', 
+    'Tata Usaha', 'Public Relation', 'Creative & Design',
     'Acara', 'Publication & Documentation', 'Development & Programming'
 );
 
@@ -164,7 +166,7 @@ Dalam folder `src/app/learn/`, terdapat folder unik bernama `[...slug]`. Ini ada
 Platform utama bagi mahasiswa untuk mempelajari pemrograman secara sistematis.
 
 - **Kategori Terstruktur:** Materi dikelompokkan ke dalam kategori seperti **"Pengantar Pemrograman"** (Python, Variabel) dan **"Algoritma"** (Notasi Big O, Pengurutan, Pencarian).
-- **Dukungan Markdown:** Menggunakan plugin `react-markdown`, `remark`, dan `rehype` untuk menampilkan teks kaya (*rich text*), cuplikan kode, penyorotan sintaksis, dan rumus matematika.
+- **Dukungan Markdown:** Menggunakan plugin `react-markdown`, `remark`, dan `rehype` untuk menampilkan teks kaya (_rich text_), cuplikan kode, penyorotan sintaksis, dan rumus matematika.
 - **Tautan Cepat:** Navigasi yang memudahkan pengguna untuk langsung menuju pelajaran tertentu.
 
 ## Pengumuman & Pendaftaran (`/announcement`)
@@ -172,7 +174,7 @@ Platform utama bagi mahasiswa untuk mempelajari pemrograman secara sistematis.
 Fitur interaktif untuk rekrutmen terbuka atau pengumuman resmi HIMA BIOS.
 
 - **Penghitung Mundur:** Menampilkan sisa waktu hingga pengumuman dirilis.
-- **Sistem Pengecekan NIM:** Mahasiswa dapat memasukkan Nomor Induk Mahasiswa (NIM) mereka, lengkap dengan simulasi pemuatan (*loading*) dan penanganan kesalahan (*error handling*).
+- **Sistem Pengecekan NIM:** Mahasiswa dapat memasukkan Nomor Induk Mahasiswa (NIM) mereka, lengkap dengan simulasi pemuatan (_loading_) dan penanganan kesalahan (_error handling_).
 - **Kartu Hasil Mahasiswa:** Jika diterima, sistem menampilkan Nama, NIM, Divisi yang ditugaskan, dan Status mahasiswa.
 - **Integrasi WhatsApp:** Mahasiswa yang diterima diberikan tombol untuk langsung bergabung dengan Grup WhatsApp HIMA BIOS.
 

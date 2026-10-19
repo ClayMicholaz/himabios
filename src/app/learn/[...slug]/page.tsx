@@ -80,7 +80,7 @@ export default async function MarkdownPage({ params }: PageProps) {
         <article className="max-w-none">
           {markdownData.frontmatter.description && (
             <div className="mb-6">
-              <p className="text-xl text-gray-600 dark:text-gray-400 italic">
+              <p className="text-xl text-muted italic">
                 {markdownData.frontmatter.description}
               </p>
             </div>

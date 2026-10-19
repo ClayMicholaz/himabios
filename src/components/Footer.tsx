@@ -29,32 +29,28 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-docusaurus-footer dark:bg-docusaurus-footer-dark text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
-        <div className="flex flex-col items-center gap-2">
-          {/* Social Icons */}
-          <div className="flex items-center gap-6">
-            {socialLinks.map((social) => {
-              const Icon = social.icon;
-              return (
-                <a
-                  key={social.href}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={social.label}
-                  className="flex items-center justify-center w-10 h-10 rounded-full border border-gray-600 text-gray-300 hover:text-white hover:border-white transition-colors duration-200"
-                >
-                  <Icon size={18} />
-                </a>
-              );
-            })}
-          </div>
+    <footer className="border-t border-line bg-deep text-silver-300">
+      <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-4 py-8 sm:px-6 lg:px-8">
+        <p className="text-sm">
+          © {currentYear} HIMA BIOS · Informatika Universitas Bunda Mulia
+        </p>
 
-          {/* Copyright */}
-          <p className="text-sm text-gray-400">
-            Copyright © {currentYear} BIOS.
-          </p>
+        <div className="flex items-center gap-2">
+          {socialLinks.map((social) => {
+            const Icon = social.icon;
+            return (
+              <a
+                key={social.href}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={social.label}
+                className="flex size-11 items-center justify-center rounded border border-navy-600 transition-colors hover:border-mint-400 hover:text-mint-400"
+              >
+                <Icon size={18} />
+              </a>
+            );
+          })}
         </div>
       </div>
     </footer>

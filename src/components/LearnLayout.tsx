@@ -45,11 +45,11 @@ export default function LearnLayout({
   }, []);
 
   return (
-    <div className="h-screen flex bg-docusaurus dark:bg-docusaurus-bg-dark overflow-hidden">
+    <div className="flex h-[calc(100dvh-4.5rem)] overflow-hidden bg-bg">
       {/* Mobile overlay */}
       {sidebarOpen && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
+          className="fixed inset-0 z-40 bg-navy-950/60 lg:hidden"
           onClick={() => setSidebarOpen(false)}
         />
       )}
@@ -58,21 +58,21 @@ export default function LearnLayout({
       <div
         className={`
         fixed lg:static inset-y-0 left-0 z-50 
-        w-80 bg-docusaurus-bg dark:bg-docusaurus-bg-dark 
-        border-r border-gray-200 dark:border-gray-700
+        w-80 border-r border-line bg-bg
         transform transition-transform duration-200 ease-in-out
         flex flex-col
         ${sidebarOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}
       `}
       >
         {/* Mobile sidebar header */}
-        <div className="lg:hidden flex justify-between items-center p-4 border-b border-gray-200 dark:border-gray-700">
-          <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
+        <div className="flex items-center justify-between border-b border-line p-4 lg:hidden">
+          <h2 className="font-display text-lg font-bold text-heading">
             Navigasi
           </h2>
           <button
             onClick={() => setSidebarOpen(false)}
-            className="p-2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+            aria-label="Tutup navigasi materi"
+            className="flex size-11 items-center justify-center rounded border border-line text-fg hover:text-accent"
           >
             <svg
               className="w-6 h-6"
@@ -99,11 +99,11 @@ export default function LearnLayout({
           ) : (
             <div className="p-6">
               <div className="animate-pulse">
-                <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded mb-4"></div>
+                <div className="mb-4 h-6 rounded bg-raised"></div>
                 <div className="space-y-2">
-                  <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded"></div>
-                  <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded"></div>
-                  <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded"></div>
+                  <div className="h-4 rounded bg-raised"></div>
+                  <div className="h-4 rounded bg-raised"></div>
+                  <div className="h-4 rounded bg-raised"></div>
                 </div>
               </div>
             </div>
@@ -112,12 +112,13 @@ export default function LearnLayout({
       </div>
 
       {/* Main content */}
-      <main className="flex-1 min-w-0 flex flex-col h-full overflow-hidden">
+      <main className="flex h-full min-w-0 flex-1 flex-col overflow-hidden">
         {/* Mobile header with hamburger */}
-        <div className="lg:hidden flex items-center justify-between p-4 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 flex-shrink-0">
+        <div className="flex shrink-0 items-center justify-between border-b border-line bg-surface p-4 lg:hidden">
           <button
             onClick={() => setSidebarOpen(true)}
-            className="p-2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+            aria-label="Buka navigasi materi"
+            className="flex size-11 items-center justify-center rounded border border-line text-fg hover:text-accent"
           >
             <svg
               className="w-6 h-6"
@@ -133,10 +134,10 @@ export default function LearnLayout({
               />
             </svg>
           </button>
-          <h1 className="text-lg font-semibold text-gray-900 dark:text-white truncate">
+          <p className="truncate font-display text-lg font-bold text-heading">
             {title || "BIOS Learn"}
-          </h1>
-          <div className="w-10"></div> {/* Spacer for centering */}
+          </p>
+          <div className="w-11"></div> {/* Spacer for centering */}
         </div>
 
         {/* Scrollable content area */}
@@ -145,7 +146,7 @@ export default function LearnLayout({
             {currentPath && breadcrumbs.length > 1 && (
               <Breadcrumb items={breadcrumbs} />
             )}
-            <div className="max-w-7xl mx-auto">{children}</div>
+            <div className="mx-auto max-w-7xl">{children}</div>
           </div>
         </div>
       </main>
