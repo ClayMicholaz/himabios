@@ -76,14 +76,14 @@
 /* Dark mode (default): navy ground, silver text, mint for actions */
 .dark {
   color-scheme: dark;
-  --bg: var(--color-navy-900);
-  --surface: var(--color-navy-800);
-  --raised: var(--color-navy-700);
-  --line: var(--color-navy-600);
+  --bg: var(--color-navy-800);
+  --surface: var(--color-navy-700);
+  --raised: var(--color-navy-600);
+  --line: var(--color-navy-500);
   --deep: var(--color-navy-950);
   --heading: var(--color-silver-100);
   --fg: var(--color-silver-300);
-  --muted: var(--color-navy-200);
+  --muted: #b4c6f2;
   --accent: var(--color-mint-400);
   --cta: var(--color-mint-400);
   --on-cta: var(--color-navy-950);

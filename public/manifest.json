@@ -4,8 +4,8 @@
   "description": "Platform resmi HIMA BIOS UBM Ancol untuk belajar programming gratis. Himpunan Mahasiswa Informatika Universitas Bunda Mulia Jakarta.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#13285a",
-  "theme_color": "#13285a",
+  "background_color": "#1b3470",
+  "theme_color": "#1b3470",
   "orientation": "portrait-primary",
   "icons": [
     {

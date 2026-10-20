@@ -99,7 +99,7 @@ export default function StudentResultCard({
         <div
           className={clsx(
             "px-5 py-3 font-mono text-sm font-bold tracking-widest",
-            isAccepted ? "bg-cta text-on-cta" : "bg-raised text-danger",
+            isAccepted ? "bg-cta text-on-cta" : "bg-surface text-danger",
           )}
         >
           {isAccepted ? "● SELAMAT, KAMU DITERIMA" : "✕ BELUM LOLOS SELEKSI"}

@@ -177,8 +177,8 @@ export default function RootLayout({
 
         {/* Enhanced Meta Tags for Logo/Icon */}
         <meta name="msapplication-TileImage" content="/BIOS.png" />
-        <meta name="msapplication-TileColor" content="#13285a" />
-        <meta name="theme-color" content="#13285a" />
+        <meta name="msapplication-TileColor" content="#1b3470" />
+        <meta name="theme-color" content="#1b3470" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
