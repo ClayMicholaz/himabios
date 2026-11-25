@@ -139,8 +139,7 @@ const studentAcceptanceData: StudentData[] = [
 ];
 
 const announcementConfig = {
-  releaseDate: new Date("2027-09-19"),
-  releaseTime: "00:00",
+  releaseDateTime: new Date("2027-09-19T00:00:00+07:00"),
 };
 
 export default function AnnouncementPage() {
@@ -159,6 +158,10 @@ export default function AnnouncementPage() {
     handleReset,
   } = useAnnouncementLogic(studentAcceptanceData, announcementConfig);
 
+  const isAnnouncementMoreThan30DaysAway =
+    announcementConfig.releaseDateTime.getTime() - Date.now() >
+    30 * 24 * 60 * 60 * 1000;
+
   const handleWhatsAppJoin = () => {
     if (!searchResult) return;
     const groupLink = "https://chat.whatsapp.com/GkNlatokviu4FlBnbPtOkB";
@@ -168,11 +171,29 @@ export default function AnnouncementPage() {
 
   return (
     <Layout>
-
       {/* Main Content */}
       <div className="py-16 sm:py-20 lg:py-24">
         <div className="max-w-7xl mx-auto">
-          {isAnnouncementTime ? (
+          {isAnnouncementMoreThan30DaysAway ? (
+            <section
+              aria-labelledby="announcement-unavailable-title"
+              className="mx-auto flex max-w-2xl flex-col gap-4 px-4 text-center sm:px-6 lg:px-8"
+            >
+              <span className="font-mono text-sm tracking-widest text-accent">
+                &gt; PENGUMUMAN SELEKSI PENGURUS
+              </span>
+              <h1
+                id="announcement-unavailable-title"
+                className="font-display text-3xl font-extrabold tracking-tight text-heading sm:text-4xl"
+              >
+                Pengumuman belum dibuka
+              </h1>
+              <p className="leading-relaxed text-muted">
+                Informasi pengumuman akan tersedia dalam 30 hari sebelum
+                tanggal rilis. Silakan kembali lagi nanti.
+              </p>
+            </section>
+          ) : isAnnouncementTime ? (
             // AFTER release date/time: show inputs / loading / results
             <div className="space-y-16 sm:space-y-20 lg:space-y-24">
               {!isSearching && !showResult && (
@@ -208,8 +229,7 @@ export default function AnnouncementPage() {
             <div className="space-y-12 sm:space-y-16 lg:space-y-20">
               <div className="px-4 sm:px-6 lg:px-8">
                 <ScheduleCard
-                  releaseDate={announcementConfig.releaseDate}
-                  releaseTime={announcementConfig.releaseTime}
+                  releaseDateTime={announcementConfig.releaseDateTime}
                 />
               </div>
 

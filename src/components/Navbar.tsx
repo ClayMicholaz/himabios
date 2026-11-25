@@ -19,6 +19,7 @@ const navItems: NavItem[] = [
   { label: "Tentang", href: "/about" },
   { label: "Divisi", href: "/divisi" },
   { label: "Pengumuman", href: "/announcement", cta: true },
+  { label: "Acara", href: "/events" }
 ];
 
 const githubUrl = "https://github.com/bios-bunda-mulia-university";
@@ -90,7 +91,9 @@ export default function Navbar() {
             <button
               onClick={toggleDarkMode}
               className="flex size-11 items-center justify-center rounded border border-line text-fg transition-colors hover:text-accent"
-              aria-label={isDarkMode ? "Ganti ke mode terang" : "Ganti ke mode gelap"}
+              aria-label={
+                isDarkMode ? "Ganti ke mode terang" : "Ganti ke mode gelap"
+              }
             >
               {isDarkMode ? <FiSun size={18} /> : <FiMoon size={18} />}
             </button>
