@@ -1,19 +1,25 @@
 interface ScheduleCardProps {
-  releaseDate: Date;
-  releaseTime: string;
+  releaseDateTime: Date;
 }
 
 export default function ScheduleCard({
-  releaseDate,
-  releaseTime,
+  releaseDateTime,
 }: ScheduleCardProps) {
-  const dayName = releaseDate.toLocaleDateString("id-ID", {
+  const dayName = releaseDateTime.toLocaleDateString("id-ID", {
     weekday: "long",
+    timeZone: "Asia/Jakarta",
   });
-  const dateStr = releaseDate.toLocaleDateString("id-ID", {
+  const dateStr = releaseDateTime.toLocaleDateString("id-ID", {
     day: "numeric",
     month: "long",
     year: "numeric",
+    timeZone: "Asia/Jakarta",
+  });
+  const timeStr = releaseDateTime.toLocaleTimeString("id-ID", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hourCycle: "h23",
+    timeZone: "Asia/Jakarta",
   });
 
   return (
@@ -38,7 +44,7 @@ export default function ScheduleCard({
         <div className="flex flex-col gap-2 p-6">
           <p className="font-mono text-xs tracking-widest text-muted">WAKTU</p>
           <p className="font-display text-3xl font-extrabold text-heading">
-            {releaseTime}
+            {timeStr}
           </p>
           <p className="text-lg">WIB</p>
         </div>

@@ -10,8 +10,7 @@ interface StudentData {
 }
 
 interface AnnouncementConfig {
-  releaseDate: Date;
-  releaseTime: string;
+  releaseDateTime: Date;
 }
 
 export function useAnnouncementLogic(
@@ -31,9 +30,7 @@ export function useAnnouncementLogic(
   // Fungsi untuk mengecek apakah sudah waktunya pengumuman
   const checkAnnouncementTime = useCallback(() => {
     const now = new Date();
-    const releaseDateTime = new Date(announcementConfig.releaseDate);
-    const [hours, minutes] = announcementConfig.releaseTime.split(":");
-    releaseDateTime.setHours(parseInt(hours), parseInt(minutes), 0, 0);
+    const releaseDateTime = announcementConfig.releaseDateTime;
 
     if (now >= releaseDateTime) {
       setIsAnnouncementTime(true);
@@ -51,7 +48,7 @@ export function useAnnouncementLogic(
 
       setTimeRemaining(`${days}d ${hours}h ${minutes}m ${seconds}s`);
     }
-  }, [announcementConfig.releaseDate, announcementConfig.releaseTime]);
+  }, [announcementConfig.releaseDateTime]);
 
   // Update timer setiap detik
   useEffect(() => {

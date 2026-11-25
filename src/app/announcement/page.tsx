@@ -139,8 +139,7 @@ const studentAcceptanceData: StudentData[] = [
 ];
 
 const announcementConfig = {
-  releaseDate: new Date("2027-09-19"),
-  releaseTime: "00:00",
+  releaseDateTime: new Date("2027-09-19T00:00:00+07:00"),
 };
 
 export default function AnnouncementPage() {
@@ -159,13 +158,9 @@ export default function AnnouncementPage() {
     handleReset,
   } = useAnnouncementLogic(studentAcceptanceData, announcementConfig);
 
-  const releaseDateTime = new Date(announcementConfig.releaseDate);
-  const [releaseHour, releaseMinute] = announcementConfig.releaseTime
-    .split(":")
-    .map(Number);
-  releaseDateTime.setHours(releaseHour, releaseMinute, 0, 0);
   const isAnnouncementMoreThan30DaysAway =
-    releaseDateTime.getTime() - Date.now() > 30 * 24 * 60 * 60 * 1000;
+    announcementConfig.releaseDateTime.getTime() - Date.now() >
+    30 * 24 * 60 * 60 * 1000;
 
   const handleWhatsAppJoin = () => {
     if (!searchResult) return;
@@ -234,8 +229,7 @@ export default function AnnouncementPage() {
             <div className="space-y-12 sm:space-y-16 lg:space-y-20">
               <div className="px-4 sm:px-6 lg:px-8">
                 <ScheduleCard
-                  releaseDate={announcementConfig.releaseDate}
-                  releaseTime={announcementConfig.releaseTime}
+                  releaseDateTime={announcementConfig.releaseDateTime}
                 />
               </div>
 
