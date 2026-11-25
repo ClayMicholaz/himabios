@@ -18,6 +18,7 @@ const navItems: NavItem[] = [
   { label: "Belajar", href: "/learn" },
   { label: "Tentang", href: "/about" },
   { label: "Divisi", href: "/divisi" },
+  { label: "Acara", href: "/events" },
 ];
 
 const githubUrl = "https://github.com/bios-bunda-mulia-university";
