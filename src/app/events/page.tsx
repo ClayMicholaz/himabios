@@ -1,5 +1,12 @@
+import type { Metadata } from "next";
 import Layout from "@/components/Layout";
 import { pastEvents } from "@/data/events";
+
+export const metadata: Metadata = {
+  title: "Acara - BIOS",
+  description:
+    "Informasi mengenai acara-acara yang diselenggarakan oleh HIMA BIOS Universitas Bunda Mulia",
+};
 
 function formatEventDate(date: string) {
   return new Intl.DateTimeFormat("id-ID", {
