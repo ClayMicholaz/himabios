@@ -15,7 +15,7 @@ export interface Divisi {
   members: Pengurus[];
 }
 
-export const periode = "";
+export const periode = "2026 - 2027";
 
 export const bph: Pengurus[] = [
   { name: "Febriani Adeline", role: "Ketua" },
